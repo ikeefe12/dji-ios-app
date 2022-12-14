@@ -62,7 +62,7 @@ class StartupViewController: UIViewController {
     
     
     func resetUI() {
-        self.title = "DJI Heat Seeking Drone"
+        self.title = "Drone Hub"
         self.sdkVersionLabel.text = "DJI SDK Version: \(DJISDKManager.sdkVersion())"
         self.openComponents.isEnabled = false; //FIXME: set it back to false
         self.productModel.isHidden = true
