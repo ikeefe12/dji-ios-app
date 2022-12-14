@@ -1,4 +1,4 @@
-# dji-ios-app\
+# dji-ios-app
 AUTHOURS: Fiona Whitfield, Eva Blainey, Abby Brennan, Ian Keefe
 
 An IOS application that uses the MSDK provided by DJI to communicate flight instructions to drone.
