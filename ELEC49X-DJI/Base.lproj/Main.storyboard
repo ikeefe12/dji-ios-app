@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Wf-wJ-3VA">
-    <device id="retina4_7" orientation="landscape">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Wf-wJ-3VA">
+    <device id="retina4_7" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Startup View Controller-->
         <scene sceneID="SIb-O8-flv">
             <objects>
-                <viewController id="elD-ci-Ggq" customClass="StartupViewController" customModule="DJISDKSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="elD-ci-Ggq" customClass="StartupViewController" customModule="ELEC49X_DJI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AIH-un-b7E"/>
                         <viewControllerLayoutGuide type="bottom" id="vZH-HF-j3L"/>
@@ -67,33 +65,6 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riD-zD-yam">
-                                <rect key="frame" x="208" y="238" width="250" height="52"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="0a5-gy-Pe8"/>
-                                    <constraint firstAttribute="height" constant="52" id="3A9-Bd-dPC"/>
-                                </constraints>
-                                <inset key="contentEdgeInsets" minX="10" minY="15" maxX="10" maxY="15"/>
-                                <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
-                                <state key="normal" title="Bluetooth" backgroundImage="btn">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="0a5-gy-Pe8"/>
-                                        <exclude reference="3A9-Bd-dPC"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="0a5-gy-Pe8"/>
-                                        <include reference="3A9-Bd-dPC"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <segue destination="O1A-K2-k5x" kind="show" id="irV-YM-GDQ"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWh-8t-5th">
                                 <rect key="frame" x="209" y="172" width="250" height="52"/>
                                 <constraints>
@@ -161,43 +132,11 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firmware Package Version: Not Available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asu-Ex-m99">
-                                <rect key="frame" x="54" y="123" width="560" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="304-Sd-VgO"/>
-                                    <constraint firstAttribute="height" constant="21" id="52I-Nv-axy"/>
-                                    <constraint firstAttribute="width" constant="560" id="TrA-a7-Yey"/>
-                                    <constraint firstAttribute="width" constant="560" id="ucl-SB-W0i"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="304-Sd-VgO"/>
-                                        <exclude reference="ucl-SB-W0i"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="304-Sd-VgO"/>
-                                        <exclude reference="52I-Nv-axy"/>
-                                        <exclude reference="TrA-a7-Yey"/>
-                                        <include reference="ucl-SB-W0i"/>
-                                    </mask>
-                                </variation>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="riD-zD-yam" firstAttribute="centerY" secondItem="13d-yb-Ou6" secondAttribute="centerY" id="19g-7g-QL2">
-                                <variation key="heightClass=compact" constant="92.5"/>
-                            </constraint>
                             <constraint firstItem="UAw-ns-Vhl" firstAttribute="top" secondItem="AIH-un-b7E" secondAttribute="bottom" priority="700" constant="21" id="3Lp-u3-5bQ"/>
                             <constraint firstItem="evr-TR-zVg" firstAttribute="centerX" secondItem="13d-yb-Ou6" secondAttribute="centerX" id="74Y-oW-tEk"/>
-                            <constraint firstItem="riD-zD-yam" firstAttribute="centerX" secondItem="13d-yb-Ou6" secondAttribute="centerX" id="8Eg-00-l8C">
-                                <variation key="heightClass=compact" constant="-0.5"/>
-                            </constraint>
                             <constraint firstItem="quM-Rr-hDz" firstAttribute="centerX" secondItem="13d-yb-Ou6" secondAttribute="centerX" id="9ST-Em-L6Q"/>
                             <constraint firstItem="evr-TR-zVg" firstAttribute="centerX" secondItem="13d-yb-Ou6" secondAttribute="centerX" id="GUT-FQ-PdE">
                                 <variation key="heightClass=compact" constant="1"/>
@@ -205,18 +144,8 @@
                             <constraint firstItem="UAw-ns-Vhl" firstAttribute="centerY" secondItem="13d-yb-Ou6" secondAttribute="centerY" id="JgX-kP-hhW">
                                 <variation key="heightClass=compact" constant="-140.5"/>
                             </constraint>
-                            <constraint firstItem="asu-Ex-m99" firstAttribute="centerY" secondItem="13d-yb-Ou6" secondAttribute="centerY" id="MSG-Dh-RFE">
-                                <variation key="heightClass=compact" constant="-38"/>
-                            </constraint>
-                            <constraint firstItem="asu-Ex-m99" firstAttribute="centerX" secondItem="13d-yb-Ou6" secondAttribute="centerX" id="MSe-OZ-oRK">
-                                <variation key="heightClass=compact" constant="0.5"/>
-                            </constraint>
                             <constraint firstItem="ZWh-8t-5th" firstAttribute="centerX" secondItem="13d-yb-Ou6" secondAttribute="centerX" id="Qvx-yB-xPX"/>
                             <constraint firstItem="bvn-Jl-PRU" firstAttribute="top" secondItem="quM-Rr-hDz" secondAttribute="bottom" constant="22" id="WuY-h1-hwk"/>
-                            <constraint firstItem="asu-Ex-m99" firstAttribute="top" secondItem="bvn-Jl-PRU" secondAttribute="bottom" constant="8" id="WzN-55-Wxv">
-                                <variation key="heightClass=compact" constant="32"/>
-                                <variation key="heightClass=compact-widthClass=regular" constant="7"/>
-                            </constraint>
                             <constraint firstItem="ZWh-8t-5th" firstAttribute="centerY" secondItem="13d-yb-Ou6" secondAttribute="centerY" constant="33.5" id="YBP-Cc-79l">
                                 <variation key="heightClass=compact-widthClass=regular" constant="7"/>
                             </constraint>
@@ -224,16 +153,8 @@
                                 <variation key="heightClass=compact" constant="1"/>
                             </constraint>
                             <constraint firstItem="UAw-ns-Vhl" firstAttribute="centerX" secondItem="13d-yb-Ou6" secondAttribute="centerX" id="e3F-Qf-PFt"/>
-                            <constraint firstItem="ZWh-8t-5th" firstAttribute="top" secondItem="asu-Ex-m99" secondAttribute="bottom" priority="750" constant="85" id="fyU-cx-3Wm">
-                                <variation key="heightClass=compact" constant="45"/>
-                                <variation key="widthClass=compact" constant="85"/>
-                                <variation key="heightClass=compact-widthClass=regular" constant="27"/>
-                            </constraint>
                             <constraint firstAttribute="bottomMargin" secondItem="evr-TR-zVg" secondAttribute="bottom" constant="20" id="ipy-Xm-xYO"/>
-                            <constraint firstItem="riD-zD-yam" firstAttribute="leading" secondItem="ZWh-8t-5th" secondAttribute="leading" id="iqx-Y9-xnZ"/>
                             <constraint firstItem="bvn-Jl-PRU" firstAttribute="centerX" secondItem="13d-yb-Ou6" secondAttribute="centerX" id="j1p-FV-ae2"/>
-                            <constraint firstItem="riD-zD-yam" firstAttribute="top" secondItem="ZWh-8t-5th" secondAttribute="bottom" constant="19" id="jW5-FP-HBR"/>
-                            <constraint firstItem="asu-Ex-m99" firstAttribute="centerX" secondItem="ZWh-8t-5th" secondAttribute="centerX" constant="1" id="m6l-ns-E15"/>
                             <constraint firstItem="bvn-Jl-PRU" firstAttribute="centerY" secondItem="13d-yb-Ou6" secondAttribute="centerY" id="msx-SD-xuA">
                                 <variation key="heightClass=compact" constant="-74"/>
                             </constraint>
@@ -249,20 +170,15 @@
                             <constraint firstItem="evr-TR-zVg" firstAttribute="centerY" secondItem="13d-yb-Ou6" secondAttribute="centerY" id="xbk-tx-keT">
                                 <variation key="heightClass=compact" constant="138.5"/>
                             </constraint>
-                            <constraint firstItem="riD-zD-yam" firstAttribute="trailing" secondItem="ZWh-8t-5th" secondAttribute="trailing" id="ypr-T6-OVc"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="msx-SD-xuA"/>
                                 <exclude reference="pxt-sB-81W"/>
-                                <exclude reference="MSG-Dh-RFE"/>
-                                <exclude reference="MSe-OZ-oRK"/>
                                 <exclude reference="JgX-kP-hhW"/>
                                 <exclude reference="bHZ-u7-P53"/>
                                 <exclude reference="tfv-0m-Y9V"/>
                                 <exclude reference="vEk-bx-HgH"/>
-                                <exclude reference="19g-7g-QL2"/>
-                                <exclude reference="8Eg-00-l8C"/>
                                 <exclude reference="GUT-FQ-PdE"/>
                                 <exclude reference="xbk-tx-keT"/>
                             </mask>
@@ -272,23 +188,13 @@
                                 <exclude reference="j1p-FV-ae2"/>
                                 <include reference="msx-SD-xuA"/>
                                 <include reference="pxt-sB-81W"/>
-                                <include reference="MSG-Dh-RFE"/>
-                                <include reference="MSe-OZ-oRK"/>
-                                <exclude reference="WzN-55-Wxv"/>
-                                <exclude reference="m6l-ns-E15"/>
                                 <include reference="JgX-kP-hhW"/>
                                 <include reference="bHZ-u7-P53"/>
                                 <exclude reference="e3F-Qf-PFt"/>
                                 <exclude reference="Qvx-yB-xPX"/>
                                 <exclude reference="YBP-Cc-79l"/>
-                                <exclude reference="fyU-cx-3Wm"/>
                                 <include reference="tfv-0m-Y9V"/>
                                 <include reference="vEk-bx-HgH"/>
-                                <include reference="19g-7g-QL2"/>
-                                <include reference="8Eg-00-l8C"/>
-                                <exclude reference="iqx-Y9-xnZ"/>
-                                <exclude reference="jW5-FP-HBR"/>
-                                <exclude reference="ypr-T6-OVc"/>
                                 <exclude reference="74Y-oW-tEk"/>
                                 <include reference="GUT-FQ-PdE"/>
                                 <exclude reference="ipy-Xm-xYO"/>
@@ -303,11 +209,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="e7D-6G-d50"/>
                     <connections>
-                        <outlet property="bluetoothConnectorButton" destination="riD-zD-yam" id="BzK-Il-ypg"/>
                         <outlet property="bridgeModeLabel" destination="quM-Rr-hDz" id="TSH-6i-Ve6"/>
                         <outlet property="openComponents" destination="ZWh-8t-5th" id="kM3-iQ-Ycz"/>
                         <outlet property="productConnectionStatus" destination="UAw-ns-Vhl" id="gJi-kW-47A"/>
-                        <outlet property="productFirmwarePackageVersion" destination="asu-Ex-m99" id="0Jd-Dx-2D4"/>
                         <outlet property="productModel" destination="bvn-Jl-PRU" id="0pe-Hw-8GY"/>
                         <outlet property="sdkVersionLabel" destination="evr-TR-zVg" id="AcC-NQ-jhj"/>
                     </connections>
@@ -328,10 +232,10 @@
                             <tableViewSection headerTitle="General" id="Msm-lz-QAw">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jwq-jC-t2b">
-                                        <rect key="frame" x="0.0" y="28" width="667" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="667" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jwq-jC-t2b" id="Y8A-qO-dUS">
-                                            <rect key="frame" x="0.0" y="0.0" width="667" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="667" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keyed Interfaces" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNT-y1-kOR">
@@ -356,10 +260,10 @@
                             <tableViewSection headerTitle="Missions" id="m1w-ib-LPj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="GXR-Eb-xE6">
-                                        <rect key="frame" x="0.0" y="100" width="667" height="44"/>
+                                        <rect key="frame" x="0.0" y="172" width="667" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GXR-Eb-xE6" id="40e-zS-9dE">
-                                            <rect key="frame" x="0.0" y="0.0" width="667" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="667" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timeline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihk-WI-bGn">
@@ -384,10 +288,10 @@
                             <tableViewSection headerTitle="Camera" id="Fiq-81-k7c">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9AY-5S-JQN">
-                                        <rect key="frame" x="0.0" y="172" width="667" height="44"/>
+                                        <rect key="frame" x="0.0" y="294" width="667" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9AY-5S-JQN" id="oQU-pr-6lG">
-                                            <rect key="frame" x="0.0" y="0.0" width="667" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="667" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FPV" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRm-8L-dei">
@@ -412,10 +316,10 @@
                             <tableViewSection headerTitle="Other" id="KiZ-NB-dSU">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="VQi-86-yDQ">
-                                        <rect key="frame" x="0.0" y="244" width="667" height="44"/>
+                                        <rect key="frame" x="0.0" y="416" width="667" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VQi-86-yDQ" id="sd5-6q-Nhp">
-                                            <rect key="frame" x="0.0" y="0.0" width="667" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="667" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FlightHub" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTR-by-Gjr">
@@ -451,7 +355,7 @@
         <!--CameraFPV View Controller-->
         <scene sceneID="YmE-Ft-7z4">
             <objects>
-                <viewController id="dDf-ox-t1g" customClass="CameraFPVViewController" customModule="DJISDKSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dDf-ox-t1g" customClass="CameraFPVViewController" customModule="ELEC49X_DJI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dLf-fo-NEI"/>
                         <viewControllerLayoutGuide type="bottom" id="HGe-bd-Hhb"/>
@@ -461,7 +365,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="t0J-iz-MHs">
-                                <rect key="frame" x="210" y="20" width="247" height="29"/>
+                                <rect key="frame" x="203" y="20" width="261" height="32"/>
                                 <segments>
                                     <segment title="Software Decode"/>
                                     <segment title="Hardware Decode"/>
@@ -471,28 +375,28 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xEO-DL-dnK">
-                                <rect key="frame" x="168" y="56" width="331" height="66"/>
+                                <rect key="frame" x="169" y="59" width="329" height="66"/>
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yTO-Dh-kj0">
-                                        <rect key="frame" x="264" y="3" width="51" height="31"/>
+                                        <rect key="frame" x="262" y="3" width="51" height="31"/>
                                         <connections>
                                             <action selector="onSwitchValueChanged:" destination="dDf-ox-t1g" eventType="valueChanged" id="myx-3p-cIu"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thermal Temperature Data:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzg-cM-an1">
-                                        <rect key="frame" x="20" y="8" width="210" height="21"/>
+                                        <rect key="frame" x="20" y="8" width="208.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature (Degree Celsius):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIU-5w-BGc">
-                                        <rect key="frame" x="20" y="37" width="235" height="21"/>
+                                        <rect key="frame" x="20" y="37" width="233" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6l-rE-X7t">
-                                        <rect key="frame" x="266" y="37" width="45" height="21"/>
+                                        <rect key="frame" x="264" y="37" width="45" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -514,7 +418,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UbC-aS-itK">
-                                <rect key="frame" x="195.5" y="128" width="276" height="207"/>
+                                <rect key="frame" x="197.5" y="131" width="272" height="204"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UbC-aS-itK" secondAttribute="height" multiplier="4:3" id="L2t-wQ-yYJ"/>
@@ -546,7 +450,7 @@
         <!--Flight Hub View Controller-->
         <scene sceneID="Dat-9a-hVj">
             <objects>
-                <viewController id="BPa-2Z-vF4" customClass="FlightHubViewController" customModule="DJISDKSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BPa-2Z-vF4" customClass="FlightHubViewController" customModule="ELEC49X_DJI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xVy-oL-qOe"/>
                         <viewControllerLayoutGuide type="bottom" id="C8b-dM-bvO"/>
@@ -848,7 +752,7 @@
         <!--Keyed Interface View Controller-->
         <scene sceneID="7TV-UK-6K7">
             <objects>
-                <viewController id="fJF-Az-g6z" customClass="KeyedInterfaceViewController" customModule="DJISDKSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fJF-Az-g6z" customClass="KeyedInterfaceViewController" customModule="ELEC49X_DJI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kmo-NU-wbo"/>
                         <viewControllerLayoutGuide type="bottom" id="vhE-IO-JM6"/>
@@ -857,14 +761,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="343"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CnI-Lj-7e4">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CnI-Lj-7e4">
                                 <rect key="frame" x="277" y="70" width="113" height="30"/>
                                 <state key="normal" title="Get battery level"/>
                                 <connections>
                                     <action selector="getBatteryLevel:" destination="fJF-Az-g6z" eventType="touchUpInside" id="VhF-CT-eFw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dck-F2-Qik">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dck-F2-Qik">
                                 <rect key="frame" x="272" y="154" width="123" height="30"/>
                                 <state key="normal" title="Set Camera Mode"/>
                                 <connections>
@@ -872,18 +776,18 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A %" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="re2-CI-KTx">
-                                <rect key="frame" x="310.5" y="108" width="46" height="21"/>
+                                <rect key="frame" x="310" y="108" width="47.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Mode: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLS-bM-DKk">
-                                <rect key="frame" x="261.5" y="192" width="144" height="21"/>
+                                <rect key="frame" x="262.5" y="192" width="142" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rha-ZQ-s5F">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rha-ZQ-s5F">
                                 <rect key="frame" x="283.5" y="238" width="100" height="30"/>
                                 <state key="normal" title="Start Listening"/>
                                 <connections>
@@ -891,12 +795,12 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lat: 0,000 - Long: 0,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxi-6E-hWO">
-                                <rect key="frame" x="240.5" y="276" width="186" height="21"/>
+                                <rect key="frame" x="241" y="276" width="185" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sbi-X6-oAf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sbi-X6-oAf">
                                 <rect key="frame" x="257" y="322" width="153" height="30"/>
                                 <state key="normal" title="Get Exposure Settings"/>
                                 <connections>
@@ -904,12 +808,12 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iw0-FH-CVe">
-                                <rect key="frame" x="319.5" y="360" width="28.5" height="20.5"/>
+                                <rect key="frame" x="320" y="360" width="27.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zV-X5-EE6">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zV-X5-EE6">
                                 <rect key="frame" x="221.5" y="388.5" width="224" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="224" id="QSe-d9-OOn"/>
@@ -973,7 +877,7 @@
         <!--Timeline Mission View Controller-->
         <scene sceneID="Ys6-6P-dcl">
             <objects>
-                <viewController id="oJj-Fc-UDf" customClass="TimelineMissionViewController" customModule="DJISDKSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oJj-Fc-UDf" customClass="TimelineMissionViewController" customModule="ELEC49X_DJI" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RgY-Xx-yWM"/>
                         <viewControllerLayoutGuide type="bottom" id="cJ8-ii-cNI"/>
@@ -995,7 +899,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="elementCell" id="3pi-dQ-MWd" customClass="TimelineElementCollectionViewCell" customModule="DJISDKSwiftDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="elementCell" id="3pi-dQ-MWd" customClass="TimelineElementCollectionViewCell" customModule="ELEC49X_DJI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1005,7 +909,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GoHome" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oJ2-k8-ztk">
                                                     <rect key="frame" x="5" y="5" width="40" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" systemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1036,7 +940,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="elementCell" id="32E-7y-qbt" customClass="TimelineElementCollectionViewCell" customModule="DJISDKSwiftDemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="elementCell" id="32E-7y-qbt" customClass="TimelineElementCollectionViewCell" customModule="ELEC49X_DJI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1046,7 +950,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GoHome" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wqS-av-pkX">
                                                     <rect key="frame" x="5" y="5" width="40" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" systemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1064,7 +968,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Pf-hX-Apj">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Pf-hX-Apj">
                                 <rect key="frame" x="299.5" y="245" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9Pf-hX-Apj" secondAttribute="height" multiplier="1:1" id="1M1-L3-AXd"/>
@@ -1075,7 +979,7 @@
                                     <action selector="playButtonAction:" destination="oJj-Fc-UDf" eventType="touchUpInside" id="nKZ-tU-QbH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTm-DJ-Cdg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTm-DJ-Cdg">
                                 <rect key="frame" x="337.5" y="245" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Gy4-a2-F8n"/>
@@ -1138,96 +1042,11 @@
             </objects>
             <point key="canvasLocation" x="4141.0794602698652" y="-181.59999999999999"/>
         </scene>
-        <!--Bluetooth Connector View Controller-->
-        <scene sceneID="v6p-ea-HIW">
-            <objects>
-                <viewController id="O1A-K2-k5x" customClass="BluetoothConnectorViewController" customModule="DJISDKSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oIi-ys-qXK"/>
-                        <viewControllerLayoutGuide type="bottom" id="bqs-Rb-jZv"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="HWm-gS-IFh">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="343"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Ju-Jn-PPc">
-                                <rect key="frame" x="23" y="100" width="619" height="228"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="O1A-K2-k5x" id="gtG-ad-Cz7"/>
-                                    <outlet property="delegate" destination="O1A-K2-k5x" id="5Yy-0E-reR"/>
-                                </connections>
-                            </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KIo-0q-Nvn" userLabel="Buttons">
-                                <rect key="frame" x="162.5" y="40" width="340" height="45"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjv-WB-IbB">
-                                        <rect key="frame" x="0.0" y="0.0" width="157" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="157" id="7iJ-5T-tDN"/>
-                                            <constraint firstAttribute="height" constant="45" id="Lqr-yH-yTH"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Search" backgroundImage="btn">
-                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onBluetoothSearchButtonClicked:" destination="O1A-K2-k5x" eventType="touchUpInside" id="LT9-OQ-wyR"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Sf-xH-8di" userLabel="ConnectionButton">
-                                        <rect key="frame" x="177" y="0.0" width="157" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="157" id="X4H-Ng-CW8"/>
-                                            <constraint firstAttribute="height" constant="45" id="YuB-xc-cC0"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Connect" backgroundImage="btn">
-                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onBluetoothConnectButtonClicked:" destination="O1A-K2-k5x" eventType="touchUpInside" id="8eD-UU-mtD"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="A44-b0-Zlj"/>
-                                    <constraint firstItem="4Sf-xH-8di" firstAttribute="centerX" secondItem="KIo-0q-Nvn" secondAttribute="centerX" constant="85.5" id="ZFX-0w-d67"/>
-                                    <constraint firstItem="Bjv-WB-IbB" firstAttribute="centerY" secondItem="KIo-0q-Nvn" secondAttribute="centerY" id="a6S-Yn-XXb"/>
-                                    <constraint firstItem="Bjv-WB-IbB" firstAttribute="centerX" secondItem="KIo-0q-Nvn" secondAttribute="centerX" constant="-91.5" id="hpf-Pb-6Vf"/>
-                                    <constraint firstAttribute="width" constant="340" id="wff-B5-GO9"/>
-                                    <constraint firstItem="4Sf-xH-8di" firstAttribute="centerY" secondItem="KIo-0q-Nvn" secondAttribute="centerY" id="yOm-Br-dpq"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="KIo-0q-Nvn" firstAttribute="centerX" secondItem="HWm-gS-IFh" secondAttribute="centerX" constant="-1" id="8cl-52-1Bb">
-                                <variation key="heightClass=compact-widthClass=regular" constant="-1"/>
-                            </constraint>
-                            <constraint firstItem="bqs-Rb-jZv" firstAttribute="top" secondItem="9Ju-Jn-PPc" secondAttribute="bottom" constant="15" id="8zc-Aj-sXJ"/>
-                            <constraint firstItem="KIo-0q-Nvn" firstAttribute="top" secondItem="oIi-ys-qXK" secondAttribute="bottom" constant="40" id="B1r-Cw-2av"/>
-                            <constraint firstItem="9Ju-Jn-PPc" firstAttribute="centerX" secondItem="HWm-gS-IFh" secondAttribute="centerX" constant="-1" id="PAG-ZG-MOI">
-                                <variation key="heightClass=compact-widthClass=regular" constant="-1"/>
-                            </constraint>
-                            <constraint firstItem="9Ju-Jn-PPc" firstAttribute="top" secondItem="KIo-0q-Nvn" secondAttribute="bottom" constant="15" id="YYj-Bu-RQb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9Ju-Jn-PPc" secondAttribute="trailing" constant="5" id="ey9-zS-tqY"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="bluetoothDevicesTableView" destination="9Ju-Jn-PPc" id="d3Q-w2-EAH"/>
-                        <outlet property="connectButton" destination="4Sf-xH-8di" id="Z9m-Fe-Gpn"/>
-                        <outlet property="searchButton" destination="Bjv-WB-IbB" id="g02-Oy-civ"/>
-                        <outlet property="view" destination="HWm-gS-IFh" id="Iid-RE-3zy"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lDA-8p-yr1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1919" y="1471"/>
-        </scene>
     </scenes>
     <resources>
         <image name="btn" width="16.5" height="34"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

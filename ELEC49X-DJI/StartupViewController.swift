@@ -15,9 +15,7 @@ class StartupViewController: UIViewController {
     
     @IBOutlet weak var productConnectionStatus: UILabel!
     @IBOutlet weak var productModel: UILabel!
-    @IBOutlet weak var productFirmwarePackageVersion: UILabel!
     @IBOutlet weak var openComponents: UIButton!
-    @IBOutlet weak var bluetoothConnectorButton: UIButton!
     @IBOutlet weak var sdkVersionLabel: UILabel!
     @IBOutlet weak var bridgeModeLabel: UILabel!
     
@@ -64,12 +62,10 @@ class StartupViewController: UIViewController {
     
     
     func resetUI() {
-        self.title = "DJI iOS SDK Sample"
+        self.title = "DJI Heat Seeking Drone"
         self.sdkVersionLabel.text = "DJI SDK Version: \(DJISDKManager.sdkVersion())"
         self.openComponents.isEnabled = false; //FIXME: set it back to false
-        self.bluetoothConnectorButton.isEnabled = true;
         self.productModel.isHidden = true
-        self.productFirmwarePackageVersion.isHidden = true
         self.bridgeModeLabel.isHidden = !self.appDelegate.productCommunicationManager.enableBridgeMode
         
         if self.appDelegate.productCommunicationManager.enableBridgeMode {
@@ -97,20 +93,6 @@ class StartupViewController: UIViewController {
         //Updates the product's model
         self.productModel.text = "Model: \((newProduct.model)!)"
         self.productModel.isHidden = false
-        
-        //Updates the product's firmware version - COMING SOON
-        newProduct.getFirmwarePackageVersion{ (version:String?, error:Error?) -> Void in
-            
-            self.productFirmwarePackageVersion.text = "Firmware Package Version: \(version ?? "Unknown")"
-            
-            if let _ = error {
-                self.productFirmwarePackageVersion.isHidden = true
-            }else{
-                self.productFirmwarePackageVersion.isHidden = false
-            }
-            
-            NSLog("Firmware package version is: \(version ?? "Unknown")")
-        }
         
         //Updates the product's connection status
         self.productConnectionStatus.text = "Status: Product Connected"
