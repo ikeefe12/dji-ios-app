@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64681D5E3EF010B703890FC41C35B7B5"
-               BuildableName = "libPods-DJISDKSwiftDemo.a"
-               BlueprintName = "Pods-DJISDKSwiftDemo"
+               BlueprintIdentifier = "59DE63E974B079D0239184B914853E25"
+               BuildableName = "libPods-ELEC49X-DJI.a"
+               BlueprintName = "Pods-ELEC49X-DJI"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

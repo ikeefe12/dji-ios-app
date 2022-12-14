@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Users/iankeefe/Documents/GitHub/dji-ios-app/ELEC49X-DJI.xcodeproj">
    </FileRef>
 </Workspace>
