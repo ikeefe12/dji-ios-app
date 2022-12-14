@@ -1,0 +1,271 @@
+"topbar_emmc_error_advise_reformat"="建议格式化机载闪存";
+
+"topbar_emmc_error_emmc_busy"="机载闪存工作中";
+
+"topbar_emmc_error_emmc_full"="机载闪存已满";
+
+"topbar_emmc_error_emmc_index_full"="机载闪存目录已满";
+
+"topbar_emmc_error_emmc_initing"="正在初始化机载闪存...";
+
+"topbar_emmc_error_emmc_slow"="低速机载闪存";
+
+"topbar_emmc_error_emmc_unknow_error"="机载闪存未知错误";
+
+"topbar_emmc_error_formating"="正在格式化机载闪存";
+
+"topbar_emmc_error_invalid_emmc"="机载闪存无效";
+
+"topbar_emmc_error_invalid_filesystem"="机载闪存文件系统错误";
+
+"topbar_emmc_error_no_format"="机载闪存未格式化";
+
+"topbar_emmc_error_normal"="机载闪存正常";
+
+"topbar_emmc_error_write_protect"="机载闪存写保护";
+
+"topbar_emmc_error_writing_slow"="机载闪存速度下降，建议格式化";
+
+"topbar_histogram"="直方图";
+
+"topbar_sdcard_error_advise_reformat"="建议格式化SD卡";
+
+"topbar_sdcard_error_formating"="SD卡正在格式化";
+
+"topbar_sdcard_error_invalid_filesystem"="SD卡文件系统错误";
+
+"topbar_sdcard_error_invalid_sdcard"="无效SD卡";
+
+"topbar_sdcard_error_no_emmc"="无机载闪存";
+
+"topbar_sdcard_error_no_format"="SD卡未格式化";
+
+"topbar_sdcard_error_no_sdcard"="SD卡未插入";
+
+"topbar_sdcard_error_normal"="SD卡正常";
+
+"topbar_sdcard_error_sdcard_busy"="SD卡正忙";
+
+"topbar_sdcard_error_sdcard_full"="SD卡已满";
+
+"topbar_sdcard_error_sdcard_index_full"="SD卡目录已满";
+
+"topbar_sdcard_error_sdcard_initing"="SD卡正在初始化...";
+
+"topbar_sdcard_error_sdcard_slow"="低速SD卡";
+
+"topbar_sdcard_error_sdcard_unknow_error"="SD卡未知错误";
+
+"topbar_sdcard_error_write_protect"="SD卡写保护";
+
+"topbar_sdcard_error_writing_slow"="SD卡速度下降,建议格式化";
+
+"topbar_ssd_error_formating_fast"="正在格式化";
+
+"warning_status_radio_gimbal_disconnect"="云台未连接";
+
+"warning_status_disconnect"="设备未连接";
+
+"warning_status_align"="返航—航向调整";
+
+"warning_status_ascending"="返航—上升";
+
+"warning_status_atti"="姿态模式";
+
+"warning_status_atti_flight"="暂无定位，请谨慎飞行 (ATTI)";
+
+"warning_status_atti_ready"="暂无定位，请谨慎起飞 (ATTI)";
+
+"warning_status_barometer_air_error"="气压计异常，请尽可能缓慢降落";
+
+"warning_status_cruise"="返航—自主回航";
+
+"warning_status_ecs_shortcut_air_error"="电调异常，请立即降落检查";
+
+"warning_status_ecs_shortcut_error"="电调异常";
+
+"warning_status_failsafe"="遥控信号丢失";
+
+"warning_status_failsafe_gohome"="失控返航中";
+
+"warning_status_going_home"="安全返航中";
+
+"warning_status_in_limit_space"="限高区";
+
+"warning_status_landing"="，自动降落中";
+
+"warning_status_limit_height"="限高%@";
+
+"warning_status_low_battery"="低电量警报";
+
+"warning_status_low_battery_gohome"="低电量警报，返航中";
+
+"warning_status_no_gps"="(无GPS)";
+
+"warning_status_normal_flight"="飞行中";
+
+"warning_status_normal_flight_rtk_in_use" = "飞行中 (使用RTK)";
+
+"warning_status_normal_ready"="起飞准备完毕";
+
+"warning_status_normal_ready_rtk_in_use"="起飞准备完毕 (使用RTK)";
+
+"warning_status_preascending"="返航—预备上升";
+
+"warning_status_serious_low_battery"="严重低电量警报";
+
+"warning_status_serious_low_battery_landing" = "严重低电量警报, 自动降落中.";
+
+"warning_status_serious_low_voltage"="严重低电压警报";
+
+"warning_status_serious_low_voltage_landing" = "严重低电压警报, 自动降落中.";
+
+"warning_status_single_battery_normal_flight"="单电池飞行中";
+
+"warning_status_smart_low_battery"="智能低电量";
+
+"warning_status_using_gps"="(GPS)";
+
+"warning_status_using_opti"="(Vision)";
+
+"warning_status_battery_not_in_position"="电池未安装到位，请重新插拔所有电池。";
+
+"warning_status_patti_error"="指南针受扰，退出P-GPS模式";
+
+"warning_status_aircraft_warning_up"="飞行器系统预热中";
+
+"warning_status_battery_broken"="电芯异常";
+
+"warning_status_battery_communication_error"="电池异常，请及时检查";
+
+"warning_status_battery_low_temperature"="电池放电低温";
+
+"warning_status_battery_over_current"="电池放电过流";
+
+"warning_status_battery_over_temperature"="电池放电高温";
+
+"warning_status_camera_encrypt_error"="相机错误";
+
+"warning_status_cannot_takeoff"="无法起飞";
+
+"warning_status_cannot_takeoff_imu_init"="IMU初始化中";
+
+"warning_status_cannot_takeoff_no_atti_data"="获取姿态中";
+
+"warning_status_cannot_takeoff_novice_protected"="无法起飞（无GPS）";
+
+"warning_status_compass_error"="指南针异常，请移动飞机或校准指南针";
+
+"warning_status_firmware_no_match"="固件需要升级";
+
+"warning_status_gohome_failed"="返航停止";
+
+"warning_status_imu_error"="IMU异常，请校准IMU";
+
+"warning_status_imu_initing"="IMU初始化中";
+
+"warning_status_imu_need_calibration"="需要进行IMU校准";
+
+"warning_status_mc_data_error"="主控数据异常";
+
+"warning_status_mc_read_sd_mode"="读取飞行数据模式，重启后退出";
+
+"warning_status_not_enough_force"="飞行器动力饱和";
+
+"warning_status_radio_version_not_match"="固件需要升级";
+
+"warning_status_rc_low_battery"="遥控器电量不足";
+
+"warning_status_safe_fly_non_gps"="可安全飞行（无GPS）";
+
+"warning_status_sensor_error"="传感器故障，请重启飞行器";
+
+"warning_status_strong_gale"="强风警告，请谨慎飞行";
+
+"warning_status_radio_mc_disconnect"="飞行器未连接";
+
+"warning_status_low_radio_quality"="信号干扰较强";
+
+"warning_status_no_signal"="无图传信号";
+
+"warning_status_ocusync_distrub_level_high"="摇杆受到严重电磁干扰，无法正常工作，飞行器将自动返航并降落";
+
+"warning_status_ocusync_distrub_level_low"="摇杆受到电磁干扰，可能出现工作异常，请转移至无干扰环境飞行";
+
+"warning_status_ocusync_distrub_level_mid"="摇杆受到较强电磁干扰，无法正常工作，请使用智能返航并降落";
+
+"warning_status_rc_weak_signal"="遥控器信号微弱，请调整天线";
+
+"warning_status_in_limit_height"="限高";
+
+"warning_status_radio_strong_noise_sdr"="遥控器所在位置信号干扰较强，请注意飞行安全";
+
+"warning_status_rc_strong_noise_sdr"="飞行器所在位置信号干扰较强，请注意飞行安全";
+
+"warning_status_startup_block"="云台启动受阻";
+
+"warning_status_wait_restart"="云台等待重启";
+
+"warning_status_motor_overload"="云台电机负载过大";
+
+"warning_status_vibration"="云台异常震动";
+
+"warning_status_broken_state" = "万向节破坏错误";
+
+"warning_status_reached_mechanical_limit" = "万向节到达机械极限";
+
+"warning_status_rotation_error" = "万向节旋转误差";
+
+"warning_status_compass_distrub"="指南针干扰";
+
+"warning_status_vision_backward_vision_sensor_calibration_error"="后视传感器标定参数异常，精准悬停和避障功能受到影响";
+
+"warning_status_vision_downward_vision_sensor_calibration_error"="下视传感器标定参数异常，精准悬停、降落保护功能受到影响";
+
+"warning_status_vision_forward_vision_sensor_calibration_error"="前视传感器标定参数异常，精准悬停和避障功能受到影响";
+
+"warning_status_vision_system_error"="视觉系统异常";
+
+"warning_status_vision_3d_infrared_sensor_error"="3D红外感知传感器异常";
+
+"warning_status_vision_infrared_sensor_error"="红外感知传感器异常";
+
+"warning_status_vision_ultrasonic_error"="超声波模块异常";
+
+"warning_status_none" = "没有警告";
+
+"warning_status_strict_limit_space_flight" = "请勿在此区域内飞行。 土地现在";
+
+"warning_status_string_low_voltage" = "低电压";
+
+"warning_status_string_low_power" = "电池严重不足";
+
+"warning_status_string_low_power_landing" = "低电量。 飞机将着陆。";
+
+"warning_status_string_device_locked" = "设备已锁定";
+
+"warning_status_string_fully_self_discharged_in_storage" = "存储中的自放电";
+
+"warning_status_string_power_management_exception" = "电源管理异常";
+
+"warning_status_string_no_video_signal" = "无图传信号";
+
+"warning_status_single_battery_normal_flight_no_gps" = "单电池飞行中 (无GPS)";
+
+"warning_status_normal_flight_no_gps" = "飞行中 (无GPS)";
+
+"warning_status_normal_ready_no_gps" = "起飞准备完毕 (无GPS)";
+
+"warning_status_in_limit_space_no_gps"="限高区 (无GPS)";
+
+"warning_status_going_home_no_gps" = "安全返航中 (无GPS)";
+
+"warning_status_single_battery_normal_flight_vision" = "单电池飞行中 (Vision)";
+
+"warning_status_normal_flight_vision" = "飞行中 (Vision)";
+
+"warning_status_normal_ready_vision" = "起飞准备完毕 (Vision)";
+
+"warning_status_in_limit_space_vision" = "限高区 (Vision)";
+
+"warning_status_in_limit_space_atti" = "限高区 (ATTI)";

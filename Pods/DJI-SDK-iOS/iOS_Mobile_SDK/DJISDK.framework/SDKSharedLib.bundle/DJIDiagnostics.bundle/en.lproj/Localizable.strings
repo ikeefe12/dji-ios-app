@@ -1,0 +1,1169 @@
+////////////////////////////////////////////////////////////////////////
+//camera
+////////////////////////////////////////////////////////////////////////
+
+"dji_check_camera_upgrade_reason"="Drone upgrade error";
+
+"dji_check_camera_upgrade_solution"="Solution: Please try again and follow all of the instructions provided.";
+
+"dji_check_camera_sensor_reason"="Camera sensor error";
+
+"dji_check_camera_sensor_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs";
+
+"dji_check_camera_over_heat_reason"="Camera has overheated";
+
+"dji_check_camera_over_heat_solution"="Solution: Allow the camera to cool and try again.";
+
+"dji_check_camera_chip_over_heat_reason"="Camera chip overheated";
+
+"dji_check_camera_chip_over_heat_solution"="Solution: Power off the drone and allow the camera to cool and try again.";
+
+"dji_check_camera_high_temperature_stop_video_reason"="Camera overheated. Recording Stopped.";
+
+"dji_check_camera_high_temperature_stop_video_solution"="Solution: Allow camera to cool down and retry.";
+
+"dji_camera_high_temperature_stop_video_reason"="Camera overheating.";
+
+"dji_camera_high_temperature_stop_video_solution"="Solution: Wait for camera temperature to return to normal before use.";
+
+"dji_camera_abnormal_reboot_reason"="Camera restarts abnormally";
+
+"dji_camera_abnormal_reboot_solution"="Solution: Please contact a camera colleague";
+
+"dji_check_camera_encrypt_error_reason"="Camera not encrypt";
+
+"dji_check_camera_encrypt_error_solution"="Solution: Restart the drone. If the problem persists contact DJI Support.";
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+// sdcard
+////////////////////////////////////////////////////////////////////////
+
+"dji_check_sdcard_no_sd_card_reason"="NO SD card";
+
+"dji_check_sdcard_no_sd_card_solution"="Solution: Insert SD card.";
+
+"dji_check_sdcard_sd_card_error_reason"="SD card error";
+
+"dji_check_sdcard_sd_card_error_solution"="Solution: Change SD card or try to format it.";
+
+"dji_check_sdcard_sd_card_no_space_reason"="Remaining SD card capacity is not enough";
+
+"dji_check_sdcard_sd_card_no_space_solution"="Solution: Change SD card or delete some files.";
+
+"dji_check_sdcard_sd_card_full_reason"="SD card is full";
+
+"dji_check_sdcard_sd_card_full_solution"="Solution: Change SD card or delete some files.";
+
+"dji_check_sdcard_sd_card_not_format_reason"="SD card not formatted";
+
+"dji_check_sdcard_sd_card_not_format_solution"="Solution: Format the SD card.";
+
+"dji_check_sdcard_error_advise_reformat_reason"="Suggest format the SD card";
+
+"dji_check_sdcard_error_advise_reformat_solution" = "Solution：Please format SD card.";
+
+"dji_check_sdcard_error_invalid_filesystem_reason"="SD card file system error";
+
+"dji_check_sdcard_error_invalid_filesystem_solution" = "Solution：please change SD card.";
+
+"dji_check_sdcard_error_invalid_sdcard_reason" = "Invalid SD card";
+
+"dji_check_sdcard_error_invalid_sdcard_solution" = "Solution：Please change SD card.";
+
+"dji_check_sdcard_error_sdcard_index_full_reason" = "SD card index full";
+
+"dji_check_sdcard_error_sdcard_index_full_soulution" = "Solution：Please change SD card or deleate some files.";
+
+"dji_check_sdcard_error_sdcard_unknow_error_reason" = "SD card unknown error";
+
+"dji_check_sdcard_error_sdcard_unknow_error_solution" = "Solution：Please insert SD card again or change SD card.";
+
+"dji_check_sdcard_error_usb_connected_reason" = "Is connected to camera USB";
+
+"dji_check_sdcard_error_usb_connected_solution" = "Solution：Please unplug camera USB before use SD card.";
+
+"dji_check_sdcard_error_write_protect_reason" = "SD card write protect";
+
+"dji_check_sdcard_error_write_protect_solution" = "Solution：Please switch off SD card write protect or change SD card.";
+
+"dji_check_sdcard_error_writing_slow_reason" = "SD card slow. Suggest format.";
+
+"dji_check_sdcard_error_writing_slow_solution" = "Solution：Please try to format SD card or change SD card.";
+
+"dji_check_sdcard_error_formating_reason"="SD card is formatting";
+
+"dji_check_sdcard_error_formating_solution" = "Solution：Please wait SD format.";
+
+"dji_check_sdcard_error_sdcard_initing_reason"= "SD card is initializing";
+
+"dji_check_sdcard_error_sdcard_initing_solution" = "Solution：Please wait a minute and retry.";
+
+"dji_check_sdcard_error_sdcard_busy_reason" = "SD card is busy";
+
+"dji_check_sdcard_error_sdcard_busy_solution" = "Solution：Please wait a minute and retry.";
+
+"dji_check_sdcard_error_sdcard_unknow_error"="Unknown SD card error";
+
+
+// For Mavic Air
+"dji_check_emmc_error_no_emmc"="No internal storage";
+
+"dji_check_emmc_error_advise_reformat"="Formatting internal storage is recommended";
+
+"dji_check_emmc_error_emmc_full"="Internal storage is full";
+
+"dji_check_emmc_error_emmc_index_full"="Internal storage directory is full";
+
+"dji_check_emmc_error_emmc_slow"="Slow internal storage write speed";
+
+"dji_check_emmc_error_emmc_unknow_error"="Unknown internal storage error";
+
+"dji_check_emmc_error_invalid_emmc"="Internal storage is invalid";
+
+"dji_check_emmc_error_no_format"="Internal storage not formatted";
+
+"dji_check_emmc_error_write_protect"="Internal storage writing protection";
+
+"dji_check_emmc_error_writing_slow"="Slow internal storage write speed. Formatting is recommended.";
+
+"dji_check_sdcard_error_no_emmc"="Internal storage not found";
+
+"dji_check_emmc_error_emmc_busy"="Internal storage is working";
+
+"dji_check_emmc_error_emmc_initing"="Internal storage initializing";
+
+"dji_check_emmc_error_formating"="Internal storage is formatting";
+
+
+// SSD for Inspire2
+"dji_check_ssd_error_ssdCardError"="SSD Error. Changing SSD mode or formatting the SSD card is recommended.";
+
+"dji_check_ssd_error_cognize_fail"="Failed to identify SSD";
+
+"dji_check_ssd_error_full"="SSD full";
+
+"dji_check_ssd_error_no_ssd"="No SSD";
+
+"dji_check_ssd_error_normal"="SSD normal";
+
+"dji_check_ssd_error_validate_fail"="Failed to validate SSD";
+
+"dji_check_ssd_error_write_protect"="SSD Write-protected";
+
+"dji_check_ssd_error_formating"="Formating SSD";
+
+"dji_check_ssd_error_init"="Initializing SSD";
+
+"dji_check_ssd_error_saving"="Saving to SSD";
+
+"dji_check_ssd_error_waiting"="SSD Waiting";
+
+"dji_check_ssd_error_ssdCardPoorConnection"="SSD connection error";
+
+"dji_check_ssd_error_ssdCardSwitchMode"="SSD is switching mode";
+
+"dji_check_ssd_error_ssdCardUnknown"="SSD unknown error";
+
+"dji_check_ssd_error_ssdCardNeedFormat"="Formatting SSD is recommended";
+
+////////////////////////////////////////////////////////////////////////
+//  gimbal
+////////////////////////////////////////////////////////////////////////
+
+// For Mavic Air
+"dji_check_emmc_error_invalid_filesystem"="Internal storage file system error";
+
+"dji_check_sdcard_error_no_emmc"="Internal storage not found";
+
+"dji_check_gimbal_gyroscope_reason"="Gimbal gyroscope error";
+
+"dji_check_gimbal_gyroscope_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+"dji_check_gimbal_pitch_reason"="Gimbal pitch error";
+
+"dji_check_gimbal_pitch_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+"dji_check_gimbal_roll_reason"="Gimbal roll error";
+
+"dji_check_gimbal_roll_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+"dji_check_gimbal_yaw_reason"="Gimbal yaw error";
+
+"dji_check_gimbal_yaw_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+"dji_check_gimbal_mc_conn_reason"="Gimbal cannot receive MC data";
+
+"dji_check_gimbal_mc_conn_solution"="Solution: Check the 8-pin plug that connects the damping plate and the drone. Ensure that none of the pins are loose. If the problem persists contact DJI Support.";
+
+"check_list_gimbal_wait_restart_reason"="Gimbal motor load too large. Please check if the gimbal clamp has been removed.";
+
+"check_list_gimbal_wait_restart_solution"="Solution: Gimbal is restarting. Check that the gimbal rotates smoothly if restart fails again.";
+
+"check_list_gimbal_motor_overload_reason"="Gimbal motor overloaded";
+
+"check_list_gimbal_motor_overload_solution"="Solution: Gimbal Motor Overloaded. Check if the gimbal clamp is mounted off.";
+
+"check_list_gimbal_vibration_reason"="Gimbal vibration abnormal";
+
+"check_list_gimbal_vibration_solution"="Solution: Check gimbal installation and connection. Contact DJI Support if the problem persists after restart.";
+
+"check_list_gimbal_startup_block_reason"="Gimbal obstructed";
+
+"check_list_gimbal_startup_block_solution"="Solution: Gimbal Motor Obstructed. Check whether gimbal rotates smoothly and clamp mounted off. Contact DJI Support if it persists.";
+
+// For Spark
+
+"check_list_gimbal_gyroscrope_broken_reason"="Gimbal sensor error";
+
+"check_list_gimbal_gyroscrope_broken_solution"="Solution: Restart your drone or contact DJI Support.";
+
+"check_list_gimbal_motor_protected_reason"="Gimbal motor protection";
+
+"check_list_gimbal_motor_protected_solution"="Solution: Restart your drone or contact DJI Support.";
+
+"check_list_gimbal_cali_error_reason"="Gimbal calibration error";
+
+"check_list_gimbal_cali_error_solution"="Solution: Restart your drone or contact DJI Support.";
+
+"check_list_gimbal_run_crazy_reason"="Gimbal rotation error";
+
+"check_list_gimbal_run_crazy_solution"="Solution: Restart your drone or contact DJI Support.";
+
+"check_list_gimbal_roll_mech_limit_err_reason"="Gimbal roll reached endpoint";
+
+"check_list_gimbal_roll_mech_limit_err_solution"="Solution: Restart your drone or contact DJI Support.";
+
+"check_list_gimbal_pitch_mech_limit_err_reason"="Gimbal pitch reached endpoint";
+
+"check_list_gimbal_pitch_mech_limit_err_solution"="Solution: Restart your drone or contact DJI Support.";
+
+"check_list_gimbal_sectors_judge_error_reason"="Gimbal joint angle sensor initialization error";
+
+"check_list_gimbal_sectors_judge_error_solution"="Solution: Restart your drone. If the problem persists the gimbal may be broken. Please contact DJI Support.";
+
+////////////////////////////////////////////////////////////////////////
+//battery
+////////////////////////////////////////////////////////////////////////
+
+"dji_check_battery_discharge_current_reason"="Battery discharge overcurrent";
+
+"dji_check_battery_discharge_current_solution"="Solution: Check the load that the drone is carrying. A heavy load may lead to an overcurrent condition. Please reduce excessive motion during flight.";
+
+"dji_check_battery_over_temperature_reason"="Battery discharge overheat";
+
+"dji_check_battery_over_temperature_solution"="Solution: Stop flight. Cool the battery to room temperature and try again.";
+
+"dji_check_battery_low_temperature_reason"="Low temperature environment. Battery not suitable for flight.";
+
+"dji_check_battery_low_temperature_solution"="Solution: Warm the battery to five degrees Celsius and try using it again.";
+
+"dji_check_battery_broken_reason"="Battery cell is broken";
+
+"dji_check_battery_broken_solution"="Solution: Stop using the battery and contact DJI customer service.";
+
+"dji_check_battery_need_learn_reason"="Battery needs a complete process of charging and discharging. Or else battery level may drop during flight and affect the safety of your flight.";
+
+"dji_check_battery_need_learn_solution"="Solution：After flight finishes please discharge battery to 5% or below. Charge the battery to ~50% for long-term storage.";
+
+"dji_check_battery_illegal_reason"="Non-DJI intelligent battery detected. Drone flight prevented.";
+
+"dji_check_battery_illegal_solution"="Solution: Stop using Non-DJI intelligent battery.";
+
+"dji_check_battery_first_charge_not_full_reason"="Battery not fully charged. Fully charge battery before first use.";
+
+"dji_check_battery_first_charge_not_full_solution"="Solution：Fully charge battery before a flight.";
+
+"dji_check_battery_not_in_position_reason"="No battery is detected";
+
+"dji_check_battery_not_in_position_solution"="Solution：Please re-install the battery properly.";
+
+"dji_check_battery_communication_Error_reason"="Battery communication error";
+
+"dji_check_battery_communication_Error_solution"="Solution：Please re-insert the battery. If not work please change the battery or contact DJI Support.";
+
+"dji_check_battery_LessBattery"="Insert more batteries";
+
+"dji_check_battery_hasSmallVoltages"="Low battery voltage";
+
+"dji_check_battery_Shortcut"="Short circuit during discharge";
+
+"dji_check_battery_overload_limit_flight_speed"="Battery power limit. Low drone mobility.";
+
+"dji_check_battery_temperature_low_in_air"="Battery temperature too low";
+
+"dji_check_battery_shut_down_protect_force_land"="Critical low battery. Drone in auto power off protection. Forced landing in progress.";
+
+////////////////////////////////////////////////////////////////////////
+//remotecontroller
+////////////////////////////////////////////////////////////////////////
+
+
+
+"dji_check_rc_fpga_reason"="RC FPGA error";
+
+"dji_check_rc_fpga_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+"dji_check_rc_transmitter_reason"="RC transmitter error";
+
+"dji_check_rc_transmitter_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+"dji_check_rc_battery_reason"="RC battery error";
+
+"dji_check_rc_battery_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+"dji_check_rc_gps_reason"="RC GPS error";
+
+"dji_check_rc_gps_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+"dji_check_rc_encryption_reason"="RC encryption error";
+
+"dji_check_rc_encryption_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+"dji_check_rc_stick_reason"="RC is not calibrated";
+
+"dji_check_rc_stick_solution"="Solution: Please disconnect the RC from drone and enter the RC setting menu to calibrate the sticks.";
+
+"dji_check_rc_power_reason"="RC battery low";
+
+"dji_check_rc_power_solution"="Solution: Please recharge the battery.";
+
+"dji_check_rc_timeout_reason"="RC idle for too long";
+
+"dji_check_rc_timeout_solution"="Solution: Please turn off the RC.";
+
+"dji_check_rc_reset_reason"="RC is reset. Please check RC settings.";
+
+"dji_check_rc_reset_solution"="Solution: Please check the RC’s settings and ensure that they are correct (especially Mode 2 and Mode 1 settings). Then restart the RC.";
+
+"dji_check_rc_too_hot_reason"="Remote controller overheated";
+
+"dji_check_rc_too_hot_solution"="Solution: Allow the remote controller to cool off.";
+
+"dji_check_rc_no_gps_returning_fail_reason"="No GPS. Return to home failed.";
+
+"dji_check_rc_no_gps_returning_fail_solution"= "Solution: Return the drone to home manually.";
+
+"dji_check_rc_weak_signal_reason"="Weak remote controller signal";
+
+"dji_check_rc_weak_signal_solution"="Solution：Weak remote controller signal. Adjust antenna.";
+
+
+
+////////////////////////////////////////////////////////////////////////
+//center
+////////////////////////////////////////////////////////////////////////
+
+
+
+
+"dji_check_center_battery_connection_reason"="Battery connection to the center board has failed";
+
+"dji_check_center_battery_connection_solution"="Hardware malfunction: Contact DJI Support to arrange for repairs.";
+
+"dji_check_center_gps_connection_reason"="GPS connection to the center board has failed";
+
+"dji_check_center_gps_connection_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+"dji_check_center_mc_connection_reason"="MC connection to the center board has failed";
+
+"dji_check_center_mc_connection_solution"="Solution: Restart the drone. If the problem persists contact DJI Support.";
+
+"dji_check_center_Camera_disconnected"="Camera module disconnected";
+
+"dji_check_center_Gimbal_disconnected"="Gimbal module disconnected";
+
+////////////////////////////////////////////////////////////////////////
+//video
+////////////////////////////////////////////////////////////////////////
+
+"dji_check_video_decoder_encrypt_reason"="Video decoder encryption error";
+
+"dji_check_video_decoder_encrypt_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+"dji_check_video_decoder_deserializer_connection_reason"="Deserializer disconnected";
+
+"dji_check_video_decoder_deserializer_connection_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+
+
+////////////////////////////////////////////////////////////////////////
+//air
+////////////////////////////////////////////////////////////////////////
+
+
+
+
+"dji_check_air_encoder_error_reason"="Drone encoder error";
+
+"dji_check_air_encoder_restart_solution"="Solution: Please restart drone. If the problem persists contact DJI Support.";
+
+"dji_check_air_encoder_return_solution"="Solution: Hardware malfunction: Contact DJI Support to arrange for repairs.";
+
+"dji_check_air_encoder_upgrade_reason"="Drone updating";
+
+"dji_check_air_encoder_upgrade_solution"="Solution: Wait for the update to complete.";
+
+"dji_check_air_no_signal"="No image transmission signal";
+
+"fpv_capsule_rc_weak_signal"="Weak signal. Adjust antennas";
+
+"fpv_checklist_rc_weak_signal"="Solution: Adjust remote controller antennas";
+
+"fpv_capsule_drone_disturbed"="Aircraft signal interference";
+
+"fpv_checklist_drone_disturbed"="Solution: Fly with caution";
+
+"fpv_capsule_graphic_transmission_weak_signal"="Weak signal. Adjust antennas";
+
+"fpv_capsule_rc_disturbed"="RC signal interference";
+
+"fpv_capsule_drone_electromagnetic_interference_wifi"="High interference environment";
+
+"fpv_capsule_chips_temperature_warning"="Aircraft Overheated";
+
+"fpv_checklist_chips_temperature_warning"="Solution: Unable to operate normally. Wait for temperature to return to normal before use"
+
+"fpv_capsule_chips_temperature_dangerous"="Aircraft Overheated";
+
+"fpv_checklist_chips_temperature_dangerous"="Solution: Powering off automatically. Wait for temperature to return to normal before use";
+
+"fpv_capsule_chips_temperature_warning_in_air"="Aircraft Overheated";
+
+"fpv_checklist_chips_temperature_warning_in_air"="Solution: Reducing power consumption and returning to home automatically";
+
+"fpv_capsule_chips_temperature_dangerous_in_air"="Aircraft Overheated";
+
+"fpv_checklist_chips_temperature_dangerous_in_air"="Solution: Reducing power consumption and landing automatically";
+
+////////////////////////////////////////////////////////////////////////
+//flightController
+////////////////////////////////////////////////////////////////////////
+
+
+"dji_check_fc_disconnect_reason"="Disconnected";
+
+"dji_check_fc_disconnect_solution"="Solution：Please reconnect the device to use.";
+
+"dji_check_fc_need_imu_calibrate_reason"="IMU calibration required";
+
+"dji_check_fc_need_imu_calibrate_solution"="Solution: Calibrate the IMU.";
+
+"dji_check_fc_horizontal_calibrate_reason"="Please contact DJI Support";
+
+"dji_check_fc_horizontal_calibrate_solution"="Solution: Hardware malfunction: Contact DJI Support to arrange for repairs.";
+
+"dji_check_fc_calibrate_version_mismatch_reason"="IMU calibration required";
+
+"dji_check_fc_calibrate_version_mismatch_solution"="Solution: Calibrate the IMU.";
+
+"dji_check_fc_imu_direction_param_erro_reason"="IMU error. Please contact DJI Support.";
+
+"dji_check_fc_imu_direction_param_erro_solution"="Solution: Hardware malfunction: Contact DJI Support to arrange for repairs.";
+
+"dji_check_fc_imu_init_error_reason"="IMU initialization failed";
+
+"dji_check_fc_imu_init_error_solution"="Solution: Please restart drone. If the problem persists contact DJI Support.";
+
+"dji_check_fc_barometer_init_error_reason"="Barometer initialization failed";
+
+"dji_check_fc_barometer_init_error_solution"="Solution: Please restart drone. If the problem persists contact DJI Support.";
+
+"dji_check_fc_accelarate_data_error_reason"="Accelerometer failed";
+
+"dji_check_fc_accelarate_data_error_solution"="Solution: Please restart drone. If the problem persists contact DJI Support.";
+
+"dji_check_fc_gyroscope_data_error_reason"="Gyroscope error";
+
+"dji_check_fc_gyroscope_data_error_solution"="Solution: Please restart drone. If the problem persists contact DJI Support.";
+
+"dji_check_fc_barometer_data_error_reason"="Barometer error";
+
+"dji_check_fc_barometer_data_error_solution"="Solution: Please restart drone. If the problem persists contact DJI Support.";
+
+"dji_check_fc_atti_angle_error_reason"="Drone attitude angle is too large";
+
+"dji_check_fc_atti_angle_error_solution"="Solution: Please place the drone on a flat surface and restart. If the problem persists contact DJI Support.";
+
+"dji_check_fc_imu_data_error_reason"="IMU data error";
+
+"dji_check_fc_imu_data_error_solution"="Solution: Please place drone on a flat and restart. If the problem persists contact DJI Support.";
+
+"dji_check_fc_data_record_error_reason"="Data recorder errors";
+
+"dji_check_fc_data_record_error_solution"="Solution: Please restart the drone. If the problem persists contact DJI Support.";
+
+"dji_check_fc_imu_cali_not_finished_reason"="IMU calibration incomplete";
+
+"dji_check_fc_imu_cali_not_finished_solution"="Solution: Please recalibrate the IMU.";
+
+"dji_check_fc_system_unknow_error" = "Unknown Error. Error ID (%d).";
+
+"dji_check_fc_system_normal" = "Normal";
+
+"dji_check_fc_gyroscope_reason"="Gyroscope error";
+
+"dji_check_fc_gyroscope_solution"="Solution: Please restart drone. If the problem persists contact DJI Support.";
+
+"dji_check_fc_accelerate_reason"="Accelerometer failed";
+
+"dji_check_fc_accelerate_solution"="Solution: Please restart drone. If the problem persists contact DJI Support.";
+
+"dji_check_fc_compass_reason"="Compass error";
+
+"dji_check_fc_compass_solution"="Solution: Please restart drone. If the problem persists contact DJI Support.";
+
+"dji_check_fc_barometer_reason"="Barometer error";
+
+"dji_check_fc_barometer_solution"="Solution: Please restart drone. If the problem persists contact DJI Support.";
+
+"dji_check_fc_compass_error_reason"="Compass error";
+
+"dji_check_fc_compass_error_solution"="Solution: 1.Move the drone to another place and restart it; 2.Calibrate compass if the error persists.";
+
+"dji_check_fc_imu_cali_error_reason"="IMU error";
+
+"dji_check_fc_imu_cali_error_solution"="Solution: Please calibrate IMU.";
+
+"dji_check_fc_compass_abnormal_reason"="Compass abnormal";
+
+"dji_check_fc_compass_install_error_reason"="Compass Install error";
+
+"dji_check_fc_compass_install_error_solution"="Solution: Restart drone.";
+
+"dji_check_fc_compass_abnormal_solution"="Solution: 1. Ensure there are no magnets or metal objects near the drone. The ground or walls may contain metal. Move away from sources of interference before attempting flight. 2. Calibrate Compass Before Takeoff.";
+
+"dji_check_fc_compass_need_restart_reason"="Compass need restart";
+
+"dji_check_fc_compass_need_restart_solution"="Solution: Restart drone.";
+
+"dji_check_fc_imu_install_direction_error_reason"="IMU error";
+
+"dji_check_fc_imu_install_direction_error_solution"="Solution: Check IMU installation direction.";
+
+"dji_check_fc_imu_interfered_reason"="IMU error";
+
+"dji_check_fc_imu_interfered_solution"="Solution: Move away from ground magnetic interference.";
+
+"dji_check_fc_drone_stationary_reason"="Drone movement detected";
+
+"dji_check_fc_drone_stationary_solution"="Solution: Please keep the drone stationary and level. Contact DJI Support if the error persists.";
+
+"dji_check_fc_takeoff_failed_compass_error"="Compass connection error. Contact DJI Support for assistance.";
+
+"dji_check_fc_takeoff_failed_assistant_protected"="Please disconnect the USB cable from your drone";
+
+"dji_check_fc_takeoff_failed_device_locked"="Aircraft locked. Check whether aircraft is activated or update to latest firmware version.";
+
+"dji_check_fc_takeoff_failed_distance_limit"="The distance between the drone and the Home Point is greater than the pre-set maximum distance. The drone cannot takeoff.";
+
+"dji_check_fc_takeoff_failed_imu_need_calibration"="Please check the drone’s status";
+
+"dji_check_fc_takeoff_failed_imu_sn_error"="Invalid IMU serial number. Repairs required. Contact DJI Support for assistance";
+
+"dji_check_fc_takeoff_failed_imu_warming"="IMU warming up. Wait before taking off.";
+
+"dji_check_fc_takeoff_failed_compass_calibrating"="Compass calibration required";
+
+"dji_check_fc_takeoff_failed_atti_error"="IMU initializing. Retrieving IMU data.";
+
+"dji_check_fc_takeoff_failed_novice_protected"="No GPS signal. Unable to take off. Move to an open area or exit flight tutorial.";
+
+"dji_check_fc_takeoff_failed_battery_cell_error"="Battery cell broken. Please replace the battery.";
+
+"dji_check_fc_takeoff_failed_battery_communite_error"="Battery communication error. Reinstall battery. If the problem persists, replace battery.";
+
+"dji_check_fc_takeoff_failed_seriou_low_voltage"="Low voltage. Please replace the battery.";
+
+"dji_check_fc_takeoff_failed_seriou_low_power"="Warning: Critically low battery. Charge battery before flight.";
+
+"dji_check_fc_takeoff_failed_low_voltage"="Low power. Please replace the battery.";
+
+"dji_check_fc_takeoff_failed_tempure_vol_low"="Low battery temperature. Warm or replace the battery.";
+
+"dji_check_fc_takeoff_failed_smart_low_to_land"="Low power. Please replace the battery.";
+
+"dji_check_fc_takeoff_failed_battery_not_ready"="Battery initialization incomplete. Restart the motors.";
+
+"dji_check_fc_takeoff_failed_simulator_mode"="Running Flight Simulator. Restart aircraft to take off.";
+
+"dji_check_fc_takeoff_failed_pack_mode"="Cannot takeoff in travel mode. Please exit travel mode.";
+
+"dji_check_fc_takeoff_failed_attitude_limit"="IMU attitude restricted. Ensure aircraft is level.";
+
+"dji_check_fc_takeoff_failed_not_activated"="Please activate the drone";
+
+"dji_check_fc_takeoff_failed_in_fly_limit_zone"="Aircraft in Restricted Zones. Check map to find Recommended Zones";
+
+"dji_check_fc_takeoff_failed_bias_limit"="Sensor bias too large. Place drone on a flat. Level surface and conduct IMU calibration.";
+
+"dji_check_fc_takeoff_failed_esc_error"="ESC status error. Please restart the drone. Contact DJI Support if the error persists.";
+
+"dji_check_fc_takeoff_failed_imu_initing"="IMU is initializing. Do not move the drone until initialization is complete.";
+
+"dji_check_fc_takeoff_failed_upgrading"="Drone is upgrading. Please wait until the upgrade is complete.";
+
+"dji_check_fc_takeoff_failed_simulator_run"="Running Flight Simulator. Restart aircraft to take off.";
+
+"dji_check_fc_takeoff_failed_imu_calibrating"="IMU is calibrating. Please wait until calibration is complete.";
+
+"dji_check_fc_takeoff_failed_large_tilt"="Drone is tilted. Please keep the drone stationary and level before flight.";
+
+"dji_check_fc_takeoff_failed_gyro_dead"="Gyroscope stuck. Please restart the drone. Contact DJI Support if the error persists.";
+
+"dji_check_fc_takeoff_failed_accelerometer_dead"="Accelerometer stuck. Please restart the drone. Contact DJI Support if the error persists.";
+
+"dji_check_fc_takeoff_failed_compass_dead"="Compass stuck. Please restart the drone. Contact DJI Support if the error persists.";
+
+"dji_check_fc_takeoff_failed_barometer_dead"="Barometer stuck. Please restart the drone. Contact DJI Support if the error persists.";
+
+"dji_check_fc_takeoff_failed_barometer_negative"="Barometer value is negative. Please restart the drone. Contact DJI Support if the error persists.";
+
+"dji_check_fc_takeoff_failed_compass_mod_too_large"="Compass mod value is too large. Please restart the drone. Contact DJI Support if the error persists.";
+
+"dji_check_fc_takeoff_failed_gyro_bias_too_large"="Gyroscope value error. Calibrate IMU.";
+
+"dji_check_fc_takeoff_failed_accelerometer_bias_too_large"="Accelerometer value error. Calibrate IMU.";
+
+"dji_check_fc_takeoff_failed_compass_noise_too_large"="Compass error. Unable to take off in low light environment. Ensure there are no metal and magnetic objects near the aircraft and calibrate compass.";
+
+"dji_check_fc_takeoff_failed_barometer_noise_too_large"="High barometer interference. Calibrate IMU.";
+
+"dji_check_fc_takeoff_failed_fail_invalid_SN"="Invalid serial number";
+
+"dji_check_fc_takeoff_failed_flash_operation"="FLASH operating";
+
+"dji_check_fc_takeoff_failed_GPS_disconnect"="GPS module not detected. Repairs required. Contact DJI Support for assistance";
+
+"dji_check_fc_takeoff_failed_SD_card_exception"="Data logger error. Contact DJI Support if this continues after restart.";
+
+"dji_check_fc_takeoff_failed_IMU_disconnect"="Sensors not detected. Restart aircraft";
+
+"dji_check_fc_takeoff_failed_RC_is_in_calibration"="Remote controller calibrating";
+
+"dji_check_fc_takeoff_failed_RC_calibration_data_exception"="Calibration data error. Recalibrate remote controller.";
+
+"dji_check_fc_takeoff_failed_RC_calibration_unfinished"="Calibration incomplete. Recalibrate remote controller";
+
+"dji_check_fc_takeoff_failed_RC_center_out_range"="Centre position out of range. Recalibrate remote controller.";
+
+"dji_check_fc_takeoff_failed_RC_mapping_exception"="Control stick response error. Calibrate remote controller";
+
+"dji_check_fc_takeoff_failed_drone_type_mismatch"="Drone type error";
+
+"dji_check_fc_takeoff_failed_some_module_not_configured"="Some modules not configured";
+
+"dji_check_fc_takeoff_failed_gyro_acc_abnormal"="Gyroscope and accelerometer error. Contact DJI Support if this continues after restart.";
+
+"dji_check_fc_takeoff_failed_baro_abnormal"="Barometer error. Contact DJI Support if this continues after restart.";
+
+"dji_check_fc_takeoff_failed_compass_abnormal"="Compass error. Restart required. Contact DJI Support if this persists.";
+
+"dji_check_fc_takeoff_failed_gps_abnormal"="GPS error. Contact DJI Support if this continues after restart.";
+
+"dji_check_fc_takeoff_failed_navigation_system_exception"="Navigation system error. Restart aircraft.";
+
+"dji_check_fc_takeoff_failed_device_topology_exception"="Aircraft missing parts. Repairs required. Contact DJI Support for assistance.";
+
+"dji_check_fc_takeoff_failed_RC_calibration_exception"="Calibration error. Recalibrate remote controller.";
+
+"dji_check_fc_takeoff_failed_software_data_invalid"="Data acquisition error. Invalid software data detected. Update aircraft firmware.";
+
+"dji_check_fc_takeoff_failed_battery_number_is_not_engouh"="Insert additional batteries";
+
+"dji_check_fc_takeoff_failed_battery_authentication_exception"="Non-DJI battery detected. Aircraft unable to fly.";
+
+"dji_check_fc_takeoff_failed_battery_communication_exception"="Battery communication error. Reinstall battery. Contact DJI Support if issue persists.";
+
+"dji_check_fc_takeoff_failed_battery_voltage_difference_large"="Battery voltage difference too large. Check battery status.";
+
+"dji_check_fc_takeoff_failed_battery_voltage_difference_very_large"="Battery voltage difference too large. Check battery status.";
+
+"dji_check_fc_takeoff_failed_version_mismatch"="Version mismatch. Check firmware.";
+
+"dji_check_fc_takeoff_failed_gimbal_gyro_abnormal"="Gimbal gyroscope error. Contact DJI Support if this persists after restart.";
+
+"dji_check_fc_takeoff_failed_gimbal_pitch_no_data"="Gimbal tilt motor error. Contact DJI Support if this continues after restart.";
+
+"dji_check_fc_takeoff_failed_gimbal_roll_no_data"="Gimbal roll motor error. Contact DJI Support if this persists after restart.";
+
+"dji_check_fc_takeoff_failed_gimbal_yaw_no_data"="Gimbal pan motor error. Contact DJI Support if this persists after restart.";
+
+"dji_check_fc_takeoff_failed_gimbal_firm_is_updata"="Updating gimbal";
+
+"dji_check_fc_takeoff_failed_gimbal_disorder"="Gimbal error. Make sure gimbal can rotate freely and restart aircraft. Contact DJI Support if issue persists.";
+
+"dji_check_fc_takeoff_failed_gimbal_pitch_shock"="Vibrations detected in gimbal pitch axis. Secure camera position or reduce gain value.";
+
+"dji_check_fc_takeoff_failed_gimbal_roll_shock"="Vibrations detected in gimbal roll axis. Secure camera position or reduce gain value.";
+
+"dji_check_fc_takeoff_failed_gimbal_yaw_shock"="Vibrations detected in gimbal pan axis. Secure camera position or reduce gain value.";
+
+"dji_check_fc_takeoff_failed_IMU_cali_success"="Calibration Complete. Restart the drone.";
+
+///////////////新增注意与协议DJITakeoffFailReason对齐---------------------------
+"takeoff_failed_tips_takeoff_exception"="Aircraft rolled during takeoff. Check whether propellers were installed correctly";
+
+"takeoff_failed_tips_stall_near_ground"="Motor stuck. Check for objects blocking motor or contact DJI Support for assistance";
+
+"takeoff_failed_tips_unbalance_near_ground"="Aircraft load unbalanced. Check for mounted objects";
+
+"takeoff_failed_tips_part_paddle_empty"="Motor idle. Check whether propellers are installed";
+
+"takeoff_failed_tips_engine_start_failed"="Motor failed to start. Check aircraft status or restart aircraft";
+
+"takeoff_failed_tips_auto_takeoff_failed"="Auto takeoff failed. Check aircraft status or restart aircraft";
+
+"takeoff_failed_tips_roll_over_ground"="Excessive aircraft rollover time. Restart aircraft and ensure it is level before taking off";
+
+"takeoff_failed_tips_bat_version_error"="Battery version error. Replace battery";
+
+"takeoff_failed_tips_rtk_sign_error"="Weak RTK signal";
+
+"takeoff_failed_tips_rtk_sign_error_solution"="Solution: When the RTK is enabled, DJIRTKPositioningSolution fixedPoint is required to take off. Otherwise, please disable the RTK and try to take off again.";
+
+"takeoff_failed_tips_rtk_compass_error"="RTK and compass angle bias too large. Check your RTK or compass installation.";
+
+"takeoff_failed_tips_motor_is_running"="Motor started";
+
+"takeoff_failed_tips_esc_calibrating"="Calibrating ESCs";
+
+"takeoff_failed_tips_esc_gps_signature_invalid"="GPS signature info not found. Repairs required. Contact DJI Support for assistance";
+
+"takeoff_failed_tips_gimbal_calibrating_error"="Takeoff failed. Gimbal is calibrating.";
+
+"takeoff_failed_tips_force_disable"="Drone locked. Update to the latest version.";
+
+"takeoff_failed_tips_height_exception"="Takeoff altitude error. Restart aircraft";
+
+"takeoff_failed_tips_esc_version_not_match"="Inconsistent ESCs firmware. Update aircraft firmware";
+
+"takeoff_failed_tips_gyro_data_not_match"="IMU position data not match. Repairs required. Contact DJI Support for assistance";
+
+"takeoff_failed_reason_compass_install_error"="Compass installation error. Repairs required. Contact DJI Support for assistance.";
+
+"takeoff_failed_tips_esc_screaming"="ESC beeping. Restart aircraft.";
+
+"takeoff_failed_tips_esc_over_heat"="ESC overheating. Wait for temperature to return to normal.";
+
+"warning_status_battery_not_in_position"="Incorrect battery position. Re-attach all batteries.";
+
+"takeoff_failed_tips_impact_detected"="Impact detected. Aircraft stopped. Restart aircraft";
+
+"takeoff_failed_tips_craft_fail_lately"="Impact detected. Restart aircraft.";
+
+"fpv_checklist_takeoff_failure_height_control_anomaly"="Drone altitude control error. Restart drone.";
+
+"takeoff_failed_tips_battery_not_present"="No battery is detected. The drone can not takeoff. Please install the battery properly.";
+
+"takeoff_failed_tips_battery_version_too_low"="Cannot take off. Battery firmware update required.";
+
+"takeoff_failed_tips_battery_dropout_voltage_too_big"="Battery voltage difference too large. Fully charge and discharge battery and try again.";
+
+"takeoff_failed_tips_eagle_error_temperature_too_hight"="Aircraft processor chip overheating. Power off aircraft and wait for temperature to return to normal.";
+
+"takeoff_failed_tips_battery_ico_error_motorOn" = "The battery is in abnormal state. Please land as soon as possible and retry after charging the battery.";
+
+"fpv_checklist_takeoff_failure_esc_shortcut"="ESC short-circuited. Restart drone.";
+
+"fpv_checklist_takeoff_failure_esc_hardware_error"="Power system hardware error. Restart drone.";
+
+"fpv_checklist_version_not_match"="Incompatible battery version. Change battery.";
+
+"fpv_capsule_takeoff_failure_battery_loader"="Battery version update required";
+
+"fpv_checklist_takeoff_failure_bsp_error"="Flight control system error. If the issue persists, contact DJI Support.";
+
+"fpv_checklist_cannot_fly_dark_no_gps"="GPS signal low. Drone unable to auto hover and takeoff restricted. Move to environment with adequate light. Unlocking takeoff restrictions not recommended.";
+
+"takeoff_failed_tips_eagle_error_stick_not_in_middle"="Takeoff failed. Confirm that the throttle stick is centered.";
+
+"fpv_checklist_takeoff_failure_unbound_device"="Remote controller not bound with aircraft. Change remote controller or unbind aircraft";
+
+"fpv_checklist_takeoff_failure_check_paddle_position"="Check whether the propellers are attached to the correct motors based on their markings. Incorrect installation will cause the aircraft to roll over during takeoff";
+
+"fpv_checklist_takeoff_failure_usb_connected"="Unable to take off. Disconnect aircraft from USB and try again";
+
+"fpv_checklist_takeoff_failure_rc_battery_low_power"="Controller battery level low. Unable to take off. Charge promptly";
+
+"fpv_checklist_takeoff_failure_djicare_lock"="Current aircraft registered as lost device. Contact DJI Support";
+
+"dji_check_fc_takeoff_failed_flight_restriction_strategy_error" = "Unable to take off. Mission cannot be performed in your area, height limited.";
+
+"dji_check_fc_takeoff_failed_rtk_signal_weak" = "Weak RTK signal";
+
+"dji_check_fc_takeoff_failed_flight_restriction_strategy_unknow_error" = "Unable to take off";
+
+"dji_check_fc_takeoff_failed_unknown_error"="Unknown error (code: %d). Cannot take off. Please contact DJI support.";
+
+"dji_check_fc_gps_reason"="Drone GPS error";
+
+"fpv_tips_no_gps_swtich_attitude_mode"="Compass or GPS signal weak. Changed to attitude mode.";
+
+"fpv_tips_compass_disturbed_no_gps"="Compass interference. No GPS or visual sensing. Fly with caution.";
+
+"fpv_tips_gps_weak_signal_attitude_mode"="GPS signal weak. Switched to Attitude mode. Drone unable to hover. Fly with caution.";
+
+"dji_check_fc_flight_mode_change_with_rc_disconnected"= "Remote controller disconnected. Switched to GPS mode.";
+
+"dji_check_fc_flight_mode_change_with_rc_disconnected_solution"= "Solution: Reconnect remote controller with drone.";
+
+"fpv_capsule_drone_severely_low_power"="Critical low battery";
+
+"fpv_capsule_drone_severely_low_power_solution"="Solution: Charge battery.";
+
+"fpv_checklist_drone_severely_low_power_landing"="Critical low battery. Drone landing automatically.";
+
+"fpv_checklist_drone_severely_low_voltage"="Critical low battery voltage. Please recharge.";
+
+"fpv_tips_drone_severely_low_voltage_landing"="Critical low battery voltage. Drone landing automatically.";
+
+"fpv_capsule_sensor_error"="Sensor error";
+
+"fpv_checklist_sensor_error"="Solution. Restart drone";
+
+"fpv_capsule_barometer_stuck"="Barometer initialization failed";
+
+"fpv_checklist_barometer_data_error"="Barometer data error";
+
+"fpv_checklist_barometer_noise_large"="Barometer noise too large";
+
+"fpv_checklist_imu_gyroscope_stuck"="Gyroscope initialization failed";
+
+"fpv_checklist_gyroscope_data_error"="Gyroscope data error";
+
+"fpv_checklist_imu_accelerometer_stuck"="Accelerometer initialization failed";
+
+"fpv_checklist_accelerometer_data_error"="Accelerometer data error";
+
+"fpv_capsule_imu_initalization_failed_for_moving"="IMU initialization failed";
+
+"fpv_checklist_imu_initalization_failed_for_moving"="Solution: Ensure the drone remains level and stationary.";
+
+"fpv_capsule_imu_direction_matrix_parameter_error"="IMU hardware malfunction";
+
+"fpv_checklist_imu_direction_matrix_parameter_error"="Solution: Repairs required. Contact DJI Support for assistance.";
+
+"fpv_capsule_compass_stuck"="Compass initialization failed";
+
+"fpv_capsule_compass_need_calibration"="Compass calibration required";
+
+"fpv_capsule_motor_stop_take_off_exception"="Take off exception. Motor stopped.";
+
+"fpv_checklist_motor_blocking_rotation"="Motor unable to rotate. Check motor.";
+
+"fpv_checklist_motor_not_balance_close_esc"="Motor load unbalanced. Check motor mounts.";
+
+"fpv_checklist_motor_not_balance_close_esc_solution"="Solution: Check motor mounts.";
+
+"fpv_checklist_motor_not_paddle_close_esc"="Propellers not installed";
+
+"fpv_checklist_motor_not_paddle_close_esc_solution"="Solution：Make sure all propellers installed.";
+
+"fpv_tips_motor_stop_error"="Starting motor failed";
+
+"fpv_tips_motor_stop_error_solution"="Solution：Check whether motor is blocked.";
+
+"fpv_tips_motor_stop_auto_takeoff_falis"="Auto takeoff fail. Motor stopped";
+
+"fpv_checklist_roll_over_timeout"="Drone roll over. Motor stopped.";
+
+"fpv_checklist_drone_plateau_paddle_use_error"="Propeller malfunction";
+
+"fpv_tips_drone_plateau_paddle_use_error"="Solution: Check whether correct propellers are being used.";
+
+"fpv_tips_high_attitude"="Current elevation is high. Fly with caution.";
+
+"fpv_checklist_high_attitude_over"="Current elevation above 3000 m (9842 ft). Fly with caution.";
+
+"fpv_tips_paddle_protector_load"="Propeller guards detected. Flight performance lowered to ensure flight safety.";
+
+"fpv_checklist_close_to_water"="Water detected below drone. Minimum flight altitude adjusted to 1 m.";
+
+"fpv_checklist_flight_in_read_sd_mode"="Drone in flight data reading mode. Restart drone to exit.";
+
+"fpv_tips_core_board_temperature_too_high"="Drone core board overheating";
+
+"fpv_checklist_core_board_temperature_too_high"="Solution: Power off drone and wait for temperature to return to normal.";
+
+"fpv_tips_near_ground"="Drone is near to the ground";
+
+"fpv_tips_heading_control_abnormal"="Heading control abnormal";
+
+"fpv_tilt_control_abnormal"="Tilt control abnormal";
+
+"fpv_vibration_abnormal"="Drone vibration abnormal";
+
+"fpv_tips_paddle_freeze" = "Paddle freezed";
+
+"fpv_gps_signal_blocked_by_gimbal"="GPS signal is blocked by gimbal";
+
+"fpv_checklist_motor_block_need_repair"="Motor unable to rotate";
+
+"fpv_tips_motor_block_need_repair"="Solution: Check for objects blocking motor or contact DJI Support for assistance.";
+
+"fpv_tips_motor_empty_no_load_check_paddle"="Motor idle";
+
+"fpv_checklist_motor_empty_no_load_check_paddle"="Solution: Check whether propellers are installed.";
+
+"fpv_capsule_drone_battery_low_power"="Low battery";
+
+"fpv_checklist_drone_battery_low_power"="Solution: Please charge the battery.";
+
+"fpv_capsule_drone_battery_low_power_returning"="Low battery. Going home";
+
+"fpv_checklist_chip_high_temperature_serious_warning_in_the_sky"="Drone processor overheated. Going home.";
+
+"fpv_tips_out_of_radius_limit"="Out of radius limit";
+
+"fpv_tips_serious_low_power_go_home"="Serious low power. Going home.";
+
+"fpv_tips_serious_low_power_landing"="Serious low power. Auto landing";
+
+"fpv_tips_serious_low_voltage_gohome"="Serious low voltage. Going home";
+
+"fpv_tips_serious_low_voltage_landing"="Serious low voltage. Auto landing";
+
+"fpv_tips_serious_trigger_go_home" = "Going home";
+
+"fpv_tips_out_of_control_go_home" = "Out of control. Going home.";
+
+"fpv_tips_avoid_ground_landing" = "Avoid ground disabled. Auto landing.";
+
+"fpv_tips_landing_in_flylimitzone" = "Landing in fly limit zone";
+
+"fpv_too_close_to_home_auto_landing" = "Too close to home poinT，Auto landing.";
+
+"fpv_too_far_to_home_auto_landing" = "Too far from home point. Auto landing.";
+
+"fpv_motor_stuck_landing" = "Motor stucked. Auto landing.";
+
+"fpv_illegal_battery_landing" = "Illegal battery. Auto landing.";
+
+"fpv_RTH_cross_obstacle_landing"="Cross obstacle while RTH. Auto landing.";
+
+"fpv_IMU_error_landing"= "IMU Error. Auto landing";
+
+"fpv_landing_on_hand"= "Landing on hand";
+
+"fpv_mc_start_not_in_position_mode"="Flight controller not started in postion mode";
+
+"fpv_tips_rth_homepoint_update"="Homepoint updated. Check new homepoint location.";
+
+"fpv_height_limit_no_gps"= "No GPS. Height limited.";
+
+"fpv_height_limit_compass_interrupt" = "Compass interrupt. Height limited.";
+
+"fpv_tips_limit_height_compass_heading_error"="Compass interference. Altitude limit set. Calibrate compass to continue ascending.";
+
+"fpv_checklist_takeoff_failure_hardware_lock_motor"="Takeoff failed. Restart aircraft and DJI Fly.";
+
+"fpv_tips_environment_high_temperature_note"="Drone overheating. Power errors may occur. Return to home promptly.";
+
+"fpv_tips_environment_low_temperature_note"="Drone temperature too low. Power errors may occur. Return to home promptly.";
+
+"fpv_tips_propeller_fc_on_no_limit"="Extra payload detected. Return drone to an area nearby the home point promptly and fly in a wind-free environment to ensure flight safety.";
+
+"fpv_tips_propeller_fc_on_limit"="Payload mode enabled. Max altitude and max distance are limited. Fly in a wind-free environment to ensure flight safety.";
+
+"fpv_capsule_motor_stop_esc_shortcut"="ESC short-circuited";
+
+"fpv_checklist_motor_stop_esc_shortcut"="Solution: Restart drone.";
+
+"fpv_capsule_motor_stop_impact_detect"="Drone impacted. Propellers stopped.";
+
+"fpv_checklist_motor_stop_impact_detect"="Solution: Restart drone.";
+
+"fpv_capsule_motor_stop_height_error"="Takeoff altitude error";
+
+"fpv_tips_limit_height_drive_license_or_realname_error"="Account not logged in. Flight range restricted. Log in again.";
+
+"fpv_checklist_high_altitude_low_performance"="High altitude. Drone braking distance increased and flight time decreased. Fly with caution.";
+
+"dji_check_fc_gps_solution"="Restart Drone. If the problem persists contact DJI Support.";
+
+"dji_check_fc_drone_warming_up_reason"="Drone warming up";
+
+"dji_check_fc_drone_warming_up_solution"="Solution: Wait before take off.";
+
+"dji_check_fc_wrong_propeller_reason"="Propeller error";
+
+"dji_check_fc_plain_propeller_on_plateau_solution"="Solution: Do not use standard propellers at high altitudes.";
+"dji_check_fc_plateau_propeller_on_plain_solution"="Solution: Do not use plateau propellers at low altitudes.";
+
+
+"dji_check_fc_strong_gale_reason"="Strong Wind. Fly with caution.";
+
+"dji_check_fc_mc_in_read_reason"="Flight data Mode. Restart drone to exit.";
+
+"dji_check_fc_mc_data_error_reason"="Main controller data error";
+
+"dji_check_fc_not_enough_Force_reason"="Max motor speed reached";
+
+"dji_check_fc_gohome_fail_reason"="Return-to-Home canceled";
+
+"dji_check_fc_barometer_air_error"="Barometer error. Land drone slowly.";
+
+"dji_check_fc_failsafe"="Signal lost. Drone out of control.";
+
+"dji_check_fc_three_propeller"="Aircraft propulsion system error. Forced landing. Manually control the aircraft and land in an open area.";
+
+"dji_check_fc_three_propeller_force_landing"="Push both control sticks to the bottom inner corners to land.";
+
+"dji_check_fc_three_propeller_cannot_takeoff"="Aircraft propulsion system error. Unable to take off.";
+
+"dji_check_fc_flying_attitude_mode"="Aircraft in Attitude mode. Unable to hover. Fly with caution";
+
+"dji_check_fc_ready_to_go_attitude_mode"="No GPS signal. Unable to hover. Take offf with caution";
+
+"dji_check_fc_height_limit_move_to_open_field"="Initializing GPS. Flight altitude restricted. Move to an open area or connect to DJI Fly to enable positioning";
+
+"dji_check_fc_abnormal_motor_power_reason"="Propeller Installation Error";
+
+"dji_check_fc_abnormal_motor_power_solution"="Check whether the propellers are installed on the correct motors and are unfolded properly. If the propellers are installed correctly and the aircraft still cannot takeoff, a motor error may exist. Contact DJI Support for assistance";
+
+"dji_check_fc_in_nfz_landing"="Your aircraft is in a none no-fly zone and is landing";
+
+"dji_check_fc_forbid_side_fly"="In APAS mode the forbid side fly switch is turned on, Cannot fly sideways"
+
+////////////////////////////////////////////////////////////////////////
+//vision
+////////////////////////////////////////////////////////////////////////
+
+"dji_check_vision_propeller_guard_reason"="Propeller guard mounted";
+
+"dji_check_vision_propeller_guard_solution"="Propeller guard mounted. Forward obstacle sensing will be automatically switched off.";
+
+
+"dji_check_vision_sensor_back_left_reason"="Backward left vision sensor error";
+
+"dji_check_vision_sensor_back_right_reason"="Backward right vision sensor error";
+
+"dji_check_vision_sensor_reason_down_left"="Downward left vision sensor error";
+
+"dji_check_vision_sensor_reason_down_right"="Downard right vision sensor error";
+
+"dji_check_vision_sensor_reason_front_left"="Forward left vision sensor error";
+
+"dji_check_vision_sensor_reason_front_right"="Forward right vision sensor error";
+
+"dji_check_vision_down_calibrate_reason"="Downward vision sensor calibration error";
+
+"dji_check_vision_up_calibrate_reason"="Upward vision sensor calibration error";
+
+"dji_check_vision_front_calibrate_reason"="Forward vision sensor calibration error";
+
+"dji_check_vision_calibrate_solution"="Solution: Recalibrate vision system by DJI Assistant.";
+
+"dji_check_vision_connect_reason"="Vision sensor communication error";
+
+"dji_check_vision_restart_solution"="Solution: Please restart drone. If the problem persists contact DJI Support.";
+
+
+
+"dji_check_vision_reason_3d_tof_reason"="3D infrared sensor error";
+
+"dji_check_vision_reason_ultrasonic_reason"="Ultrasound module error";
+
+"dji_check_vision_reason_tof_reason"="Infrared sensor error";
+
+"dji_check_vision_vision_reason"="Vision system error";
+
+"dji_check_vision_return_solution"="Solution: Hardware malfunction. Contact DJI Support to arrange for repairs.";
+
+"check_2100_flight_count_need_cali"="Recalibrate the vision system. \n Use DJI Assistant on Mac or PC.";
+
+"check_2100_need_calibrate_by_pc"="Calibrate vision sensors with DJI Assistant on PC or Mac for higher accuracy.";
+
+"check_2100_vision_range_down_cali_status"="Downward infrared sensor calibration error";
+
+"check_2100_vision_range_up_cali_status"="Upward-facing infrared sensor calibration error";
+
+"check_2100_tof_version_error"="TOF firmware error";
+
+"check_2100_sensor_left_calibrate_error"="Left sensor valibration error";
+
+"check_2100_sensor_right_calibrate_error"="Right sensor valibration error";
+
+"check_2100_left_tof_error"="Left vision sensor error";
+
+"check_2100_right_tof_error"="Right vision sensor error";
+
+"check_2100_back_calibrate_reason"="Backward vision sensor calibration error. Precision hovering and obstacle avoidance may fail.";
+
+"check_vision_camera_sensor_reason_down"="Downward vision sensor error";
+
+"check_vision_camera_sensor_reason_down_left"="Downward left vision sensor error";
+
+"check_vision_camera_sensor_reason_down_right"="Downward right vision sensor error";
+
+"check_vision_camera_sensor_reason_front"="Forward vision sensor error";
+
+"check_vision_camera_sensor_reason_front_left"="Forward left vision sensor error";
+
+"check_vision_camera_sensor_reason_front_right"="Forward right vision sensor error";
+
+"check_vision_tof_sensor_reason_down"="Downward infrared sensor error";
+
+"check_vision_tof_sensor_reason_front"="Forward infrared sensor error";
+
+"check_main_camera_sensor_reason"="Camera sensor error";
+
+"check_vision_camera_sensor_reason_calibrate_down"="Downward vision sensor calibration error. Precision hovering and landing protection may fail.";
+
+"check_vision_camera_dark_no_position" = "Lighting environment too dark. Visual positioning inaccurate. Fly with caution.";
+
+"dji_check_vision_up_left_sensor_tof_abnormal_reason" = "Upward Left vision sensor error";
+
+"dji_check_vision_up_right_sensor_tof_abnormal_reason" = "Upward Right vision sensor error";
+
+"dji_check_vision_back_top_sensor_tof_abnormal_reason" = "Backward Top Vision Sensor Error";
+
+"dji_check_vision_back_bottom_sensor_tof_abnormal_reason" = "Backward Botton Vision Sensor Error";
+
+"dji_check_drone_in_flight"="Flying";
+
+"dji_area_code_all" = "Global";
+
+"dji_area_code_chn" = "China";
+
+"dji_area_code_twn" = "Taiwan";
+
+"dji_area_code_jpn" = "Japan";
+
+"dji_area_code_prk" = "North Korea";
+
+"dji_area_code_kor" = "South Korea";
+
+"dji_area_code_chn_main_land" = "Mainland China";
+
+"dji_area_code_asia_pacific" = "Asia-Pacific";
+
+////////////////////////////////// RTK //////////////////////////////////
+
+"dji_check_rtk_disconnected" = "RTK disconnected";
+
+"dji_check_rtk_change_reference_source_failed" = "Change RTK reference source failed";
+
+"dji_check_rtk_ground_system_error" = "RTK ground system error. Please check ground system.";
+
+"dji_check_rtk_version_error" = "RTK version is not matched";
+
+"dji_check_rtk_positioning_error" = "RTK positioning error";
+
+"dji_check_rtk_yaw_error" = "RTK orienteering error";
+
+"dji_check_rtk_solution_fly_with_cautious" = "Fly with caution";
+
+"dji_check_rtk_solution_restart" = "Restart the drone and restore RTK";
+
+////////////////////////////////////////////////////////////////////////
+//product
+////////////////////////////////////////////////////////////////////////
+
+"dji_check_product_not_connect_aircraft_reason" = "Aircraft not connected to RC";
+
+"dji_check_product_disconnect_reason" = "RC not connected to mobile device"
+

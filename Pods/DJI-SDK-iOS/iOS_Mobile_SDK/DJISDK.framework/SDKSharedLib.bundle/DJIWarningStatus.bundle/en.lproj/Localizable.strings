@@ -1,0 +1,275 @@
+"topbar_emmc_error_advise_reformat"="Formatting internal storage is recommended.";
+
+"topbar_emmc_error_emmc_busy"="Internal storage is working...";
+
+"topbar_emmc_error_emmc_full"="Internal storage is full.";
+
+"topbar_emmc_error_emmc_index_full"="Internal storage directory is full.";
+
+"topbar_emmc_error_emmc_initing"="Internal storage initializing…";
+
+"topbar_emmc_error_emmc_slow"="Slow internal storage write speed.";
+
+"topbar_emmc_error_emmc_unknow_error"="Unknown internal storage error.";
+
+"topbar_emmc_error_formating"="Internal storage is formatting…";
+
+"topbar_emmc_error_invalid_emmc"="Internal storage is invalid. ";
+
+"topbar_emmc_error_invalid_filesystem"="Internal storage file system error.";
+
+"topbar_emmc_error_no_format"="Internal storage not formatted.";
+
+"topbar_emmc_error_normal"="Internal storage is functioning normally.";
+
+"topbar_emmc_error_write_protect"="Internal Storage Writing Protection";
+
+"topbar_emmc_error_writing_slow"="Slow internal storage write speed. Formatting is recommended. ";
+
+"topbar_histogram"="Histogram";
+
+"topbar_sdcard_error_advise_reformat"="Reformat Recommended";
+
+"topbar_sdcard_error_formating"="Formatting SD Card";
+
+"topbar_sdcard_error_invalid_filesystem"="Invalid SD Card";
+
+"topbar_sdcard_error_invalid_sdcard"="Invalid SD Card";
+
+"topbar_sdcard_error_no_emmc"="Internal storage not found.";
+
+"topbar_sdcard_error_no_format"="SD Card not Formatted";
+
+"topbar_sdcard_error_no_sdcard"="No SD Card";
+
+"topbar_sdcard_error_normal"="SD Card OK";
+
+"topbar_sdcard_error_sdcard_busy"="SD Card Busy";
+
+"topbar_sdcard_error_sdcard_full"="SD Card Full";
+
+"topbar_sdcard_error_sdcard_index_full"="SD Card Index Full";
+
+"topbar_sdcard_error_sdcard_initing"="SD Card Initializing...";
+
+"topbar_sdcard_error_sdcard_slow"="Slow SD Card";
+
+"topbar_sdcard_error_sdcard_unknow_error"="Unknown SD card error";
+
+"topbar_sdcard_error_write_protect"="SD Card Protected";
+
+"topbar_sdcard_error_writing_slow"="SD Card Slow. Reformat Recommended";
+
+"topbar_ssd_error_formating_fast"="Formating SSD";
+
+"warning_status_radio_gimbal_disconnect"="Gimbal Disconnected";
+
+"warning_status_disconnect"="Disconnected";
+
+"warning_status_align"="Returning Home: Turning";
+
+"warning_status_ascending"="Returning Home: Ascending";
+
+"warning_status_atti"="P-Atti";
+
+"warning_status_single_battery_atti"="In Single-Battery Flight (Atti)";
+
+"warning_status_atti_flight"="No Positioning (ATTI)";
+
+"warning_status_atti_ready"="No Positioning (ATTI)";
+
+"warning_status_barometer_air_error"="Barometer Error. Land Aircraft Slowly.";
+
+"warning_status_cruise"="Returning Home: Cruising";
+
+"warning_status_ecs_shortcut_air_error"="ESCs Error. Return to Home Point Now.";
+
+"warning_status_ecs_shortcut_error"="ESCs Error";
+
+"warning_status_failsafe"="Signal lost";
+
+"warning_status_failsafe_gohome"="Signal Lost. Aircraft Returning Home.";
+
+"warning_status_going_home"="Returning Home";
+
+"warning_status_in_limit_space"="Height Limited Zone";
+
+"warning_status_landing"=", Aircraft Landing";
+
+"warning_status_limit_height"="Altitude Limit %@";
+
+"warning_status_low_battery"="Low Battery Warning";
+
+"warning_status_low_battery_gohome"="Low Battery. Aircraft Returning Home.";
+
+"warning_status_no_gps"="(No GPS)";
+
+"warning_status_normal_flight"="In-Flight (GPS)";
+
+"warning_status_normal_flight_rtk_in_use" = "In-Flight (RTK)";
+
+"warning_status_normal_ready"="Ready to GO (GPS)";
+
+"warning_status_normal_ready_rtk_in_use" = "Ready to GO (RTK)";
+
+"warning_status_preascending"="Returning Home: Preparing";
+
+"warning_status_serious_low_battery"="Critically Low Battery";
+
+"warning_status_serious_low_battery_landing" = "Critically Low Battery. Aircraft will land.";
+
+"warning_status_serious_low_voltage"="Battery Voltage Critically Low";
+
+"warning_status_serious_low_voltage_landing" = "Critically Low Voltage. Aircraft will land.";
+
+"warning_status_single_battery_normal_flight"="In Single-Battery Flight";
+
+"warning_status_smart_low_battery"="Low Battery";
+
+"warning_status_using_gps"="(GPS)";
+
+"warning_status_using_opti"="(Vision)";
+
+"warning_status_battery_not_in_position"="Incorrect Battery Position. Re-attach all batteries.";
+
+"warning_status_patti_error"="Compass Error. Exit GPS Mode";
+
+"warning_status_aircraft_warning_up"="Aircraft Warming up";
+
+"warning_status_battery_broken"="Battery Cell Error";
+
+"warning_status_battery_communication_error"="Battery Error";
+
+"warning_status_battery_low_temperature"="Battery Discharge Low-temperature";
+
+"warning_status_battery_over_current"="Battery Discharge Over-current";
+
+"warning_status_battery_over_temperature"="Battery Discharge Over-temperature";
+
+"warning_status_camera_encrypt_error"="Camera Error";
+
+"warning_status_cannot_takeoff"="Cannot take off";
+
+"warning_status_cannot_takeoff_imu_init"="IMU is initializing. Do not move the aircraft until initialization is complete";
+
+"warning_status_cannot_takeoff_no_atti_data"="IMU is initializing. Do not move the aircraft until initialization is complete";
+
+"warning_status_cannot_takeoff_novice_protected"="Cannot take off (No GPS)";
+
+"warning_status_compass_error"="Compass error. Move aircraft or calibrate compass.";
+
+"warning_status_firmware_no_match"="Firmware Upgrade Required";
+
+"warning_status_gohome_failed"="Return-to-Home Failed";
+
+"warning_status_imu_error"="IMU Error. Calibrate IMU";
+
+"warning_status_imu_initing"="IMU Initializing";
+
+"warning_status_imu_need_calibration"="IMU Calibration Required";
+
+"warning_status_mc_data_error"="Main Controller Data Error";
+
+"warning_status_mc_read_sd_mode"="Flight Data Mode. Restart aircraft to exit.";
+
+"warning_status_not_enough_force"="Max Motor Speed Reached";
+
+"warning_status_radio_version_not_match"="Firmware Update Required";
+
+"warning_status_rc_low_battery"="Remote Controller Battery Low";
+
+"warning_status_safe_fly_non_gps"="Safe to Fly (Non-GPS)";
+
+"warning_status_sensor_error"="Sensor Error. Restart aircraft.";
+
+"warning_status_strong_gale"="High Wind Velocity. Fly with caution.";
+
+"warning_status_radio_mc_disconnect"="Aircraft Disconnected";
+
+"warning_status_low_radio_quality"="Image Transmission Signal Weak";
+
+"warning_status_no_signal"="No Image Transmission Signal";
+
+"warning_status_ocusync_distrub_level_high"="Strong electromagnetic interference at sticks. The remote controller may fail to provide control. Aircraft will return home and land automatically.";
+
+"warning_status_ocusync_distrub_level_low"="Electromagnetic interference at sticks. The remote controller may fail to provide control. Fly to a place with less interference.";
+
+"warning_status_ocusync_distrub_level_mid"="Strong electromagnetic interference at sticks. The remote controller may fail to provide control. Use Smart RTH to land.";
+
+"warning_status_rc_weak_signal"="Remote Controller Signal Weak";
+
+"warning_status_in_limit_height"="Altitude Limit";
+
+"warning_status_radio_strong_noise_sdr"="Strong signal interference at remote controller. Fly with caution.";
+
+"warning_status_rc_strong_noise_sdr"="Strong signal interference at Aircraft. Fly with caution.";
+
+"warning_status_startup_block"="Gimbal Obstructed";
+
+"warning_status_wait_restart"="Gimbal Motor Overloaded. Check whether gimbal clamp is removed.";
+
+"warning_status_motor_overload"="Gimbal Motor Overloaded";
+
+"warning_status_vibration"="Gimbal Shake Error";
+
+"warning_status_broken_state" = "Gimbal Broken Error";
+
+"warning_status_reached_mechanical_limit" = "Gimbal Reached Mechanical Limit";
+
+"warning_status_rotation_error" = "Gimbal Rotation Error";
+
+"warning_status_compass_distrub"= "Compass Interference";
+
+"warning_status_vision_backward_vision_sensor_calibration_error"="Backward Vision Sensor Calibration Error";
+
+"warning_status_vision_downward_vision_sensor_calibration_error"="Downward Vision Sensor Calibration Error";
+
+"warning_status_vision_forward_vision_sensor_calibration_error"="Forward Vision Sensor Calibration Error";
+
+"warning_status_vision_system_error"="Vision System Error";
+
+"warning_status_vision_3d_infrared_sensor_error"="3D Infrared Sensor Error";
+
+"warning_status_vision_infrared_sensor_error"="Infrared Sensor Error";
+
+"warning_status_vision_ultrasonic_error"="Ultrasound Module Error";
+
+"warning_status_none" = "No Warnings";
+
+"warning_status_strict_limit_space_flight" = "DO NOT FLY in this zone. Land Now.";
+
+"warning_status_string_low_voltage" = "Low Voltage Warning";
+
+"warning_status_string_low_power" = "Critically Low Battery";
+
+"warning_status_string_low_power_landing" = "Low Battery. Aircraft Will Land.";
+
+"warning_status_string_device_locked" = "Device Locked";
+
+"warning_status_string_fully_self_discharged_in_storage" = "Self-Discharge in Storage";
+
+"warning_status_string_power_management_exception" = "Battery Status Error";
+
+"warning_status_string_no_video_signal" = "No Signal";
+
+"warning_status_single_battery_normal_flight_no_gps" = "In Single-Battery Flight";
+
+"warning_status_normal_flight_no_gps" = "In-Flight";
+
+"warning_status_normal_ready_no_gps" = "Ready to GO";
+
+"warning_status_in_limit_space_no_gps"="Height Limited Zone";
+
+"warning_status_going_home_no_gps" = "Returning Home (No GPS)";
+
+"warning_status_single_battery_normal_flight_vision" = "In Single-Battery Flight (Vision)";
+
+"warning_status_normal_flight_vision" = "In-Flight (Vision)";
+
+"warning_status_normal_ready_vision" = "Ready to GO (Vision)";
+
+"warning_status_in_limit_space_vision" = "Height Limited Zone";
+
+"warning_status_in_limit_space_atti" = "Height Limited Zone";
+
+"warning_status_special_unlock" = "Special Unlock";
