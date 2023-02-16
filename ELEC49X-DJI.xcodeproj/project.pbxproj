@@ -16,9 +16,6 @@
 		A47868D8209AC6DA00DBC666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A47868C6209AC6DA00DBC666 /* Assets.xcassets */; };
 		A47868D9209AC6DA00DBC666 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A47868C7209AC6DA00DBC666 /* LaunchScreen.storyboard */; };
 		A47868DA209AC6DA00DBC666 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A47868C9209AC6DA00DBC666 /* Main.storyboard */; };
-		A47868DD209AC6DA00DBC666 /* KeyedInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868CE209AC6DA00DBC666 /* KeyedInterfaceViewController.swift */; };
-		A47868DE209AC6DA00DBC666 /* TimelineElementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D0209AC6DA00DBC666 /* TimelineElementCollectionViewCell.swift */; };
-		A47868DF209AC6DA00DBC666 /* TimelineMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D1209AC6DA00DBC666 /* TimelineMissionViewController.swift */; };
 		A47868E0209AC6DA00DBC666 /* ProductCommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D3209AC6DA00DBC666 /* ProductCommunicationManager.swift */; };
 		A47868E1209AC6DA00DBC666 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D4209AC6DA00DBC666 /* StartupViewController.swift */; };
 		A47868E2209AC6DA00DBC666 /* DJIImageAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D6209AC6DA00DBC666 /* DJIImageAnnotation.swift */; };
@@ -40,9 +37,6 @@
 		A47868C8209AC6DA00DBC666 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A47868CA209AC6DA00DBC666 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A47868CC209AC6DA00DBC666 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A47868CE209AC6DA00DBC666 /* KeyedInterfaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyedInterfaceViewController.swift; sourceTree = "<group>"; };
-		A47868D0209AC6DA00DBC666 /* TimelineElementCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineElementCollectionViewCell.swift; sourceTree = "<group>"; };
-		A47868D1209AC6DA00DBC666 /* TimelineMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineMissionViewController.swift; sourceTree = "<group>"; };
 		A47868D3209AC6DA00DBC666 /* ProductCommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCommunicationManager.swift; sourceTree = "<group>"; };
 		A47868D4209AC6DA00DBC666 /* StartupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
 		A47868D6209AC6DA00DBC666 /* DJIImageAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJIImageAnnotation.swift; sourceTree = "<group>"; };
@@ -117,29 +111,10 @@
 				2F0FC86A21EDFFEE00D1C635 /* DJIWidget-Bridging-Header.h */,
 				A47868CC209AC6DA00DBC666 /* Info.plist */,
 				2F0FC85A21EDBB0B00D1C635 /* Camera */,
-				A47868CD209AC6DA00DBC666 /* KeyedInterfaces */,
-				A47868CF209AC6DA00DBC666 /* Missions */,
 				A47868D2209AC6DA00DBC666 /* Services */,
 				A47868D5209AC6DA00DBC666 /* UIObjects */,
 			);
 			path = "ELEC49X-DJI";
-			sourceTree = "<group>";
-		};
-		A47868CD209AC6DA00DBC666 /* KeyedInterfaces */ = {
-			isa = PBXGroup;
-			children = (
-				A47868CE209AC6DA00DBC666 /* KeyedInterfaceViewController.swift */,
-			);
-			path = KeyedInterfaces;
-			sourceTree = "<group>";
-		};
-		A47868CF209AC6DA00DBC666 /* Missions */ = {
-			isa = PBXGroup;
-			children = (
-				A47868D0209AC6DA00DBC666 /* TimelineElementCollectionViewCell.swift */,
-				A47868D1209AC6DA00DBC666 /* TimelineMissionViewController.swift */,
-			);
-			path = Missions;
 			sourceTree = "<group>";
 		};
 		A47868D2209AC6DA00DBC666 /* Services */ = {
@@ -312,9 +287,6 @@
 				A47868D7209AC6DA00DBC666 /* AppDelegate.swift in Sources */,
 				A47868E1209AC6DA00DBC666 /* StartupViewController.swift in Sources */,
 				51AAFCD221FEB35900742997 /* DJIAlert.swift in Sources */,
-				A47868DE209AC6DA00DBC666 /* TimelineElementCollectionViewCell.swift in Sources */,
-				A47868DD209AC6DA00DBC666 /* KeyedInterfaceViewController.swift in Sources */,
-				A47868DF209AC6DA00DBC666 /* TimelineMissionViewController.swift in Sources */,
 				2F0FC86E21EE1D0300D1C635 /* DecodeImageCalibrateLogic.swift in Sources */,
 				2F0FC85F21EDC81C00D1C635 /* CameraFPVViewController.swift in Sources */,
 			);
