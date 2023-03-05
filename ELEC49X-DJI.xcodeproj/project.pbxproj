@@ -11,20 +11,11 @@
 		2F0FC85F21EDC81C00D1C635 /* CameraFPVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FC85E21EDC81C00D1C635 /* CameraFPVViewController.swift */; };
 		2F0FC86E21EE1D0300D1C635 /* DecodeImageCalibrateLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FC86D21EE1D0300D1C635 /* DecodeImageCalibrateLogic.swift */; };
 		2F0FC87921F06D9B00D1C635 /* DistortionResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2F0FC87821F06D9B00D1C635 /* DistortionResource.bundle */; };
-		4A017C29298841F9009A2C2C /* DroneCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A017C28298841F9009A2C2C /* DroneCommands.swift */; };
-		4A017C2B299BF2F5009A2C2C /* Test1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A017C2A299BF2F5009A2C2C /* Test1.swift */; };
-		4A017C2D299BF33E009A2C2C /* Test2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A017C2C299BF33E009A2C2C /* Test2.swift */; };
-		4A017C2F299BF55B009A2C2C /* Test3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A017C2E299BF55B009A2C2C /* Test3.swift */; };
-		4A017C32299BF682009A2C2C /* VirtualSticksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A017C31299BF682009A2C2C /* VirtualSticksViewController.swift */; };
-		4A017C34299BFD09009A2C2C /* CDJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A017C33299BFD09009A2C2C /* CDJoystick.swift */; };
 		51AAFCD221FEB35900742997 /* DJIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAFCD121FEB35900742997 /* DJIAlert.swift */; };
 		A47868D7209AC6DA00DBC666 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868C5209AC6DA00DBC666 /* AppDelegate.swift */; };
 		A47868D8209AC6DA00DBC666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A47868C6209AC6DA00DBC666 /* Assets.xcassets */; };
 		A47868D9209AC6DA00DBC666 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A47868C7209AC6DA00DBC666 /* LaunchScreen.storyboard */; };
 		A47868DA209AC6DA00DBC666 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A47868C9209AC6DA00DBC666 /* Main.storyboard */; };
-		A47868DD209AC6DA00DBC666 /* KeyedInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868CE209AC6DA00DBC666 /* KeyedInterfaceViewController.swift */; };
-		A47868DE209AC6DA00DBC666 /* TimelineElementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D0209AC6DA00DBC666 /* TimelineElementCollectionViewCell.swift */; };
-		A47868DF209AC6DA00DBC666 /* TimelineMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D1209AC6DA00DBC666 /* TimelineMissionViewController.swift */; };
 		A47868E0209AC6DA00DBC666 /* ProductCommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D3209AC6DA00DBC666 /* ProductCommunicationManager.swift */; };
 		A47868E1209AC6DA00DBC666 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D4209AC6DA00DBC666 /* StartupViewController.swift */; };
 		A47868E2209AC6DA00DBC666 /* DJIImageAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D6209AC6DA00DBC666 /* DJIImageAnnotation.swift */; };
@@ -37,12 +28,6 @@
 		2F0FC86A21EDFFEE00D1C635 /* DJIWidget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DJIWidget-Bridging-Header.h"; sourceTree = "<group>"; };
 		2F0FC86D21EE1D0300D1C635 /* DecodeImageCalibrateLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeImageCalibrateLogic.swift; sourceTree = "<group>"; };
 		2F0FC87821F06D9B00D1C635 /* DistortionResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DistortionResource.bundle; sourceTree = "<group>"; };
-		4A017C28298841F9009A2C2C /* DroneCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneCommands.swift; sourceTree = "<group>"; };
-		4A017C2A299BF2F5009A2C2C /* Test1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test1.swift; sourceTree = "<group>"; };
-		4A017C2C299BF33E009A2C2C /* Test2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2.swift; sourceTree = "<group>"; };
-		4A017C2E299BF55B009A2C2C /* Test3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test3.swift; sourceTree = "<group>"; };
-		4A017C31299BF682009A2C2C /* VirtualSticksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualSticksViewController.swift; sourceTree = "<group>"; };
-		4A017C33299BFD09009A2C2C /* CDJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDJoystick.swift; sourceTree = "<group>"; };
 		51AAFCD121FEB35900742997 /* DJIAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIAlert.swift; sourceTree = "<group>"; };
 		5AC100BE7844872E43A4C098 /* Pods-ELEC49X-DJI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELEC49X-DJI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ELEC49X-DJI/Pods-ELEC49X-DJI.debug.xcconfig"; sourceTree = "<group>"; };
 		86985CC91E834EC200577EC7 /* ELEC49X-DJI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ELEC49X-DJI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,9 +37,6 @@
 		A47868C8209AC6DA00DBC666 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A47868CA209AC6DA00DBC666 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A47868CC209AC6DA00DBC666 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A47868CE209AC6DA00DBC666 /* KeyedInterfaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyedInterfaceViewController.swift; sourceTree = "<group>"; };
-		A47868D0209AC6DA00DBC666 /* TimelineElementCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineElementCollectionViewCell.swift; sourceTree = "<group>"; };
-		A47868D1209AC6DA00DBC666 /* TimelineMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineMissionViewController.swift; sourceTree = "<group>"; };
 		A47868D3209AC6DA00DBC666 /* ProductCommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCommunicationManager.swift; sourceTree = "<group>"; };
 		A47868D4209AC6DA00DBC666 /* StartupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
 		A47868D6209AC6DA00DBC666 /* DJIImageAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJIImageAnnotation.swift; sourceTree = "<group>"; };
@@ -99,15 +81,6 @@
 			path = fpv;
 			sourceTree = "<group>";
 		};
-		4A017C30299BF61B009A2C2C /* VirtualSticks */ = {
-			isa = PBXGroup;
-			children = (
-				4A017C33299BFD09009A2C2C /* CDJoystick.swift */,
-				4A017C31299BF682009A2C2C /* VirtualSticksViewController.swift */,
-			);
-			path = VirtualSticks;
-			sourceTree = "<group>";
-		};
 		86985CC01E834EC200577EC7 = {
 			isa = PBXGroup;
 			children = (
@@ -129,43 +102,19 @@
 		A47868C4209AC6DA00DBC666 /* ELEC49X-DJI */ = {
 			isa = PBXGroup;
 			children = (
-				4A017C30299BF61B009A2C2C /* VirtualSticks */,
 				A47868C6209AC6DA00DBC666 /* Assets.xcassets */,
 				2F0FC87821F06D9B00D1C635 /* DistortionResource.bundle */,
 				A47868C7209AC6DA00DBC666 /* LaunchScreen.storyboard */,
 				A47868C9209AC6DA00DBC666 /* Main.storyboard */,
 				A47868C5209AC6DA00DBC666 /* AppDelegate.swift */,
 				A47868D4209AC6DA00DBC666 /* StartupViewController.swift */,
-				4A017C28298841F9009A2C2C /* DroneCommands.swift */,
 				2F0FC86A21EDFFEE00D1C635 /* DJIWidget-Bridging-Header.h */,
 				A47868CC209AC6DA00DBC666 /* Info.plist */,
 				2F0FC85A21EDBB0B00D1C635 /* Camera */,
-				A47868CD209AC6DA00DBC666 /* KeyedInterfaces */,
-				A47868CF209AC6DA00DBC666 /* Missions */,
 				A47868D2209AC6DA00DBC666 /* Services */,
 				A47868D5209AC6DA00DBC666 /* UIObjects */,
-				4A017C2A299BF2F5009A2C2C /* Test1.swift */,
-				4A017C2C299BF33E009A2C2C /* Test2.swift */,
-				4A017C2E299BF55B009A2C2C /* Test3.swift */,
 			);
 			path = "ELEC49X-DJI";
-			sourceTree = "<group>";
-		};
-		A47868CD209AC6DA00DBC666 /* KeyedInterfaces */ = {
-			isa = PBXGroup;
-			children = (
-				A47868CE209AC6DA00DBC666 /* KeyedInterfaceViewController.swift */,
-			);
-			path = KeyedInterfaces;
-			sourceTree = "<group>";
-		};
-		A47868CF209AC6DA00DBC666 /* Missions */ = {
-			isa = PBXGroup;
-			children = (
-				A47868D0209AC6DA00DBC666 /* TimelineElementCollectionViewCell.swift */,
-				A47868D1209AC6DA00DBC666 /* TimelineMissionViewController.swift */,
-			);
-			path = Missions;
 			sourceTree = "<group>";
 		};
 		A47868D2209AC6DA00DBC666 /* Services */ = {
@@ -332,23 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A017C29298841F9009A2C2C /* DroneCommands.swift in Sources */,
 				A47868E2209AC6DA00DBC666 /* DJIImageAnnotation.swift in Sources */,
 				2F0FC85D21EDC06100D1C635 /* VideoPreviewerAdapter.swift in Sources */,
 				A47868E0209AC6DA00DBC666 /* ProductCommunicationManager.swift in Sources */,
 				A47868D7209AC6DA00DBC666 /* AppDelegate.swift in Sources */,
 				A47868E1209AC6DA00DBC666 /* StartupViewController.swift in Sources */,
 				51AAFCD221FEB35900742997 /* DJIAlert.swift in Sources */,
-				A47868DE209AC6DA00DBC666 /* TimelineElementCollectionViewCell.swift in Sources */,
-				4A017C2D299BF33E009A2C2C /* Test2.swift in Sources */,
-				4A017C32299BF682009A2C2C /* VirtualSticksViewController.swift in Sources */,
-				4A017C2F299BF55B009A2C2C /* Test3.swift in Sources */,
-				A47868DD209AC6DA00DBC666 /* KeyedInterfaceViewController.swift in Sources */,
-				4A017C2B299BF2F5009A2C2C /* Test1.swift in Sources */,
-				A47868DF209AC6DA00DBC666 /* TimelineMissionViewController.swift in Sources */,
 				2F0FC86E21EE1D0300D1C635 /* DecodeImageCalibrateLogic.swift in Sources */,
 				2F0FC85F21EDC81C00D1C635 /* CameraFPVViewController.swift in Sources */,
-				4A017C34299BFD09009A2C2C /* CDJoystick.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
