@@ -64,7 +64,7 @@ class StartupViewController: UIViewController {
     func resetUI() {
         self.title = "Drone Hub"
         self.sdkVersionLabel.text = "DJI SDK Version: \(DJISDKManager.sdkVersion())"
-        self.openComponents.isEnabled = false; //FIXME: set it back to false
+        self.openComponents.isEnabled = true; //FIXME: set it back to false
         self.productModel.isHidden = true
         self.bridgeModeLabel.isHidden = !self.appDelegate.productCommunicationManager.enableBridgeMode
         
@@ -105,7 +105,7 @@ class StartupViewController: UIViewController {
     func productDisconnected() {
         self.productConnectionStatus.text = "Status: No Product Connected"
 
-        self.openComponents.isEnabled = false;
+        self.openComponents.isEnabled = true;
         self.openComponents.alpha = 0.8;
         NSLog("Product Disconnected")
     }
