@@ -43,6 +43,7 @@ class CameraFPVViewController: UIViewController {
         }
         
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -92,8 +93,7 @@ class CameraFPVViewController: UIViewController {
         guard let camera = fetchCamera(),
         camera.isThermalCamera()
         else {
-            //Fiona deleted the tempSwitch, so commenting out below lines
-            //tempSwitch.setOn(false, animated: false)
+            tempSwitch.setOn(false, animated: false)
             return
         }
         
