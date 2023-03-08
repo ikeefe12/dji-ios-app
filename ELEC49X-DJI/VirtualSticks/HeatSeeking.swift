@@ -55,20 +55,24 @@ class HeatSeeking {
     
     // commandThread base function
     @objc private func sendCommand() {
-        let commandRoll = 0.0
-        let commandPitch = 0.0
+        var commandThrottle = 0.0
+        var commandRoll = 0.0
+        var commandPitch = 0.0
+        var commandYaw = 0.0
         while !isCancelled {
             if newCommands {
                // TODO: Get result of thermal image processing from shared variable (trackingData) - Race Condition ?
+                commandThrottle = vertThrottle
                 commandRoll = roll
                 commandPitch = pitch
+                commandYaw = yaw
                // set newCommands flag to false, allowing the following loop to loop until the other thread sets it back to true
                newCommands = false
             }
             while !newCommands {
                 // TODO: send command based on the newest commands at a rate of 20Hz
                 // Example code - probably wrong 
-                droneCommand.sendControlData(0.0, commandRoll, commandPitch, 0.0)
+                droneCommand.sendControlData(commandThrottle, commandPitch, commandRoll, commandYaw)
                 // Sleep for 50 milliseconds to achieve 20Hz frequency
                 Thread.sleep(forTimeInterval: 0.05)
             }
