@@ -17,9 +17,13 @@ class HeatSeeking {
     // two threads that will run in parallel
     var dataThread: Thread?
     var commandThread: Thread?
-    // shared variable that the dataThread writes the results of image processing to so that the commandThread knows what direction to send to drone
-    // this will likely end up being two values [x,y] coordinates of heated subject in the image
-    var trackingData: Double = 0
+    // shared variables that the dataThread writes the results of image processing to so that the commandThread knows what direction to send to drone
+    var vertThrottle: Double = 0
+    var roll: Double = 0
+    var pitch: Double = 0
+    var yaw: Double = 0
+    // shared variable flag thay indicates whether commandThread should update it's local variables for direction
+    var newCommands: Bool = false
     
     init() {
       // this calls the init() function of DroneCommand and gives us an instance of the object from which we can call functions
@@ -40,37 +44,35 @@ class HeatSeeking {
     
     
     @objc private func trackData() {
-        while true {
+        while !isCancelled {
             // TODO: Read Data from port initialized in init()
             // TODO: Pass data through tracking algorithm (likely a function to be added to this class)
-            // TODO: Save result in shared variable between the two threads (trackingData)
-            // interrupt the commandThread so it knows there is new data
-            commandThread?.interrupt()
+            // TODO: Save result in shared variable between the two threads (trackingData) - Race Condition ?
+            // set newCommands flag to true, indicating to the sendCommand thread to break the loop and update local command variables
+            newCommands = true
         }
     }
     
     // commandThread base function
     @objc private func sendCommand() {
-        while true {
-            do {
-                try DJISDKManager.keyManager()?.setValue(NSValue(cgPoint: calculateCommand()), for: DJIFlightControllerKey(param: DJIFlightControllerParamVelocity))
-                try DJISDKManager.keyManager()?.performAction(for: DJIFlightControllerKey(param: DJIFlightControllerParamVelocity))
+        let commandRoll = 0.0
+        let commandPitch = 0.0
+        while !isCancelled {
+            if newCommands {
+               // TODO: Get result of thermal image processing from shared variable (trackingData) - Race Condition ?
+                commandRoll = roll
+                commandPitch = pitch
+               // set newCommands flag to false, allowing the following loop to loop until the other thread sets it back to true
+               newCommands = false
+            }
+            while !newCommands {
+                // TODO: send command based on the newest commands at a rate of 20Hz
+                // Example code - probably wrong 
+                droneCommand.sendControlData(0.0, commandRoll, commandPitch, 0.0)
+                // Sleep for 50 milliseconds to achieve 20Hz frequency
                 Thread.sleep(forTimeInterval: 0.05)
-                Thread.yield()
-            } catch {
-                print("Error: \(error.localizedDescription)")
             }
         }
-    }
-    
-    private func calculateCommand() -> CGPoint {
-        // calculate command based on tracking data
-        return CGPoint(x: 0, y: 0)
-    }
-    
-    private func processData(data: Data) -> Double {
-        // process data and return result
-        return 0.0
     }
     
     func stopTracking() {
