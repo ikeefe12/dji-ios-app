@@ -6,7 +6,7 @@
 // send the correct command to the drone. These threads continue infinitely until stopTracking is called.
 // stopTracking() is called in CameraFPVViewController.swift on the same instance of the HeatSeeking class that was created when the Start 
 // Tracking button was pressed.
-
+import UIKit
 import DJISDK
 
 class HeatSeeking {
@@ -14,8 +14,9 @@ class HeatSeeking {
     var droneCommand: DroneCommand?
     // Wifi socket from which data is read
     var udpSocket: GCDAsyncUdpSocket?
-    // two threads that will run in parallel
+    // three threads that will run in parallel
     var dataThread: Thread?
+    var displayThread: Thread?
     var commandThread: Thread?
     // shared variables that the dataThread writes the results of image processing to so that the commandThread knows what direction to send to drone
     var vertThrottle: Double = 0
@@ -28,22 +29,37 @@ class HeatSeeking {
     init() {
       // this calls the init() function of DroneCommand and gives us an instance of the object from which we can call functions
         droneCommand = DroneCommand()
-      // enable virtual sticks on the drone
-        droneCommand.toggleVirtualSticks(true)
       // TODO: Initialize port 
     }
     
-    func startTracking() {
-        // start the two separate while loops as two threads in which the functions trackData and sendCommand represent the loops
-        dataThread = Thread(target: self, selector: #selector(trackData), object: nil)
+    @objc func enableThermalDataAndDisplay() {
+        dataThread = Thread(target: self, selector: #selector(getData), object: nil)
         dataThread?.start()
         
+        displayThread = Thread(target: self, selector: #selector(dispData), object: nil)
+        displayThread?.start()
+    }
+    
+    @objc func disableThermalDataAndDisplay() {
+        dataThread?.cancel()
+        displayThread?.cancel()
+    }
+    
+    @objc func startTracking() {
+        // enable virtual sticks on the drone
+        droneCommand.toggleVirtualSticks(true)
         commandThread = Thread(target: self, selector: #selector(sendCommand), object: nil)
         commandThread?.start()
     }
     
+    @objc func stopTracking() {
+        commandThread?.cancel()
+        // disable virtual stick commmand of the drone
+        droneCommand?.toggleVirtualSticks(false)
+    }
     
-    @objc private func trackData() {
+    // dataThread base function
+    @objc private func getData() {
         while !isCancelled {
             // TODO: Read Data from port initialized in init()
             // TODO: Pass data through tracking algorithm (likely a function to be added to this class)
@@ -51,6 +67,45 @@ class HeatSeeking {
             // set newCommands flag to true, indicating to the sendCommand thread to break the loop and update local command variables
             newCommands = true
         }
+    }
+    
+    // displayThread base function
+    @objc private func dispData() {
+        // Define the dimensions of the image
+        let width = 120
+        let height = 84
+
+        // Create a UIImageView
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        view.addSubview(imageView)
+        
+        while !isCancelled {
+            if newFrame {
+                // Get the latest grayscale image data (race condition)
+                let gray16Image = getGray16Image()
+
+                // Create a CGContext and draw the pixel values to it
+                let colorSpace = CGColorSpaceCreateDeviceGray()
+                let bytesPerPixel = MemoryLayout<UInt16>.stride
+                let bytesPerRow = bytesPerPixel * width
+                let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
+                let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: 16, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
+                context.drawGray16Image(gray16Image)
+
+                // Create a CGImage from the CGContext
+                guard let cgImage = context.makeImage() else {
+                    fatalError("Failed to create CGImage.")
+                }
+
+                // Create a UIImage from the CGImage
+                let image = UIImage(cgImage: cgImage)
+
+                // Update the UIImageView with the new image
+                imageView.image = image   
+            }
+        }
+        
+        
     }
     
     // commandThread base function
@@ -77,14 +132,5 @@ class HeatSeeking {
                 Thread.sleep(forTimeInterval: 0.05)
             }
         }
-    }
-    
-    func stopTracking() {
-        // stop the two threads
-        dataThread?.cancel()
-        commandThread?.cancel()
-      
-        // disable virtual stick commmand of the drone (extra percaution)
-        droneCommand?.toggleVirtualSticks(false)
     }
 }
