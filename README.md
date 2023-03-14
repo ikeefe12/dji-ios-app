@@ -15,3 +15,5 @@ CURRENT PROGRESS:
 NEXT STEPS:
 - Test connection between the application and the drone through use of the drones controller (code is in place)
 - Set up wifi connection between the application and the Arduino Board
+
+https://github.com/eblainey/thermalthings
