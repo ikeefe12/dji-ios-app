@@ -6,27 +6,29 @@
 // In the stopTracking button handler within CameraFPVViewController.swift, call stopTracking
 import UIKit
 import DJISDK
+import CocoaAsyncSocket
 
-class HeatSeeking {
-    // instance of DroneCommand class that has the capabilities to send commands to the drone
-    var droneCommand: DroneCommand
+class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
+    // object from which to send drone commands
+    private var droneCommand: DroneCommand
     // Wifi socket from which data is read
-    var udpSocket: GCDAsyncUdpSocket?
-    // three threads that will run in parallel
-    var dataThread: Thread?
-    var displayThread: Thread?
-    var commandThread: Thread?
-    private let frameWidth = 120
-    private let frameHeight = 84
+    private var udpSocketManager: UDPSocketManager
+    // THREADS
+    private var dataThread: Thread?
+    private var displayThread: Thread?
+    private var commandThread: Thread?
+
     // SHARED VARIABLES
     private var sharedVars: SharedVars
     
-    init() {
-        // SHARED VARIABLE Initialized
-        sharedVars = SharedVars(frameWidth: frameWidth, frameHeight: frameHeight)
-        // this calls the init() function of DroneCommand and gives us an instance of the object from which we can call functions to control DJI drone
+    override init() {
+        super.init()
+        // SHARED VARIABLEs Initialized
+        sharedVars = SharedVars(frameWidth: UDPSocketManager.frameWidth, frameHeight: UDPSocketManager.frameHeight)
+        // Drone Command Object
         droneCommand = DroneCommand()
-        // Initialize UDP port 
+        // Initialize UDP port
+        udpSocketManager = UDPSocketManager()
     }
     
     // This will start streaming data as well as displaying data
@@ -42,6 +44,8 @@ class HeatSeeking {
     @objc func disableThermalDataAndDisplay() {
         dataThread?.cancel()
         displayThread?.cancel()
+        dataThread = nil
+        displayThread = nil
     }
     
     // start sending commands to the drone, this should only run if the dataThread is running
@@ -57,19 +61,21 @@ class HeatSeeking {
         commandThread?.cancel()
         // disable virtual stick commmand of the drone
         droneCommand?.toggleVirtualSticks(false)
+        commandThread = nil
     }
     
     @objc private func getData() {
         while !Thread.current.isCancelled {
             autoreleasepool {
                 // get processed data (120x84 array of ints)
-                let frame = sharedVars.getFrame()
+                let binData = udpSocketManager.getFrame()
+                let frame = formatData(binData)
                 // Save data to shared variable latesFrame so it can be used in displayThread
                 sharedVars.setLatestFrame(frame)
                 sharedVars.setNewFrame(true)
                 // Pass data through tracking algorithm (findTrackingCommands is a function TO BE added to this class, 
                 // which takes a 120x84 array of Ints and returns a tuple (Double, Double) representing the tracking roll and pitch)
-                let (trackingRoll, trackingPitch) = sharedVars.findTrackingCommands(frame)
+                let (trackingRoll, trackingPitch) = findTrackingCommands(frame)
                 // Save result in shared variables roll and pitch
                 sharedVars.setRollPitch(trackingRoll, trackingPitch)
                 // set newCommands flag to true, indicating to the sendCommand thread to break the loop and update local command variables
@@ -82,7 +88,8 @@ class HeatSeeking {
     @objc private func dispData(view: UIView) {
 
         // Create a UIImageView
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frameWidth, height: frameHeight))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight))
+        imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         
         while !Thread.current.isCancelled {
@@ -95,9 +102,9 @@ class HeatSeeking {
                     // Create a CGContext and draw the pixel values to it
                     let colorSpace = CGColorSpaceCreateDeviceGray()
                     let bytesPerPixel = MemoryLayout<UInt16>.stride
-                    let bytesPerRow = bytesPerPixel * frameWidth
+                    let bytesPerRow = bytesPerPixel * UDPSocketManager.frameWidth
                     let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
-                    let context = CGContext(data: nil, width: frameWidth, height: frameHeight, bitsPerComponent: 16, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
+                    let context = CGContext(data: nil, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight, bitsPerComponent: 16, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
                     context.drawGray16Image(gray16Image)
 
                     // Create a CGImage from the CGContext
@@ -128,19 +135,13 @@ class HeatSeeking {
                // set newCommands flag to false, allowing the following loop to loop until the other thread sets it back to true
                sharedVars.setNewCommands(false)
             }
-            while !sharedVars.getNewCommands() {
-                // Send command
-                droneCommand.sendControlData(0.0, commandPitch, commandRoll, 0.0)
-                // Sleep for 50 milliseconds to achieve 20Hz frequency
-                Thread.sleep(forTimeInterval: 0.05)
-            }
+            sendDroneControlData(commandRoll: commandRoll, commandPitch: commandPitch)
         }
     }
-    
-    // TODO: Fill out function that gets frame and formats the data
-    @objc private func getFrame() -> [[Int]] {
-        var binData = // get frame from port
-        return formatData(binData)
+
+    @objc private func sendDroneControlData(commandRoll: Double, commandPitch: Double) {
+        droneCommand.sendControlData(0.0, commandPitch, commandRoll, 0.0)
+        Thread.sleep(forTimeInterval: 0.05) // Sleep for 50 milliseconds to achieve 20Hz frequency
     }
     
     @objc private func formatData(_ dataBinary: Data) -> [[Int]] {
@@ -152,13 +153,102 @@ class HeatSeeking {
             numbers.append(String(hexStr[startIndex..<endIndex]))
         }
         let intNumbers = numbers.compactMap { Int($0, radix: 16) }
-        var result = [[Int]](repeating: [Int](repeating: 0, count: frameHeight), count: frameWidth)
-        for i in 0..<frameWidth {
-            for j in 0..<frameHeight {
-                result[i][j] = intNumbers[j * frameWidth + i]
+        var result = [[Int]](repeating: [Int](repeating: 0, count: UDPSocketManager.frameHeight), count: UDPSocketManager.frameWidth)
+        for i in 0..< UDPSocketManager.frameWidth {
+            for j in 0..<UDPSocketManager.frameHeight {
+                result[i][j] = intNumbers[j *  UDPSocketManager.frameWidth + i]
             }
         }
         return result
+    }
+    
+    @objc private func findTrackingCommands(_ frame: [[Int]]) -> (Double, Double) {
+        // Implement the tracking algorithm here
+        return (0.0, 0.0) // Replace with real values calculated from the tracking algorithm
+    }
+}
+
+class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
+    static let frameWidth = 120
+    static let frameHeight = 84
+    private let IP_ADDRESS = "192.168.0.120"
+    private let PORT: UInt16 = 30444
+    var udpSocket: GCDAsyncUdpSocket?
+
+    override init() {
+        super.init()
+        
+        // Initialize UDP socket
+        do {
+            // Initialize UDP socket
+            udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.global(qos: .background))
+            try udpSocket?.bind(toPort: PORT)
+            try udpSocket?.connect(toHost: IP_ADDRESS, onPort: PORT)
+            // Send "Bind HTPA series device" command
+            print("send data: BIND")
+            sendString("Bind HTPA series device")
+
+            // Receive data
+            udpSocket?.receiveOnce()
+
+            // Send "K" command
+            print("send data: TRIGGER")
+            sendString("K")
+        } catch {
+            print("Error initializing UDP socket: \(error)")
+        }
+    }
+    
+    // Get Binary Frame data
+    @objc func getFrame() -> Data? {
+        print("Receiving THERMAL IMAGE")
+    
+        // Prepare data buffer and packet information
+        var data = Data()
+        let numPackets = 21
+        var packetsReceived = 0
+
+        // Send "N" command to request next frame (21 packets)
+        sendString("N")
+        while packetsReceived < numPackets {// Set up semaphore for waiting for data
+            let semaphore = DispatchSemaphore(value: 0)
+            var receivedData: Data?
+            var receivedAddress: Data?
+
+            udpSocket?.receiveOnce { (newData, address, _, _) in
+                receivedData = newData
+                receivedAddress = address
+                semaphore.signal()
+            }
+
+            // Wait for data (timeout after 0.5 second)
+            let result = semaphore.wait(timeout: .now() + 0.5)
+
+            if result == .success, let newData = receivedData {
+                data.append(newData.advanced(by: 1))
+                packetsReceived += 1
+            } else {
+                print("Socket timed out waiting for thermal image")
+                return nil
+            }
+        }
+        return formatData(data)
+    }
+    
+    // SOCKET FUNCTIONS
+    private func sendData(_ data: Data) {
+        udpSocket?.send(data, withTimeout: -1, tag: 0)
+    }
+
+    private func sendString(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            sendData(data)
+        }
+    }
+    
+    func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
+        let receivedString = String(data: data, encoding: .utf8)
+        print("Received data: \(receivedString ?? "nil")")
     }
 }
 
@@ -176,52 +266,52 @@ struct SharedVars {
     }
 
     // SHARED VARIABLE ACCESS FUNCTIONS
-    private func setNewCommands(_ value: Bool) {
+    func setNewCommands(_ value: Bool) {
         sharedVarQueue.async(flags: .barrier) {
-            self.newCommands = value
+            _newCommands = value
         }
     }
     
-    private func setNewFrame(_ value: Bool) {
+    func setNewFrame(_ value: Bool) {
         sharedVarQueue.async(flags: .barrier) {
-            self.newFrame = value
+            _newFrame = value
         }
     }
     
-    private func setLatestFrame(_ value: [[Int]]) {
+    func setLatestFrame(_ value: [[Int]]) {
         sharedVarQueue.async(flags: .barrier) {
-            self.latestFrame = value
+            _latestFrame = value
         }
     }
     
-    private func setRollPitch(_ roll: Double, _ pitch: Double) {
+    func setRollPitch(_ roll: Double, _ pitch: Double) {
         sharedVarQueue.async(flags: .barrier) {
-            self.roll = roll
-            self.pitch = pitch
+            _roll = roll
+            _pitch = pitch
         }
     }
     
-    private func getNewCommands() -> Bool {
+    func getNewCommands() -> Bool {
         return sharedVarQueue.sync {
-            return self.newCommands
+            return _newCommands
         }
     }
     
-    private func getNewFrame() -> Bool {
+    func getNewFrame() -> Bool {
         return sharedVarQueue.sync {
-            return self.newFrame
+            return _newFrame
         }
     }
     
-    private func getLatestFrame() -> [[Int]] {
+    func getLatestFrame() -> [[Int]] {
         return sharedVarQueue.sync {
-            return self.latestFrame
+            return _latestFrame
         }
     }
     
-    private func getRollPitch() -> (Double, Double) {
+    func getRollPitch() -> (Double, Double) {
         return sharedVarQueue.sync {
-            return (self.roll, self.pitch)
+            return (_roll, _pitch)
         }
     }
 }
