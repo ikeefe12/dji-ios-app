@@ -37,12 +37,12 @@ class DroneCommand {
     }
     
     // User clicks the enter virtual sticks button
-    @obj func enableVirtualSticks() {
+    @objc func enableVirtualSticks() {
         toggleVirtualSticks(enabled: true)
     }
     
     // User clicks the exit virtual sticks button
-    @obj func disableVirtualSticks() {
+    @objc func disableVirtualSticks() {
         toggleVirtualSticks(enabled: false)
     }
     
@@ -61,7 +61,7 @@ class DroneCommand {
         
     }
     
-    @obj func sendControlData(throttle: Float, pitch: Float, roll: Float, yaw: Float) {
+    @objc func sendControlData(throttle: Float, pitch: Float, roll: Float, yaw: Float) {
         print("Sending throttle: \(throttle), pitch: \(pitch), roll: \(roll), yaw: \(yaw)")
         
         // Construct the flight control data object
