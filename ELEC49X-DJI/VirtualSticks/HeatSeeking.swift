@@ -6,6 +6,7 @@
 // In the stopTracking button handler within CameraFPVViewController.swift, call stopTracking
 import UIKit
 import DJISDK
+import CoreGraphics
 //import CocoaAsyncSocket
 
 class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
@@ -76,9 +77,9 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                 sharedVars.setNewFrame(true)
                 // Pass data through tracking algorithm (findTrackingCommands is a function TO BE added to this class, 
                 // which takes a 120x84 array of Ints and returns a tuple (Float, Float) representing the tracking roll and pitch)
-                let (trackingRoll, trackingPitch) = findTrackingCommands(frame)
+                let command = findTrackingCommands(frame)
                 // Save result in shared variables roll and pitch
-                sharedVars.setRollPitch(trackingRoll, trackingPitch)
+                sharedVars.setRollPitch(command.x, command.y)
                 // set newCommands flag to true, indicating to the sendCommand thread to break the loop and update local command variables
                 sharedVars.setNewCommands(true)
             }
@@ -145,7 +146,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         Thread.sleep(forTimeInterval: 0.05) // Sleep for 50 milliseconds to achieve 20Hz frequency
     }
     
-    @objc /*private*/ func formatData(_ dataBinary: Data) -> [[Int]] {
+    @objc func formatData(_ dataBinary: Data) -> [[Int]] {
         let hexStr = dataBinary.map { String(format: "%02hhx", $0) }.joined()
         var numbers = [String]()
         for i in stride(from: 0, to: hexStr.count, by: 4) {
@@ -163,9 +164,9 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         return result
     }
     
-    @objc private func findTrackingCommands(_ frame: [[Int]]) -> (val1: Float, val2: Float) {
+    @objc private func findTrackingCommands(_ frame: [[Int]]) -> CGPoint {
         // Implement the tracking algorithm here
-        return (0.0, 0.0) // Replace with real values calculated from the tracking algorithm
+        return CGPoint(x: 0.0, y: 0.0) // Replace with real values calculated from the tracking algorithm
     }
 }
 
@@ -221,7 +222,7 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
             var receivedData: Data?
             var receivedAddress: Data?
 
-            udpSocket?.receiveOnce { (newData, address, _, _) in
+            udpSocket?.receiveOnce { (newData: Data?, address: Data?, _: Error?, _: Bool) in
                 receivedData = newData
                 receivedAddress = address
                 semaphore.signal()
@@ -231,14 +232,14 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
             let result = semaphore.wait(timeout: .now() + 0.5)
 
             if result == .success, let newData = receivedData {
-                data.append(newData.advanced(by: 1))
+                data.append(newData[1...])
                 packetsReceived += 1
             } else {
                 print("Socket timed out waiting for thermal image")
                 return nil
             }
         }
-        return formatData(data)
+        return data
     }
     
     // SOCKET FUNCTIONS

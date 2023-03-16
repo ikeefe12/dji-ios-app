@@ -18,6 +18,8 @@
 		4A017C32299BF682009A2C2C /* VirtualSticksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A017C31299BF682009A2C2C /* VirtualSticksViewController.swift */; };
 		4A017C34299BFD09009A2C2C /* CDJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A017C33299BFD09009A2C2C /* CDJoystick.swift */; };
 		51AAFCD221FEB35900742997 /* DJIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAFCD121FEB35900742997 /* DJIAlert.swift */; };
+		8622EF4F29C29CC20015DF81 /* HeatSeeking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622EF4E29C29CC20015DF81 /* HeatSeeking.swift */; };
+		8622EF5129C29CC90015DF81 /* DroneCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622EF5029C29CC90015DF81 /* DroneCommand.swift */; };
 		A47868D7209AC6DA00DBC666 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868C5209AC6DA00DBC666 /* AppDelegate.swift */; };
 		A47868D8209AC6DA00DBC666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A47868C6209AC6DA00DBC666 /* Assets.xcassets */; };
 		A47868D9209AC6DA00DBC666 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A47868C7209AC6DA00DBC666 /* LaunchScreen.storyboard */; };
@@ -45,6 +47,8 @@
 		4A017C33299BFD09009A2C2C /* CDJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDJoystick.swift; sourceTree = "<group>"; };
 		51AAFCD121FEB35900742997 /* DJIAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIAlert.swift; sourceTree = "<group>"; };
 		5AC100BE7844872E43A4C098 /* Pods-ELEC49X-DJI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELEC49X-DJI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ELEC49X-DJI/Pods-ELEC49X-DJI.debug.xcconfig"; sourceTree = "<group>"; };
+		8622EF4E29C29CC20015DF81 /* HeatSeeking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatSeeking.swift; sourceTree = "<group>"; };
+		8622EF5029C29CC90015DF81 /* DroneCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneCommand.swift; sourceTree = "<group>"; };
 		86985CC91E834EC200577EC7 /* ELEC49X-DJI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ELEC49X-DJI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88478DE467BC0ABC17EDDBE2 /* libPods-ELEC49X-DJI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ELEC49X-DJI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A47868C5209AC6DA00DBC666 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 		4A017C30299BF61B009A2C2C /* VirtualSticks */ = {
 			isa = PBXGroup;
 			children = (
+				8622EF4E29C29CC20015DF81 /* HeatSeeking.swift */,
+				8622EF5029C29CC90015DF81 /* DroneCommand.swift */,
 				4A017C33299BFD09009A2C2C /* CDJoystick.swift */,
 				4A017C31299BF682009A2C2C /* VirtualSticksViewController.swift */,
 			);
@@ -346,7 +352,9 @@
 				A47868DD209AC6DA00DBC666 /* KeyedInterfaceViewController.swift in Sources */,
 				4A017C2B299BF2F5009A2C2C /* Test1.swift in Sources */,
 				A47868DF209AC6DA00DBC666 /* TimelineMissionViewController.swift in Sources */,
+				8622EF4F29C29CC20015DF81 /* HeatSeeking.swift in Sources */,
 				2F0FC86E21EE1D0300D1C635 /* DecodeImageCalibrateLogic.swift in Sources */,
+				8622EF5129C29CC90015DF81 /* DroneCommand.swift in Sources */,
 				2F0FC85F21EDC81C00D1C635 /* CameraFPVViewController.swift in Sources */,
 				4A017C34299BFD09009A2C2C /* CDJoystick.swift in Sources */,
 			);
