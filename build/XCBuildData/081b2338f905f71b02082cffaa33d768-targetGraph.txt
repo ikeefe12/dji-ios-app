@@ -1,0 +1,13 @@
+Target dependency graph (6 targets)
+CocoaAsyncSocket in Pods, no dependencies
+Bagel in Pods, depends on:
+CocoaAsyncSocket in Pods (explicit)
+DJI-SDK-iOS in Pods, no dependencies
+DJIFlySafeDatabaseResource in Pods, no dependencies
+DJIWidget in Pods, no dependencies
+Pods-ELEC49X-DJI in Pods, depends on:
+Bagel in Pods (explicit)
+CocoaAsyncSocket in Pods (explicit)
+DJI-SDK-iOS in Pods (explicit)
+DJIFlySafeDatabaseResource in Pods (explicit)
+DJIWidget in Pods (explicit)

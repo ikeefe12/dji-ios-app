@@ -1,0 +1,60 @@
+{
+  "_buildCommand2" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : false,
+    "targets" : null
+  },
+  "buildCommand" : "build",
+  "configuredTargets" : [
+    {
+      "guid" : "bfdfe7dc352907fc980b868725387e987912a3659714acf962df35e51e6845fb"
+    },
+    {
+      "guid" : "bfdfe7dc352907fc980b868725387e98674427677ed50870bbe9310a50295dc1"
+    },
+    {
+      "guid" : "bfdfe7dc352907fc980b868725387e98cdb8b3f0b33d9d4990e9093eb78686ea"
+    },
+    {
+      "guid" : "bfdfe7dc352907fc980b868725387e980834c4781aa0aa4ec1aebe0effe036ac"
+    },
+    {
+      "guid" : "bfdfe7dc352907fc980b868725387e988ffd51c1d443dbeffad6ac3326958a49"
+    },
+    {
+      "guid" : "bfdfe7dc352907fc980b868725387e98fce59666c2d0046eb15a73d903790963"
+    }
+  ],
+  "containerPath" : "/Users/user235894/Documents/GitHub/dji-ios-app/Pods/Pods.xcodeproj",
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "",
+      "buildProductsPath" : "",
+      "derivedDataPath" : "/Users/user235894/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/user235894/Library/Developer/Xcode/DerivedData/Pods-echxhtoefaihfefylupxvhtshdpb/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/user235894/Library/Developer/Xcode/DerivedData/Pods-echxhtoefaihfefylupxvhtshdpb/Index.noindex/PrecompiledHeaders",
+      "pchPath" : ""
+    },
+    "configurationName" : "Release",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "qos" : "default",
+  "schemeCommand" : "launch",
+  "schemeCommand2" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : true,
+  "useImplicitDependencies" : false,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : false
+}

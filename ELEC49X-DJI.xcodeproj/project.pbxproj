@@ -18,6 +18,7 @@
 		4A017C32299BF682009A2C2C /* VirtualSticksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A017C31299BF682009A2C2C /* VirtualSticksViewController.swift */; };
 		4A017C34299BFD09009A2C2C /* CDJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A017C33299BFD09009A2C2C /* CDJoystick.swift */; };
 		51AAFCD221FEB35900742997 /* DJIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAFCD121FEB35900742997 /* DJIAlert.swift */; };
+		7307E0FC073C420539004944 /* libPods-ELEC49X-DJI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C74FD6357D580C4AA2B3FF /* libPods-ELEC49X-DJI.a */; };
 		8622EF4F29C29CC20015DF81 /* HeatSeeking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622EF4E29C29CC20015DF81 /* HeatSeeking.swift */; };
 		8622EF5129C29CC90015DF81 /* DroneCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622EF5029C29CC90015DF81 /* DroneCommand.swift */; };
 		A47868D7209AC6DA00DBC666 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868C5209AC6DA00DBC666 /* AppDelegate.swift */; };
@@ -30,10 +31,10 @@
 		A47868E0209AC6DA00DBC666 /* ProductCommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D3209AC6DA00DBC666 /* ProductCommunicationManager.swift */; };
 		A47868E1209AC6DA00DBC666 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D4209AC6DA00DBC666 /* StartupViewController.swift */; };
 		A47868E2209AC6DA00DBC666 /* DJIImageAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D6209AC6DA00DBC666 /* DJIImageAnnotation.swift */; };
-		CBE4A8AF8A022258B0B3B4B9 /* libPods-ELEC49X-DJI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88478DE467BC0ABC17EDDBE2 /* libPods-ELEC49X-DJI.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05CC2B69924DD3FA73AE5CAE /* Pods-ELEC49X-DJI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELEC49X-DJI.release.xcconfig"; path = "Target Support Files/Pods-ELEC49X-DJI/Pods-ELEC49X-DJI.release.xcconfig"; sourceTree = "<group>"; };
 		2F0FC85C21EDC06100D1C635 /* VideoPreviewerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewerAdapter.swift; sourceTree = "<group>"; };
 		2F0FC85E21EDC81C00D1C635 /* CameraFPVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFPVViewController.swift; sourceTree = "<group>"; };
 		2F0FC86A21EDFFEE00D1C635 /* DJIWidget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DJIWidget-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -46,11 +47,10 @@
 		4A017C31299BF682009A2C2C /* VirtualSticksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualSticksViewController.swift; sourceTree = "<group>"; };
 		4A017C33299BFD09009A2C2C /* CDJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDJoystick.swift; sourceTree = "<group>"; };
 		51AAFCD121FEB35900742997 /* DJIAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIAlert.swift; sourceTree = "<group>"; };
-		5AC100BE7844872E43A4C098 /* Pods-ELEC49X-DJI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELEC49X-DJI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ELEC49X-DJI/Pods-ELEC49X-DJI.debug.xcconfig"; sourceTree = "<group>"; };
 		8622EF4E29C29CC20015DF81 /* HeatSeeking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatSeeking.swift; sourceTree = "<group>"; };
 		8622EF5029C29CC90015DF81 /* DroneCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneCommand.swift; sourceTree = "<group>"; };
 		86985CC91E834EC200577EC7 /* ELEC49X-DJI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ELEC49X-DJI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		88478DE467BC0ABC17EDDBE2 /* libPods-ELEC49X-DJI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ELEC49X-DJI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B73C47A9D131FA353786FA6 /* Pods-ELEC49X-DJI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELEC49X-DJI.debug.xcconfig"; path = "Target Support Files/Pods-ELEC49X-DJI/Pods-ELEC49X-DJI.debug.xcconfig"; sourceTree = "<group>"; };
 		A47868C5209AC6DA00DBC666 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A47868C6209AC6DA00DBC666 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A47868C8209AC6DA00DBC666 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 		A47868D3209AC6DA00DBC666 /* ProductCommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCommunicationManager.swift; sourceTree = "<group>"; };
 		A47868D4209AC6DA00DBC666 /* StartupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
 		A47868D6209AC6DA00DBC666 /* DJIImageAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJIImageAnnotation.swift; sourceTree = "<group>"; };
-		F201F394055A19BCD6EC15BA /* Pods-ELEC49X-DJI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ELEC49X-DJI.release.xcconfig"; path = "Pods/Target Support Files/Pods-ELEC49X-DJI/Pods-ELEC49X-DJI.release.xcconfig"; sourceTree = "<group>"; };
+		E6C74FD6357D580C4AA2B3FF /* libPods-ELEC49X-DJI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ELEC49X-DJI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,21 +70,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBE4A8AF8A022258B0B3B4B9 /* libPods-ELEC49X-DJI.a in Frameworks */,
+				7307E0FC073C420539004944 /* libPods-ELEC49X-DJI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B6F263FBC093B7B6FB6EF51 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				88478DE467BC0ABC17EDDBE2 /* libPods-ELEC49X-DJI.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2F0FC85A21EDBB0B00D1C635 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +95,16 @@
 			path = fpv;
 			sourceTree = "<group>";
 		};
+		386D2EBAB92E09F131C07F72 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B73C47A9D131FA353786FA6 /* Pods-ELEC49X-DJI.debug.xcconfig */,
+				05CC2B69924DD3FA73AE5CAE /* Pods-ELEC49X-DJI.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		4A017C30299BF61B009A2C2C /* VirtualSticks */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,13 +116,21 @@
 			path = VirtualSticks;
 			sourceTree = "<group>";
 		};
+		54DF1C259373428802F43530 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E6C74FD6357D580C4AA2B3FF /* libPods-ELEC49X-DJI.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		86985CC01E834EC200577EC7 = {
 			isa = PBXGroup;
 			children = (
 				A47868C4209AC6DA00DBC666 /* ELEC49X-DJI */,
 				86985CCA1E834EC200577EC7 /* Products */,
-				C0C7419B2667BCEE0BB6C689 /* Pods */,
-				0B6F263FBC093B7B6FB6EF51 /* Frameworks */,
+				386D2EBAB92E09F131C07F72 /* Pods */,
+				54DF1C259373428802F43530 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -191,15 +201,6 @@
 			path = UIObjects;
 			sourceTree = "<group>";
 		};
-		C0C7419B2667BCEE0BB6C689 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5AC100BE7844872E43A4C098 /* Pods-ELEC49X-DJI.debug.xcconfig */,
-				F201F394055A19BCD6EC15BA /* Pods-ELEC49X-DJI.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -207,12 +208,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86985CDD1E834EC200577EC7 /* Build configuration list for PBXNativeTarget "ELEC49X-DJI" */;
 			buildPhases = (
-				A23089ACBCAB63BE42DAD2F1 /* [CP] Check Pods Manifest.lock */,
+				7EBB76E2F7EB82267406DC28 /* [CP] Check Pods Manifest.lock */,
 				86985CC51E834EC200577EC7 /* Sources */,
 				86985CC61E834EC200577EC7 /* Frameworks */,
 				86985CC71E834EC200577EC7 /* Resources */,
-				8A68B323F021A127CDC7173C /* [CP] Embed Pods Frameworks */,
-				8F1E40793F36999A928AAA10 /* [CP] Copy Pods Resources */,
+				1C24502FA7FEDE59D0F0632B /* [CP] Embed Pods Frameworks */,
+				AAF4C735A167900C0908A13D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -275,7 +276,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8A68B323F021A127CDC7173C /* [CP] Embed Pods Frameworks */ = {
+		1C24502FA7FEDE59D0F0632B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -295,7 +296,29 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ELEC49X-DJI/Pods-ELEC49X-DJI-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8F1E40793F36999A928AAA10 /* [CP] Copy Pods Resources */ = {
+		7EBB76E2F7EB82267406DC28 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ELEC49X-DJI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAF4C735A167900C0908A13D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -311,24 +334,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ELEC49X-DJI/Pods-ELEC49X-DJI-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A23089ACBCAB63BE42DAD2F1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ELEC49X-DJI-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -483,7 +488,7 @@
 		};
 		86985CDE1E834EC200577EC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5AC100BE7844872E43A4C098 /* Pods-ELEC49X-DJI.debug.xcconfig */;
+			baseConfigurationReference = 9B73C47A9D131FA353786FA6 /* Pods-ELEC49X-DJI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -512,7 +517,7 @@
 		};
 		86985CDF1E834EC200577EC7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F201F394055A19BCD6EC15BA /* Pods-ELEC49X-DJI.release.xcconfig */;
+			baseConfigurationReference = 05CC2B69924DD3FA73AE5CAE /* Pods-ELEC49X-DJI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;

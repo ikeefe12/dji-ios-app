@@ -7,7 +7,7 @@
 import UIKit
 import DJISDK
 import CoreGraphics
-//import CocoaAsyncSocket
+import CocoaAsyncSocket
 
 class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     // object from which to send drone commands
@@ -23,13 +23,13 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     private var sharedVars: SharedVars
     
     override init() {
-        super.init()
         // SHARED VARIABLEs Initialized
         sharedVars = SharedVars(frameWidth: UDPSocketManager.frameWidth, frameHeight: UDPSocketManager.frameHeight)
         // Drone Command Object
         droneCommand = DroneCommand()
         // Initialize UDP port
         udpSocketManager = UDPSocketManager()
+        super.init()
     }
     
     // This will start streaming data as well as displaying data
@@ -71,7 +71,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                 // get processed data (120x84 array of ints)
                 let binData = udpSocketManager.getFrame()
                 // TODO: Set default value since binData is optional
-                let frame = formatData(binData ?? <#default value#>)
+                let frame = formatData(binData ?? Data())
                 // Save data to shared variable latesFrame so it can be used in displayThread
                 sharedVars.setLatestFrame(frame)
                 sharedVars.setNewFrame(true)
@@ -193,7 +193,7 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
             sendString("Bind HTPA series device")
 
             // Receive data
-            udpSocket?.receiveOnce()
+            try udpSocket?.receiveOnce()
 
             // Send "K" command
             print("send data: TRIGGER")
@@ -215,11 +215,11 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
         // Prepare data buffer and packet information
         var data = Data()
         let numPackets = 21
-        var packetsReceived = 0
+        // var packetsReceived = 0
 
         // Send "N" command to request next frame (21 packets)
         sendString("N")
-        while packetsReceived < numPackets {// Set up semaphore for waiting for data
+        /* while packetsReceived < numPackets {// Set up semaphore for waiting for data
             let semaphore = DispatchSemaphore(value: 0)
             var receivedData: Data?
             var receivedAddress: Data?
@@ -241,6 +241,7 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
                 return nil
             }
         }
+        return data */
         return data
     }
     
@@ -261,7 +262,7 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     }
 }
 
-struct SharedVars {
+class SharedVars {
     private let queue = DispatchQueue(label: "com.example.HeatSeeking.sharedVarQueue", attributes: .concurrent)
     private var _newCommands: Bool = false
     private var _newFrame: Bool = false
@@ -275,28 +276,28 @@ struct SharedVars {
     }
 
     // SHARED VARIABLE ACCESS FUNCTIONS
-    mutating func setNewCommands(_ value: Bool) {
+    func setNewCommands(_ value: Bool) {
         queue.async(flags: .barrier) {
-            _newCommands = value
+            self._newCommands = value
         }
     }
     
-    mutating func setNewFrame(_ value: Bool) {
+    func setNewFrame(_ value: Bool) {
         queue.async(flags: .barrier) {
-            _newFrame = value
+            self._newFrame = value
         }
     }
     
-    mutating func setLatestFrame(_ value: [[Int]]) {
+    func setLatestFrame(_ value: [[Int]]) {
         queue.async(flags: .barrier) {
-            _latestFrame = value
+            self._latestFrame = value
         }
     }
     
-    mutating func setRollPitch(_ roll: Float, _ pitch: Float) {
+    func setRollPitch(_ roll: Float, _ pitch: Float) {
         queue.async(flags: .barrier) {
-            _roll = roll
-            _pitch = pitch
+            self._roll = roll
+            self._pitch = pitch
         }
     }
     
