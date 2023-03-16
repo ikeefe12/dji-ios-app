@@ -17,3 +17,6 @@ NEXT STEPS:
 - Set up wifi connection between the application and the Arduino Board
 
 https://github.com/eblainey/thermalthings
+
+Documentation for the UDP connection: https://github.com/robbiehanson/CocoaAsyncSocket/blob/master/Source/GCD/GCDAsyncUdpSocket.h
+
