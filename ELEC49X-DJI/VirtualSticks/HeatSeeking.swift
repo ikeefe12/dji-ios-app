@@ -78,8 +78,10 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                 // Pass data through tracking algorithm (findTrackingCommands is a function TO BE added to this class, 
                 // which takes a 120x84 array of Ints and returns a tuple (Float, Float) representing the tracking roll and pitch)
                 let command = findTrackingCommands(frame)
+                let newRoll = Float(command.x)
+                let newPitch = Float(command.y)
                 // Save result in shared variables roll and pitch
-                sharedVars.setRollPitch(command.x, command.y)
+                sharedVars.setRollPitch(newRoll, newPitch)
                 // set newCommands flag to true, indicating to the sendCommand thread to break the loop and update local command variables
                 sharedVars.setNewCommands(true)
             }
