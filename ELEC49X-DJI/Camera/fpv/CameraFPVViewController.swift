@@ -60,6 +60,9 @@ class CameraFPVViewController: UIViewController {
         self.trackingToggle.onTintColor = UIColor.green
         self.trackingToggle.addTarget(self, action: #selector(trackingStateChanged(_:)), for: .valueChanged)
         // Set state of emergency land
+        self.emergencyLand.setTitle("Emergency Land", for: .normal)
+        self.emergencyLand.backgroundColor = UIColor.red
+        self.trackingToggle.addTarget(self, action: #selector(emergencyLandAction), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +101,9 @@ class CameraFPVViewController: UIViewController {
         }
     }
     
+    @objc func emergencyLandAction() {
+        // EMERGENCY LAND
+    }
 }
 
 /**

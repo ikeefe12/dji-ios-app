@@ -176,10 +176,10 @@
                             <mask key="constraints">
                                 <exclude reference="msx-SD-xuA"/>
                                 <exclude reference="pxt-sB-81W"/>
-                                <exclude reference="JgX-kP-hhW"/>
-                                <exclude reference="bHZ-u7-P53"/>
                                 <exclude reference="tfv-0m-Y9V"/>
                                 <exclude reference="vEk-bx-HgH"/>
+                                <exclude reference="JgX-kP-hhW"/>
+                                <exclude reference="bHZ-u7-P53"/>
                                 <exclude reference="GUT-FQ-PdE"/>
                                 <exclude reference="xbk-tx-keT"/>
                             </mask>
@@ -189,13 +189,13 @@
                                 <exclude reference="j1p-FV-ae2"/>
                                 <include reference="msx-SD-xuA"/>
                                 <include reference="pxt-sB-81W"/>
-                                <include reference="JgX-kP-hhW"/>
-                                <include reference="bHZ-u7-P53"/>
-                                <exclude reference="e3F-Qf-PFt"/>
                                 <exclude reference="Qvx-yB-xPX"/>
                                 <exclude reference="YBP-Cc-79l"/>
                                 <include reference="tfv-0m-Y9V"/>
                                 <include reference="vEk-bx-HgH"/>
+                                <include reference="JgX-kP-hhW"/>
+                                <include reference="bHZ-u7-P53"/>
+                                <exclude reference="e3F-Qf-PFt"/>
                                 <exclude reference="74Y-oW-tEk"/>
                                 <include reference="GUT-FQ-PdE"/>
                                 <exclude reference="ipy-Xm-xYO"/>
@@ -234,33 +234,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UbC-aS-itK">
-                                <rect key="frame" x="72" y="60" width="612" height="310"/>
+                                <rect key="frame" x="78" y="-40" width="612" height="310"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="axJ-bp-qkO" userLabel="IR Toggle">
-                                <rect key="frame" x="858" y="92" width="49" height="31"/>
+                                <rect key="frame" x="852" y="20" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IR Disabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mkf-gh-LWK" userLabel="Ir Status">
-                                <rect key="frame" x="718" y="97" width="86" height="21"/>
+                                <rect key="frame" x="712" y="25" width="86" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSc-dy-wM7" userLabel="Tracking Toggle">
-                                <rect key="frame" x="858" y="175" width="49" height="31"/>
+                                <rect key="frame" x="852" y="103" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tracking Disabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDU-Qx-t7r" userLabel="Tracking Status">
-                                <rect key="frame" x="718" y="180" width="146" height="21"/>
+                                <rect key="frame" x="712" y="108" width="146" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioi-mw-lJb">
-                                <rect key="frame" x="718" y="256" width="187" height="58"/>
+                                <rect key="frame" x="712" y="184" width="187" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="CW3-fy-bnn"/>
                                     <constraint firstAttribute="width" constant="198" id="gXR-Kc-6Hr"/>
