@@ -6,7 +6,7 @@
 // In the stopTracking button handler within CameraFPVViewController.swift, call stopTracking
 import UIKit
 import DJISDK
-import CocoaAsyncSocket
+//import CocoaAsyncSocket
 
 class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     // object from which to send drone commands
@@ -51,7 +51,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     // start sending commands to the drone, this should only run if the dataThread is running
     @objc func startTracking() {
         // enable virtual sticks on the drone
-        droneCommand.toggleVirtualSticks(true)
+        droneCommand.toggleVirtualSticks(enabled: true)
         commandThread = Thread(target: self, selector: #selector(sendCommand), object: nil)
         commandThread?.start()
     }
@@ -60,7 +60,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     @objc func stopTracking() {
         commandThread?.cancel()
         // disable virtual stick commmand of the drone
-        droneCommand?.toggleVirtualSticks(false)
+        droneCommand.toggleVirtualSticks(enabled: false)
         commandThread = nil
     }
     
@@ -69,12 +69,13 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
             autoreleasepool {
                 // get processed data (120x84 array of ints)
                 let binData = udpSocketManager.getFrame()
-                let frame = formatData(binData)
+                // TODO: Set default value since binData is optional
+                let frame = formatData(binData ?? <#default value#>)
                 // Save data to shared variable latesFrame so it can be used in displayThread
                 sharedVars.setLatestFrame(frame)
                 sharedVars.setNewFrame(true)
                 // Pass data through tracking algorithm (findTrackingCommands is a function TO BE added to this class, 
-                // which takes a 120x84 array of Ints and returns a tuple (Double, Double) representing the tracking roll and pitch)
+                // which takes a 120x84 array of Ints and returns a tuple (Float, Float) representing the tracking roll and pitch)
                 let (trackingRoll, trackingPitch) = findTrackingCommands(frame)
                 // Save result in shared variables roll and pitch
                 sharedVars.setRollPitch(trackingRoll, trackingPitch)
@@ -126,8 +127,8 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     
     // commandThread base function
     @objc private func sendCommand() {
-        var commandRoll = 0.0
-        var commandPitch = 0.0
+        var commandRoll : Float = 0.0
+        var commandPitch : Float = 0.0
         while !Thread.current.isCancelled {
             if sharedVars.getNewCommands() {
                // SHARED VARIABLES
@@ -139,12 +140,12 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         }
     }
 
-    @objc private func sendDroneControlData(commandRoll: Double, commandPitch: Double) {
-        droneCommand.sendControlData(0.0, commandPitch, commandRoll, 0.0)
+    @objc private func sendDroneControlData(commandRoll: Float, commandPitch: Float) {
+        droneCommand.sendControlData(throttle: 0.0, pitch: commandPitch, roll: commandRoll, yaw: 0.0)
         Thread.sleep(forTimeInterval: 0.05) // Sleep for 50 milliseconds to achieve 20Hz frequency
     }
     
-    @objc private func formatData(_ dataBinary: Data) -> [[Int]] {
+    @objc /*private*/ func formatData(_ dataBinary: Data) -> [[Int]] {
         let hexStr = dataBinary.map { String(format: "%02hhx", $0) }.joined()
         var numbers = [String]()
         for i in stride(from: 0, to: hexStr.count, by: 4) {
@@ -154,7 +155,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         }
         let intNumbers = numbers.compactMap { Int($0, radix: 16) }
         var result = [[Int]](repeating: [Int](repeating: 0, count: UDPSocketManager.frameHeight), count: UDPSocketManager.frameWidth)
-        for i in 0..< UDPSocketManager.frameWidth {
+        for i in 0..<UDPSocketManager.frameWidth {
             for j in 0..<UDPSocketManager.frameHeight {
                 result[i][j] = intNumbers[j *  UDPSocketManager.frameWidth + i]
             }
@@ -162,7 +163,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         return result
     }
     
-    @objc private func findTrackingCommands(_ frame: [[Int]]) -> (Double, Double) {
+    @objc private func findTrackingCommands(_ frame: [[Int]]) -> (val1: Float, val2: Float) {
         // Implement the tracking algorithm here
         return (0.0, 0.0) // Replace with real values calculated from the tracking algorithm
     }
@@ -197,6 +198,11 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
         } catch {
             print("Error initializing UDP socket: \(error)")
         }
+    }
+    
+    enum UPDError: Error {
+        case bindError
+        case connectError
     }
     
     // Get Binary Frame data
@@ -257,8 +263,8 @@ struct SharedVars {
     private var _newCommands: Bool = false
     private var _newFrame: Bool = false
     private var _latestFrame: [[Int]]
-    private var _roll: Double = 0
-    private var _pitch: Double = 0
+    private var _roll: Float = 0
+    private var _pitch: Float = 0
 
     // Initialize the shared variables
     init(frameWidth: Int, frameHeight: Int) {
@@ -266,51 +272,51 @@ struct SharedVars {
     }
 
     // SHARED VARIABLE ACCESS FUNCTIONS
-    func setNewCommands(_ value: Bool) {
-        sharedVarQueue.async(flags: .barrier) {
+    mutating func setNewCommands(_ value: Bool) {
+        queue.async(flags: .barrier) {
             _newCommands = value
         }
     }
     
-    func setNewFrame(_ value: Bool) {
-        sharedVarQueue.async(flags: .barrier) {
+    mutating func setNewFrame(_ value: Bool) {
+        queue.async(flags: .barrier) {
             _newFrame = value
         }
     }
     
-    func setLatestFrame(_ value: [[Int]]) {
-        sharedVarQueue.async(flags: .barrier) {
+    mutating func setLatestFrame(_ value: [[Int]]) {
+        queue.async(flags: .barrier) {
             _latestFrame = value
         }
     }
     
-    func setRollPitch(_ roll: Double, _ pitch: Double) {
-        sharedVarQueue.async(flags: .barrier) {
+    mutating func setRollPitch(_ roll: Float, _ pitch: Float) {
+        queue.async(flags: .barrier) {
             _roll = roll
             _pitch = pitch
         }
     }
     
     func getNewCommands() -> Bool {
-        return sharedVarQueue.sync {
+        return queue.sync {
             return _newCommands
         }
     }
     
     func getNewFrame() -> Bool {
-        return sharedVarQueue.sync {
+        return queue.sync {
             return _newFrame
         }
     }
     
     func getLatestFrame() -> [[Int]] {
-        return sharedVarQueue.sync {
+        return queue.sync {
             return _latestFrame
         }
     }
     
-    func getRollPitch() -> (Double, Double) {
-        return sharedVarQueue.sync {
+    func getRollPitch() -> (Float, Float) {
+        return queue.sync {
             return (_roll, _pitch)
         }
     }

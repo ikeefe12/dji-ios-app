@@ -47,7 +47,7 @@ class DroneCommand {
     }
     
     // Handles enabling/disabling the virtual sticks
-    private func toggleVirtualSticks(enabled: Bool) {
+    /*private*/ func toggleVirtualSticks(enabled: Bool) {
             
         // Let's set the VS mode
         self.flightController?.setVirtualStickModeEnabled(enabled, withCompletion: { (error: Error?) in
