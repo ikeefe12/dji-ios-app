@@ -1,24 +1,28 @@
 PODS:
+  - CocoaAsyncSocket (7.6.5)
   - DJI-SDK-iOS (4.16.2)
   - DJIFlySafeDatabaseResource (01.00.01.18)
   - DJIWidget (1.6.8)
 
 DEPENDENCIES:
+  - CocoaAsyncSocket
   - DJI-SDK-iOS (~> 4.16.2)
   - DJIFlySafeDatabaseResource (~> 01.00.01.18)
   - DJIWidget (~> 1.6.8)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - CocoaAsyncSocket
     - DJI-SDK-iOS
     - DJIFlySafeDatabaseResource
     - DJIWidget
 
 SPEC CHECKSUMS:
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DJI-SDK-iOS: 44308a021c3b95a912be52c4e7a8e0a27e5434f5
   DJIFlySafeDatabaseResource: 400e1856340042bd6943e53c2d4b374ac8409702
   DJIWidget: 9d92abb52888cd6296717c93feacd8a703bf678a
 
-PODFILE CHECKSUM: 3e70a34dba6b04a50333047e05a811b851194a5e
+PODFILE CHECKSUM: ef4a626bcdad6535afb9d34c6d64144a80eb4f38
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0

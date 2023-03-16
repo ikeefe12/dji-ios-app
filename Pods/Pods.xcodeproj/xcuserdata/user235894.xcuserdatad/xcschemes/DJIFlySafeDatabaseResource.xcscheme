@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1240"
+   LastUpgradeVersion = "1300"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "59DE63E974B079D0239184B914853E25"
-               BuildableName = "libPods-ELEC49X-DJI.a"
-               BlueprintName = "Pods-ELEC49X-DJI"
+               BlueprintIdentifier = "B4924905BC24FF7BAA9A38E024E03EB1"
+               BuildableName = "DJIFlySafeDatabaseResource"
+               BlueprintName = "DJIFlySafeDatabaseResource"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

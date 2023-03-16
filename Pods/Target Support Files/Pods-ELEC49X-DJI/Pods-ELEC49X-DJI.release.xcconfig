@@ -3,7 +3,7 @@ EXCLUDED_ARCHS[sdk=iphoneos*] = x86_64 armv7 i386
 EXCLUDED_ARCHS[sdk=iphonesimulator*] = arm64 armv7 i386
 FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/DJI-SDK-iOS/iOS_Mobile_SDK" "${PODS_ROOT}/DJIWidget/FFmpeg"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/DJIWidget" "$(PODS_ROOT)/DJIWidget/FFmpeg/FFmpeg.framework/Headers" "$(PODS_ROOT)/Headers/Public/DJIWidget/FFmpeg/.."/**
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CocoaAsyncSocket" "${PODS_ROOT}/Headers/Public/DJIWidget" "$(PODS_ROOT)/DJIWidget/FFmpeg/FFmpeg.framework/Headers" "$(PODS_ROOT)/Headers/Public/DJIWidget/FFmpeg/.."/**
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
 LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/DJIWidget"
 OTHER_LDFLAGS = $(inherited) -ObjC -l"DJIWidget" -framework "DJISDK" -framework "FFmpeg"

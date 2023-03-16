@@ -233,8 +233,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="932" height="430"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioi-mw-lJb">
-                                <rect key="frame" x="714" y="109" width="198" height="50"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UbC-aS-itK">
+                                <rect key="frame" x="72" y="60" width="612" height="310"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="axJ-bp-qkO" userLabel="IR Toggle">
+                                <rect key="frame" x="858" y="92" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IR Disabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mkf-gh-LWK">
+                                <rect key="frame" x="718" y="97" width="86" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSc-dy-wM7">
+                                <rect key="frame" x="858" y="175" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tracking Disabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDU-Qx-t7r">
+                                <rect key="frame" x="718" y="180" width="146" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioi-mw-lJb">
+                                <rect key="frame" x="718" y="256" width="187" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="CW3-fy-bnn"/>
                                     <constraint firstAttribute="width" constant="198" id="gXR-Kc-6Hr"/>
@@ -243,61 +269,22 @@
                                 <inset key="contentEdgeInsets" minX="10" minY="15" maxX="10" maxY="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
-                                <state key="normal" title="Start Tracking" backgroundImage="btn">
+                                <state key="normal" title="Emergency Land" backgroundImage="btn">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="elD-ci-Ggq" kind="show" id="ggN-eV-ifH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P43-1v-kRv">
-                                <rect key="frame" x="714" y="189" width="198" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="dsk-vG-b8k"/>
-                                    <constraint firstAttribute="width" constant="198" id="eVo-dQ-l6r"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="15" maxX="10" maxY="15"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
-                                <state key="normal" title="Stop Tracking" backgroundImage="btn">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLu-NA-8EN">
-                                <rect key="frame" x="714" y="269" width="198" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="198" id="YT7-19-aDS"/>
-                                    <constraint firstAttribute="height" constant="50" id="gfa-tT-9u5"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="15" maxX="10" maxY="15"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
-                                <state key="normal" title="Emergency Landing" backgroundImage="btn">
-                                    <color key="titleColor" systemColor="systemRedColor"/>
-                                </state>
-                            </button>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UbC-aS-itK">
-                                <rect key="frame" x="72" y="60" width="612" height="310"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vLu-NA-8EN" firstAttribute="trailing" secondItem="ioi-mw-lJb" secondAttribute="trailing" id="0Pp-Xw-njT"/>
                             <constraint firstItem="HGe-bd-Hhb" firstAttribute="top" secondItem="UbC-aS-itK" secondAttribute="bottom" constant="83" id="1KL-uJ-7Tr"/>
                             <constraint firstItem="UbC-aS-itK" firstAttribute="top" secondItem="dLf-fo-NEI" secondAttribute="bottom" constant="50" id="7Df-80-HQw"/>
-                            <constraint firstItem="vLu-NA-8EN" firstAttribute="leading" secondItem="P43-1v-kRv" secondAttribute="leading" id="D9Q-gb-npQ"/>
-                            <constraint firstItem="vLu-NA-8EN" firstAttribute="trailing" secondItem="P43-1v-kRv" secondAttribute="trailing" id="Itu-Yc-Y8Z"/>
-                            <constraint firstItem="P43-1v-kRv" firstAttribute="top" secondItem="ioi-mw-lJb" secondAttribute="bottom" constant="30" id="Oo0-VO-Oxd"/>
                             <constraint firstItem="UbC-aS-itK" firstAttribute="leading" secondItem="Tgx-5W-OhD" secondAttribute="leadingMargin" constant="24" id="d0a-Ld-0oM"/>
                             <constraint firstItem="ioi-mw-lJb" firstAttribute="top" secondItem="dLf-fo-NEI" secondAttribute="bottom" constant="50" id="lO7-eZ-FK8"/>
-                            <constraint firstItem="vLu-NA-8EN" firstAttribute="top" secondItem="P43-1v-kRv" secondAttribute="bottom" constant="30" id="mqL-sY-qbF"/>
                             <constraint firstItem="ioi-mw-lJb" firstAttribute="trailing" secondItem="Tgx-5W-OhD" secondAttribute="trailingMargin" id="vcX-ba-8V6"/>
                             <constraint firstItem="ioi-mw-lJb" firstAttribute="leading" secondItem="UbC-aS-itK" secondAttribute="trailing" constant="12" id="wEX-eC-94f"/>
-                            <constraint firstAttribute="bottom" secondItem="P43-1v-kRv" secondAttribute="bottom" constant="164" id="xb6-ZZ-2Lz"/>
-                            <constraint firstItem="vLu-NA-8EN" firstAttribute="leading" secondItem="ioi-mw-lJb" secondAttribute="leading" id="y7d-n7-Rnb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YaJ-Pf-qOu"/>
@@ -337,9 +324,6 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="btn" width="16.333333969116211" height="34"/>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
