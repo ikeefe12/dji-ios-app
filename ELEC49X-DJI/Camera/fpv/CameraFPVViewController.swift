@@ -48,7 +48,7 @@ class CameraFPVViewController: UIViewController {
     func resetUI() {
         // set state of labels
         self.irStatus.text = "IR Disabled"
-        self.irStatus.text = "Tracking Disabled"
+        self.trackingStatus.text = "Tracking Disabled"
         // Set state of switches
         self.irToggle.setOn(false, animated: true)
         self.irToggle.tintColor = UIColor.red
@@ -61,7 +61,7 @@ class CameraFPVViewController: UIViewController {
         self.trackingToggle.addTarget(self, action: #selector(trackingStateChanged(_:)), for: .valueChanged)
         // Set state of emergency land
         self.emergencyLand.setTitle("Emergency Land", for: .normal)
-        self.emergencyLand.backgroundColor = UIColor.red
+        self.emergencyLand.tintColor = UIColor.red
         self.trackingToggle.addTarget(self, action: #selector(emergencyLandAction), for: .touchUpInside)
     }
     
@@ -86,6 +86,7 @@ class CameraFPVViewController: UIViewController {
         if sender.isOn {
             self.irStatus.text = "IR Enabled"
             self.trackingToggle.isEnabled = true
+            let test = UDPSocketManager()
         } else {
             self.irStatus.text = "IR Disabled"
             self.trackingToggle.setOn(false, animated: true)
