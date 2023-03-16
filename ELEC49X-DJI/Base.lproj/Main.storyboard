@@ -17,11 +17,11 @@
                         <viewControllerLayoutGuide type="bottom" id="vZH-HF-j3L"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="13d-yb-Ou6">
-                        <rect key="frame" x="0.0" y="0.0" width="932" height="430"/>
+                        <rect key="frame" x="0.0" y="0.0" width="932" height="327"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status: Trying to connect..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAw-ns-Vhl">
-                                <rect key="frame" x="391.66666666666669" y="66.666666666666671" width="151.00000000000006" height="16"/>
+                                <rect key="frame" x="391.66666666666669" y="15" width="151.00000000000006" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="151" id="Fb3-hG-UVE"/>
                                     <constraint firstAttribute="height" constant="16" id="a40-SE-ICu"/>
@@ -45,7 +45,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SDK Version: 4.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evr-TR-zVg">
-                                <rect key="frame" x="392.66666666666669" y="345.66666666666669" width="149.00000000000006" height="16"/>
+                                <rect key="frame" x="392.66666666666669" y="294" width="149.00000000000006" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="LdB-CI-IVn"/>
                                     <constraint firstAttribute="width" constant="149" id="WjU-Ms-Ypt"/>
@@ -67,7 +67,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWh-8t-5th">
-                                <rect key="frame" x="341.66666666666669" y="215.66666666666666" width="250.00000000000006" height="51.999999999999972"/>
+                                <rect key="frame" x="341.66666666666669" y="164" width="250.00000000000006" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="c6N-wA-eg3"/>
                                     <constraint firstAttribute="width" constant="250" id="nhv-n1-pIZ"/>
@@ -98,7 +98,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model: Not Available" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvn-Jl-PRU">
-                                <rect key="frame" x="186.66666666666663" y="130.66666666666666" width="560" height="21"/>
+                                <rect key="frame" x="186.66666666666663" y="79" width="560" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Ljj-zJ-tQP"/>
                                     <constraint firstAttribute="height" constant="21" id="XEL-WX-fs8"/>
@@ -124,7 +124,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bridge Mode" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quM-Rr-hDz">
-                                <rect key="frame" x="330.66666666666669" y="87.666666666666671" width="271.00000000000006" height="21"/>
+                                <rect key="frame" x="330.66666666666669" y="36" width="271.00000000000006" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="J6Z-om-Qp3"/>
                                     <constraint firstAttribute="width" constant="271" id="Tan-iP-Y3J"/>
@@ -230,7 +230,7 @@
                         <viewControllerLayoutGuide type="bottom" id="HGe-bd-Hhb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tgx-5W-OhD">
-                        <rect key="frame" x="0.0" y="0.0" width="932" height="430"/>
+                        <rect key="frame" x="0.0" y="0.0" width="932" height="327"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UbC-aS-itK">
@@ -241,18 +241,18 @@
                                 <rect key="frame" x="858" y="92" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IR Disabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mkf-gh-LWK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IR Disabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mkf-gh-LWK" userLabel="Ir Status">
                                 <rect key="frame" x="718" y="97" width="86" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSc-dy-wM7">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSc-dy-wM7" userLabel="Tracking Toggle">
                                 <rect key="frame" x="858" y="175" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tracking Disabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDU-Qx-t7r">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tracking Disabled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDU-Qx-t7r" userLabel="Tracking Status">
                                 <rect key="frame" x="718" y="180" width="146" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -272,9 +272,6 @@
                                 <state key="normal" title="Emergency Land" backgroundImage="btn">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="elD-ci-Ggq" kind="show" id="ggN-eV-ifH"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -289,7 +286,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="YaJ-Pf-qOu"/>
                     <connections>
+                        <outlet property="emergencyLand" destination="ioi-mw-lJb" id="NXY-a0-Bux"/>
                         <outlet property="fpvView" destination="UbC-aS-itK" id="z7o-1p-F8N"/>
+                        <outlet property="irStatus" destination="Mkf-gh-LWK" id="1T5-lQ-Uej"/>
+                        <outlet property="irToggle" destination="axJ-bp-qkO" id="e6A-aj-uXH"/>
+                        <outlet property="trackingStatus" destination="sDU-Qx-t7r" id="pHE-mj-ysM"/>
+                        <outlet property="trackingToggle" destination="cSc-dy-wM7" id="vKZ-co-Yzf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GCQ-lm-0PW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -319,9 +321,6 @@
             <point key="canvasLocation" x="1195" y="612"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="ggN-eV-ifH"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="btn" width="16.333333969116211" height="34"/>
         <systemColor name="tintColor">
