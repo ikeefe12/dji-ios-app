@@ -87,6 +87,7 @@ class CameraFPVViewController: UIViewController {
             self.irStatus.text = "IR Enabled"
             self.trackingToggle.isEnabled = true
             let test = UDPSocketManager()
+            test.getFrame()
         } else {
             self.irStatus.text = "IR Disabled"
             self.trackingToggle.setOn(false, animated: true)
