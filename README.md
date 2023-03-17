@@ -11,10 +11,14 @@ CURRENT PROGRESS:
 - The application is set to run out of the box, no need for an additional pod install.
 - The application has been run successfully on an iPhone running the latest iOS (16.2)
 - The application is mainly sample code provided by DJI to demonstrate how to use the MSDK
+- Application has successfull binded with the sensor
+- UI is in place and button handlers are hooked up properly
 
-NEXT STEPS:
-- Test connection between the application and the drone through use of the drones controller (code is in place)
-- Set up wifi connection between the application and the Arduino Board
+NEXT Steps:
+- Figure out how to get data from port (where is it going when recieved)
+- Test cotrol of drone using the app (Emergency land functionality)
+- Unit test all logic, including data parsing, tracking algorithm, threading?
+- Try and visualize sample frame of IR data within the app
 
 https://github.com/eblainey/thermalthings
 
