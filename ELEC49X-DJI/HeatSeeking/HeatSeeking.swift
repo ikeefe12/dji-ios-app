@@ -148,22 +148,35 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         Thread.sleep(forTimeInterval: 0.05) // Sleep for 50 milliseconds to achieve 20Hz frequency
     }
     
-    @objc func formatData(_ dataBinary: Data) -> [[Int]] {
-        let hexStr = dataBinary.map { String(format: "%02hhx", $0) }.joined()
-        var numbers = [String]()
+    func formatData(hexStr: String) -> [[Int]] {
+        let numRows = UDPSocketManager.frameWidth
+        let numCols = UDPSocketManager.frameHeight
+        var reformattedArray: [[Int]] = Array(repeating: Array(repeating: 0, count: numCols), count: numRows)
+
+        var currentRow = 0
+        var currentCol = 0
+
         for i in stride(from: 0, to: hexStr.count, by: 4) {
-            let startIndex = hexStr.index(hexStr.startIndex, offsetBy: i)
-            let endIndex = hexStr.index(startIndex, offsetBy: 4, limitedBy: hexStr.endIndex) ?? hexStr.endIndex
-            numbers.append(String(hexStr[startIndex..<endIndex]))
-        }
-        let intNumbers = numbers.compactMap { Int($0, radix: 16) }
-        var result = [[Int]](repeating: [Int](repeating: 0, count: UDPSocketManager.frameHeight), count: UDPSocketManager.frameWidth)
-        for i in 0..<UDPSocketManager.frameWidth {
-            for j in 0..<UDPSocketManager.frameHeight {
-                result[i][j] = intNumbers[j *  UDPSocketManager.frameWidth + i]
+            let start = hexStr.index(hexStr.startIndex, offsetBy: i)
+            let end = min(hexStr.index(start, offsetBy: 4), hexStr.endIndex)
+            let substring = String(hexStr[start..<end])
+
+            if let intValue = Int(substring, radix: 16) {
+                reformattedArray[currentRow][currentCol] = intValue
+                currentCol += 1
+
+                if currentCol == numCols {
+                    currentCol = 0
+                    currentRow += 1
+                }
+
+                if currentRow == numRows {
+                    break
+                }
             }
         }
-        return result
+
+        return reformattedArray
     }
     
     @objc private func findTrackingCommands(_ frame: [[Int]]) -> CGPoint {
