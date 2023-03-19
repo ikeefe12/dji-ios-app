@@ -22,6 +22,7 @@
 		A47868E0209AC6DA00DBC666 /* ProductCommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D3209AC6DA00DBC666 /* ProductCommunicationManager.swift */; };
 		A47868E1209AC6DA00DBC666 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D4209AC6DA00DBC666 /* StartupViewController.swift */; };
 		A47868E2209AC6DA00DBC666 /* DJIImageAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D6209AC6DA00DBC666 /* DJIImageAnnotation.swift */; };
+		D38321F029C78C0A00497976 /* ThermalImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38321EF29C78C0A00497976 /* ThermalImageData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		A47868D3209AC6DA00DBC666 /* ProductCommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCommunicationManager.swift; sourceTree = "<group>"; };
 		A47868D4209AC6DA00DBC666 /* StartupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
 		A47868D6209AC6DA00DBC666 /* DJIImageAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJIImageAnnotation.swift; sourceTree = "<group>"; };
+		D38321EF29C78C0A00497976 /* ThermalImageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThermalImageData.swift; sourceTree = "<group>"; };
 		E22E5C4D2C9B41C9E6D2BD10 /* libPods-ELEC49X-DJI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ELEC49X-DJI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				8616A25B29C3771000997476 /* HeatSeeking.swift */,
+				D38321EF29C78C0A00497976 /* ThermalImageData.swift */,
 				8616A25D29C3774700997476 /* DroneCommand.swift */,
 			);
 			path = HeatSeeking;
@@ -308,6 +311,7 @@
 				2F0FC86E21EE1D0300D1C635 /* DecodeImageCalibrateLogic.swift in Sources */,
 				8616A25E29C3774700997476 /* DroneCommand.swift in Sources */,
 				2F0FC85F21EDC81C00D1C635 /* CameraFPVViewController.swift in Sources */,
+				D38321F029C78C0A00497976 /* ThermalImageData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

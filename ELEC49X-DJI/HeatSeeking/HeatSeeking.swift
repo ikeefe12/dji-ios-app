@@ -69,9 +69,9 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         while !Thread.current.isCancelled {
             autoreleasepool {
                 // get processed data (120x84 array of ints)
-                let binData = udpSocketManager.getFrame()
+                let binData = self.udpSocketManager.getFrame()
                 // TODO: Set default value since binData is optional
-                let frame = formatData(binData ?? Data())
+                let frame = formatData(hexStr: String())
                 // Save data to shared variable latesFrame so it can be used in displayThread
                 sharedVars.setLatestFrame(frame)
                 sharedVars.setNewFrame(true)
@@ -89,14 +89,14 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     // displayThread base function
-    @objc private func dispData(view: UIView) {
+    @objc func dispData(view: UIView) {
 
         // Create a UIImageView
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight))
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         
-        while !Thread.current.isCancelled {
+        // while !Thread.current.isCancelled {
             if sharedVars.getNewFrame() {
                 let gray16Image = sharedVars.getLatestFrame()
                 sharedVars.setNewFrame(false)
@@ -123,9 +123,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                     imageView.image = image
                 }
             }
-        }
-        
-        
+        // }
     }
     
     // commandThread base function
@@ -336,8 +334,8 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
 class SharedVars {
     private let queue = DispatchQueue(label: "com.example.HeatSeeking.sharedVarQueue", attributes: .concurrent)
     private var _newCommands: Bool = false
-    private var _newFrame: Bool = false
-    private var _latestFrame: [[Int]]
+    private var _newFrame: Bool = true
+    private var _latestFrame: [[Int]] = thermalData.grey16Image
     private var _roll: Float = 0
     private var _pitch: Float = 0
 
