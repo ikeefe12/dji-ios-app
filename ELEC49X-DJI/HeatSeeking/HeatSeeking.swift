@@ -148,9 +148,20 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         Thread.sleep(forTimeInterval: 0.05) // Sleep for 50 milliseconds to achieve 20Hz frequency
     }
     
+    
+    @objc private func findTrackingCommands(_ frame: [[Int]]) -> CGPoint {
+        // Implement the tracking algorithm here
+        // NORMALIZE DATA (normalizeTemperatures)
+        // FIND COORDINATES (findCenterOfHeat)
+        // DECIDE ON COMMANDS
+        return CGPoint(x: 0.0, y: 0.0) // Replace with real values calculated from the tracking algorithm
+    }
+    
+    // Takes a hex string of bytes representing 1 thermal image and returns the 120x84 array of grey16 data
+    // TESTED
     func formatData(hexStr: String) -> [[Int]] {
-        let numRows = UDPSocketManager.frameWidth
-        let numCols = UDPSocketManager.frameHeight
+        let numRows = UDPSocketManager.frameHeight
+        let numCols = UDPSocketManager.frameWidth
         var reformattedArray: [[Int]] = Array(repeating: Array(repeating: 0, count: numCols), count: numRows)
 
         var currentRow = 0
@@ -179,9 +190,56 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         return reformattedArray
     }
     
-    @objc private func findTrackingCommands(_ frame: [[Int]]) -> CGPoint {
-        // Implement the tracking algorithm here
-        return CGPoint(x: 0.0, y: 0.0) // Replace with real values calculated from the tracking algorithm
+    // Normalizes the temperature values of thermal image so they are betwee 0 and 1
+    // TESTED
+    func normalizeTemperatures(thermalImage: [[Int]]) -> [[Double]] {
+        let numRows = UDPSocketManager.frameHeight
+        let numCols = UDPSocketManager.frameWidth
+
+        // Find the minimum and maximum values
+        var minValue = Int.max
+        var maxValue = Int.min
+
+        for row in thermalImage {
+            for value in row {
+                minValue = min(minValue, value)
+                maxValue = max(maxValue, value)
+            }
+        }
+
+        // Normalize the temperature data
+        var normalizedThermalImage: [[Double]] = Array(repeating: Array(repeating: 0.0, count: numCols), count: numRows)
+
+        for i in 0..<numRows {
+            for j in 0..<numCols {
+                normalizedThermalImage[i][j] = (Double(thermalImage[i][j]) - Double(minValue)) / (Double(maxValue) - Double(minValue))
+            }
+        }
+
+        return normalizedThermalImage
+    }
+    
+    // This function takes in the normalized data and returns the average position of coordinates above threshhold value
+    // TESTED
+    func findCenterOfHeat(thermalImage: [[Double]], threshold: Double = 0.85     ) -> (Int, Int) {
+        // Find the maximum value in the image
+        var coordinates: [[Int]] = []
+
+        // Iterate through all pixels in the image
+        for x in 0..<thermalImage.count {
+            for y in 0..<thermalImage[0].count {
+                // Check if the pixel is above the threshold
+                if thermalImage[x][y] >= threshold {
+                    coordinates.append([x, y])
+                }
+            }
+        }
+
+        // Calculate the center position
+        let centerX = Int(round(Double(coordinates.map { $0[0] }.reduce(0, +)) / Double(coordinates.count)))
+        let centerY = Int(round(Double(coordinates.map { $0[1] }.reduce(0, +)) / Double(coordinates.count)))
+
+        return (centerX, centerY)
     }
 }
 
