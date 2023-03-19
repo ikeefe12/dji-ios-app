@@ -399,8 +399,8 @@ extension CGContext {
     func drawGray16Image(_ gray16Image: [[Int]]) {
         let width = gray16Image.count
         let height = gray16Image[0].count
-        for y in 0..<height {
-            for x in 0..<width {
+        for x in 0..<width {
+            for y in 0..<height {
                 let value = UInt16(gray16Image[x][y])
                 let byteOffset = y * width * 2 + x * 2
                 data?.storeBytes(of: value, toByteOffset: byteOffset, as: UInt16.self)
@@ -408,3 +408,4 @@ extension CGContext {
         }
     }
 }
+
