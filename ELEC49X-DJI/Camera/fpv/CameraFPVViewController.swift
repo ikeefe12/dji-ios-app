@@ -16,6 +16,8 @@ class CameraFPVViewController: UIViewController {
     @IBOutlet weak var trackingToggle: UISwitch!
     @IBOutlet weak var emergencyLand: UIButton!
     @IBOutlet weak var fpvView: UIView!
+    @IBOutlet weak var test: UIButton!
+
     
     var adapter: VideoPreviewerAdapter?
     var needToSetMode = false
@@ -64,10 +66,8 @@ class CameraFPVViewController: UIViewController {
         self.trackingToggle.addTarget(self, action: #selector(trackingStateChanged(_:)), for: .valueChanged)
         // Set state of emergency land
         self.emergencyLand.setTitle("Emergency Land", for: .normal)
-        self.emergencyLand.tintColor = UIColor.red
+        // self.emergencyLand.tintColor = UIColor.red
         self.emergencyLand.addTarget(self, action: #selector(emergencyLandAction(_:)), for: .touchUpInside)
-
-        self.trackingToggle.addTarget(self, action: #selector(emergencyLandAction), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +86,9 @@ class CameraFPVViewController: UIViewController {
             adapter = nil
         }
     }
+    // add button
+    // update vars to what
+    // 
     
     @objc func irStateChanged(_ sender: UISwitch) {
         if sender.isOn {
@@ -119,13 +122,24 @@ class CameraFPVViewController: UIViewController {
     
     @objc func emergencyLandAction(_ sender: UIButton) {
         // EMERGENCY LAND
-        if sender.isSelected {
-            print("Button is already selected!")
-        } else {
-            sender.isSelected = true
-            heatSeek?.emergencyLanding()
-        }
-        
+        sender.isEnabled = false
+        self.irToggle.setOn(false, animated: true)
+        self.irToggle.isEnabled = false
+        heatSeek?.disableThermalDataAndDisplay()
+        self.trackingToggle.setOn(false, animated: true)
+        self.trackingToggle.isEnabled = false
+        heatSeek?.stopTracking()
+        print("Emergency Land")
+        heatSeek?.emergencyLanding()
+    }
+    
+    @objc func testRight(_ sender: UIButton) {
+        // test right
+        // set pitch = 0.5, roll = 0 (or somethign)
+        // sleep 5 seconds
+        // semd it baclk
+        print("Test Right")
+        heatSeek?.testRight()
     }
 }
 

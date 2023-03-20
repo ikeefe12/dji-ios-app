@@ -55,6 +55,18 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         droneCommand.emergencyLand()
     }
     
+    @objc func testRight(){
+        var commandRoll : Float = 0.0
+        var commandPitch : Float = 0.0
+        commandPitch = 1.0
+        sendDroneControlData(commandRoll: commandRoll, commandPitch: commandPitch)
+        Thread.sleep(forTimeInterval: 1) // Sleep for 500 milliseconds to achieve 20Hz frequency
+        commandPitch = 0.0
+        print("Sending Test")
+        sendDroneControlData(commandRoll: commandRoll, commandPitch: commandPitch)
+        
+    }
+    
     // start sending commands to the drone, this should only run if the dataThread is running
     @objc func startTracking() {
         // enable virtual sticks on the drone
@@ -92,6 +104,8 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                
                 // Pass data through tracking algorithm (findTrackingCommands is a function TO BE added to this class,
                 // which takes a 120x84 array of Ints and returns a tuple (Float, Float) representing the tracking roll and pitch)
+                
+                //sharedVars.setNewCommands(<#T##value: Bool##Bool#>)
             }
         }
     }

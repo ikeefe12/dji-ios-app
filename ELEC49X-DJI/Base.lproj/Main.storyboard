@@ -265,6 +265,12 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nK8-pe-UBX">
+                                <rect key="frame" x="712" y="250" width="130" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -291,6 +297,7 @@
                         <outlet property="fpvView" destination="UbC-aS-itK" id="z7o-1p-F8N"/>
                         <outlet property="irStatus" destination="Mkf-gh-LWK" id="1T5-lQ-Uej"/>
                         <outlet property="irToggle" destination="axJ-bp-qkO" id="e6A-aj-uXH"/>
+                        <outlet property="test" destination="nK8-pe-UBX" id="Cmx-Vy-cNy"/>
                         <outlet property="trackingStatus" destination="sDU-Qx-t7r" id="pHE-mj-ysM"/>
                         <outlet property="trackingToggle" destination="cSc-dy-wM7" id="vKZ-co-Yzf"/>
                     </connections>
