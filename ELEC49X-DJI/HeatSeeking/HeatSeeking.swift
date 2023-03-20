@@ -98,10 +98,10 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         view.addSubview(imageView)
         
         while !Thread.current.isCancelled {
-            print("Display Thread")
+            //print("Display Thread")
             if sharedVars.getNewFrame() {
                 print("Display New Frame")
-                let gray16Image = sharedVars.getLatestFrame()
+                let gray16Image = thermalData.grey16Image
                 sharedVars.setNewFrame(false)
                 
                 //  release the memory used by the images at the end of each iteration of the loop
@@ -126,6 +126,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                     imageView.image = image
                 }
             }
+            Thread.sleep(forTimeInterval: 0.05)
         }
     }
     
@@ -159,7 +160,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         // NORMALIZE DATA (normalizeTemperatures)
         let normData = normalizeTemperatures(thermalImage: frame)
         // FIND COORDINATES (findCenterOfHeat)
-        var (x, y) = findCenterOfHeat(thermalImage: normData)
+        let (x, y) = findCenterOfHeat(thermalImage: normData)
         // DECIDE ON COMMANDS
         let xNorm = Double(x) / 119.0 - 0.5
         let yNorm = Double(y) / 83.0 - 0.5
@@ -305,7 +306,7 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     // Get Binary Frame data
-    @objc func getFrame() -> Data? {
+    /* @objc func getFrame() -> Data? {
         print("Receiving THERMAL IMAGE")
 
         // Prepare data buffer and packet information
@@ -339,7 +340,7 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
             print("Error: Only received \(packetsReceived) packets out of \(numPackets)")
             return nil
         }
-    }
+    } */
     
     // SOCKET FUNCTIONS
     private func sendData(_ data: Data) {
@@ -429,7 +430,7 @@ extension CGContext {
         for x in 0..<width {
             for y in 0..<height {
                 let value = UInt16(gray16Image[x][y])
-                let byteOffset = y * width * 2 + x * 2
+                let byteOffset = x * height * 2 + y * 2
                 data?.storeBytes(of: value, toByteOffset: byteOffset, as: UInt16.self)
             }
         }

@@ -89,12 +89,15 @@ class CameraFPVViewController: UIViewController {
         if sender.isOn {
             self.irStatus.text = "IR Enabled"
             self.trackingToggle.isEnabled = true
+            // START/ DATA AND DISPLAY THREADS
             heatSeek?.enableThermalDataAndDisplay(view: self.view)
         } else {
             self.irStatus.text = "IR Disabled"
             self.trackingToggle.setOn(false, animated: true)
             self.trackingToggle.isEnabled = false
+            // STOP TRACKING THREAD (if started)
             heatSeek?.stopTracking()
+            // STOP DATA AND DISPLAY THREADS
             heatSeek?.disableThermalDataAndDisplay()
         }
     }
@@ -102,8 +105,10 @@ class CameraFPVViewController: UIViewController {
     @objc func trackingStateChanged(_ sender: UISwitch) {
         if sender.isOn {
             self.trackingStatus.text = "Tracking Enabled"
+            // START TRACKING THREAD
             heatSeek?.startTracking()
         } else {
+            // STOP TRACKING THREAD
             self.trackingStatus.text = "Tracking Disabled"
             heatSeek?.stopTracking()
         }
