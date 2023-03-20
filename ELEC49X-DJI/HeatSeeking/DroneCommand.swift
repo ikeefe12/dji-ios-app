@@ -35,6 +35,16 @@ class DroneCommand {
             
         }
     }
+    @objc func emergencyLand(){
+        // Trigger the emergency landing procedure
+        self.flightController?.startLanding(completion: { (error) in
+            if let error = error {
+                print("Error performing emergency landing: \(error.localizedDescription)")
+            } else {
+                print("Emergency landing procedure started successfully.")
+            }
+        })
+    }
     
     // User clicks the enter virtual sticks button
     @objc func enableVirtualSticks() {

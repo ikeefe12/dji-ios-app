@@ -65,6 +65,8 @@ class CameraFPVViewController: UIViewController {
         // Set state of emergency land
         self.emergencyLand.setTitle("Emergency Land", for: .normal)
         self.emergencyLand.tintColor = UIColor.red
+        self.emergencyLand.addTarget(self, action: #selector(emergencyLandAction(_:)), for: .touchUpInside)
+
         self.trackingToggle.addTarget(self, action: #selector(emergencyLandAction), for: .touchUpInside)
     }
     
@@ -115,8 +117,15 @@ class CameraFPVViewController: UIViewController {
         }
     }
     
-    @objc func emergencyLandAction() {
+    @objc func emergencyLandAction(_ sender: UIButton) {
         // EMERGENCY LAND
+        if sender.isSelected {
+            print("Button is already selected!")
+        } else {
+            sender.isSelected = true
+            heatSeek?.emergencyLanding()
+        }
+        
     }
 }
 

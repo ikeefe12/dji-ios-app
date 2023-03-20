@@ -50,6 +50,11 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         dataThread = nil
     }
     
+    @objc func emergencyLanding(){
+        print("LANDING REQUEST")
+        droneCommand.emergencyLand()
+    }
+    
     // start sending commands to the drone, this should only run if the dataThread is running
     @objc func startTracking() {
         // enable virtual sticks on the drone
