@@ -285,25 +285,41 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     @objc func getFrame(completion: @escaping (String) -> Void) {
-        print("Getting Frame Now")
         packetsReceived = 0
-        
+        sendString("N")
+
         do {
             try udpSocket?.beginReceiving()
         } catch {
             print("Error receiving frame: \(error)")
         }
-        
-        sendString("N")
-        
+
+        let semaphore = DispatchSemaphore(value: 0)
+
         dispatchQueue.async { [weak self] in
-            while self?.packetsReceived < 21 {
+            while self?.packetsReceived ?? 0 < 21 {
                 // Wait for packets to be received
+                semaphore.wait(timeout: .now() + 0.1)
             }
-            
+
             self?.udpSocket?.pauseReceiving()
             let frameString = self?.frame.joined() ?? ""
             completion(frameString)
+        }
+
+        func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
+            packetsReceived = packetsReceived + 1
+            if packetsReceived == 0 {
+                print("Initialization Complete")
+            } else if packetsReceived > 0 {
+                let hexData = data.hexString
+                let packetNumber = UInt8(hexData.prefix(2), radix: 16)! - 1
+                let startIndex = hexData.index(hexData.startIndex, offsetBy: 2)
+                print(packetNumber)
+                frame[Int(packetNumber)] = String(hexData[startIndex...])
+                print("Received data packet: \(packetNumber)")
+                semaphore.signal()
+            }
         }
     }
     
@@ -315,21 +331,6 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     private func sendString(_ string: String) {
         if let data = string.data(using: .utf8) {
             sendData(data)
-        }
-    }
-    
-    func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
-        packetsReceived = packetsReceived + 1
-        if packetsReceived == 0 {
-            print("Initialization Complete")
-            udpSocket?.pauseReceiving()
-        } else if packetsReceived > 0 {
-            print("Received data packet: \(packetsReceived)")
-            let hexData = data.hexString
-            let packetNumber = UInt8(hexData.prefix(2), radix: 16)! - 1
-            let startIndex = hexData.index(hexData.startIndex, offsetBy: 2)
-            print(packetNumber)
-            frame[Int(packetNumber)] = String(hexData[startIndex...])
         }
     }
 }
