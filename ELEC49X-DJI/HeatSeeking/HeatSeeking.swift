@@ -283,52 +283,52 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
         case connectError
     }
     
-     @objc func getFrame() -> Data? {
-        print("Receiving THERMAL IMAGE")
-        // Prepare data buffer and packet information
-        var data = Data()
-        let numPackets = 21
-        var packetsReceived = 0
-        // Send "N" command to request next frame (21 packets)
-        sendString("N")
-        let dispatchGroup = DispatchGroup()
+    @objc func getFrame() -> Data? {
+    print("Receiving THERMAL IMAGE")
+    // Prepare data buffer and packet information
+    var data = Data()
+    let numPackets = 21
+    var packetsReceived = 0
+    // Send "N" command to request next frame (21 packets)
+    sendString("N")
+    let dispatchGroup = DispatchGroup()
 
-        // Set the receive filter
-        do {
-            try udpSocket?.setReceiveFilter({ (newData: Data?, address: Data?, queue: DispatchQueue?) -> Bool in
-                if let newData = newData {
-                    data.append(newData[1...]) // Remove first byte
-                    packetsReceived += 1
-                    dispatchGroup.leave()
-                } else {
-                    print("Socket error: \(String(describing: error?.localizedDescription))")
-                    dispatchGroup.leave()
-                }
-                return packetsReceived < numPackets
-            }, withQueue: DispatchQueue.main)
-        } catch {
-            print("Error setting receive filter: \(error.localizedDescription)")
-        }
-
-        // Begin receiving
-        do {
-            while packetsReceived < numPackets {
-                dispatchGroup.enter()
-                try udpSocket?.beginReceiving()
+    // Set the receive filter
+    do {
+        try udpSocket?.setReceiveFilter({ (newData: Data?, address: Data?, error: Error?, shouldContinueReceiving: UnsafeMutablePointer<ObjCBool>?) -> Void in
+            if let newData = newData {
+                data.append(newData[1...]) // Remove first byte
+                packetsReceived += 1
+                dispatchGroup.leave()
+            } else {
+                print("Socket error: \(String(describing: error?.localizedDescription))")
+                dispatchGroup.leave()
             }
-        } catch {
-            print("Error starting reception: \(error.localizedDescription)")
-        }
-
-        dispatchGroup.wait(timeout: .now() + 5.0) // Wait for all packets to be received within 5 seconds
-
-        if packetsReceived == numPackets {
-            return data
-        } else {
-            print("Error: Only received \(packetsReceived) packets out of \(numPackets)")
-            return nil
-        }
+            shouldContinueReceiving?.pointee = packetsReceived < numPackets ? ObjCBool(true) : ObjCBool(false)
+        }, withQueue: DispatchQueue.main)
+    } catch {
+        print("Error setting receive filter: \(error.localizedDescription)")
     }
+
+    // Begin receiving
+    do {
+        while packetsReceived < numPackets {
+            dispatchGroup.enter()
+            try udpSocket?.beginReceiving()
+        }
+    } catch {
+        print("Error starting reception: \(error.localizedDescription)")
+    }
+
+    dispatchGroup.wait(timeout: .now() + 5.0) // Wait for all packets to be received within 5 seconds
+
+    if packetsReceived == numPackets {
+        return data
+    } else {
+        print("Error: Only received \(packetsReceived) packets out of \(numPackets)")
+        return nil
+    }
+}
     
     // SOCKET FUNCTIONS
     private func sendData(_ data: Data) {
