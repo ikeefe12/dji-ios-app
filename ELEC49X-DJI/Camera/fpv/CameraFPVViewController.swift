@@ -91,6 +91,7 @@ class CameraFPVViewController: UIViewController {
             self.trackingToggle.isEnabled = true
             // START/ DATA AND DISPLAY THREADS
             heatSeek?.enableThermalDataAndDisplay(view: self.view)
+            // heatSeek?.dispData(view: self.view, frame: [[0]])
         } else {
             self.irStatus.text = "IR Disabled"
             self.trackingToggle.setOn(false, animated: true)

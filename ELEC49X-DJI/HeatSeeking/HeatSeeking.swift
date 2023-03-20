@@ -16,7 +16,6 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     private var udpSocketManager: UDPSocketManager
     // THREADS
     private var dataThread: Thread?
-    private var displayThread: Thread?
     private var commandThread: Thread?
 
     // SHARED VARIABLES
@@ -34,19 +33,14 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     
     // This will start streaming data as well as displaying data
     @objc func enableThermalDataAndDisplay(view: UIView) {
-        dataThread = Thread(target: self, selector: #selector(getData), object: nil)
+        dataThread = Thread(target: self, selector: #selector(getData(view:)), object: nil)
         dataThread?.start()
-        
-        displayThread = Thread(target: self, selector: #selector(dispData(view:)), object: nil)
-        displayThread?.start()
     }
     
     // Stop streaming data
     @objc func disableThermalDataAndDisplay() {
         dataThread?.cancel()
-        displayThread?.cancel()
         dataThread = nil
-        displayThread = nil
     }
     
     // start sending commands to the drone, this should only run if the dataThread is running
@@ -65,7 +59,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         commandThread = nil
     }
     
-    @objc private func getData() {
+    @objc private func getData(view: UIView) {
         while !Thread.current.isCancelled {
             autoreleasepool {
                 print("Data Thread")
@@ -74,8 +68,9 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                 // TODO: Set default value since binData is optional
                 let frame = formatData(hexStr: hexData)
                 // Save data to shared variable latesFrame so it can be used in displayThread
-                sharedVars.setLatestFrame(frame)
-                sharedVars.setNewFrame(true)
+                DispatchQueue.main.async {
+                    self.dispData(view: view, frame: frame)
+                }
                 // Pass data through tracking algorithm (findTrackingCommands is a function TO BE added to this class,
                 // which takes a 120x84 array of Ints and returns a tuple (Float, Float) representing the tracking roll and pitch)
                 let command = findTrackingCommands(frame)
@@ -90,43 +85,36 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     // displayThread base function
-    @objc func dispData(view: UIView) {
+    @objc func dispData(view: UIView, frame: [[Int]]) {
 
         // Create a UIImageView
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight))
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         
-        while !Thread.current.isCancelled {
-            //print("Display Thread")
-            if sharedVars.getNewFrame() {
-                print("Display New Frame")
-                let gray16Image = thermalData.grey16Image
-                sharedVars.setNewFrame(false)
-                
-                //  release the memory used by the images at the end of each iteration of the loop
-                autoreleasepool {
-                    // Create a CGContext and draw the pixel values to it
-                    let colorSpace = CGColorSpaceCreateDeviceGray()
-                    let bytesPerPixel = MemoryLayout<UInt16>.stride
-                    let bytesPerRow = bytesPerPixel * UDPSocketManager.frameWidth
-                    let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
-                    let context = CGContext(data: nil, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight, bitsPerComponent: 16, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
-                    context.drawGray16Image(gray16Image)
+        print("Display New Frame")
+        let gray16Image = thermalData.grey16Image
+            
+        //  release the memory used by the images at the end of each iteration of the loop
+        autoreleasepool {
+            // Create a CGContext and draw the pixel values to it
+            let colorSpace = CGColorSpaceCreateDeviceGray()
+            let bytesPerPixel = MemoryLayout<UInt16>.stride
+            let bytesPerRow = bytesPerPixel * UDPSocketManager.frameWidth
+            let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
+            let context = CGContext(data: nil, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight, bitsPerComponent: 16, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
+            context.drawGray16Image(gray16Image)
 
-                    // Create a CGImage from the CGContext
-                    guard let cgImage = context.makeImage() else {
-                        fatalError("Failed to create CGImage.")
-                    }
-
-                    // Create a UIImage from the CGImage
-                    let image = UIImage(cgImage: cgImage)
-
-                    // Update the UIImageView with the new image
-                    imageView.image = image
-                }
+            // Create a CGImage from the CGContext
+            guard let cgImage = context.makeImage() else {
+                fatalError("Failed to create CGImage.")
             }
-            Thread.sleep(forTimeInterval: 0.05)
+
+            // Create a UIImage from the CGImage
+            let image = UIImage(cgImage: cgImage)
+
+            // Update the UIImageView with the new image
+            imageView.image = image
         }
     }
     
@@ -379,18 +367,6 @@ class SharedVars {
         }
     }
     
-    func setNewFrame(_ value: Bool) {
-        queue.async(flags: .barrier) {
-            self._newFrame = value
-        }
-    }
-    
-    func setLatestFrame(_ value: [[Int]]) {
-        queue.async(flags: .barrier) {
-            self._latestFrame = value
-        }
-    }
-    
     func setRollPitch(_ roll: Float, _ pitch: Float) {
         queue.async(flags: .barrier) {
             self._roll = roll
@@ -401,18 +377,6 @@ class SharedVars {
     func getNewCommands() -> Bool {
         return queue.sync {
             return _newCommands
-        }
-    }
-    
-    func getNewFrame() -> Bool {
-        return queue.sync {
-            return _newFrame
-        }
-    }
-    
-    func getLatestFrame() -> [[Int]] {
-        return queue.sync {
-            return _latestFrame
         }
     }
     
