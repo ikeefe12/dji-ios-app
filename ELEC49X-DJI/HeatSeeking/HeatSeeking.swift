@@ -278,57 +278,57 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
         }
     }
     
-    enum UPDError: Error {
-        case bindError
-        case connectError
-    }
-    
-    @objc func getFrame() -> Data? {
+    @objc func getFrame(completionHandler: @escaping (Data?) -> Void) {
         print("Receiving THERMAL IMAGE")
         // Prepare data buffer and packet information
-        var data = Data()
         let numPackets = 21
         var packetsReceived = 0
+        var data = Data()
+
         // Send "N" command to request next frame (21 packets)
         sendString("N")
-        let dispatchGroup = DispatchGroup()
 
-        // Set the receive filter
-        do {
-            /*
-             Cannot convert value of type '(Data, Data, AutoreleasingUnsafeMutablePointer<ObjCBool>?) -> Bool' to expected argument type 'GCDAsyncUdpSocketReceiveFilterBlock?' (aka 'Optional<(Data, Data, AutoreleasingUnsafeMutablePointer<Optional<AnyObject>>) -> Bool>')
-             */
-            try udpSocket?.setReceiveFilter({ (newData: Data, address: Data, shouldContinueReceiving: AutoreleasingUnsafeMutablePointer<ObjCBool>?) -> Bool in
-                if let newData = newData {
-                    data.append(newData[1...]) // Remove first byte
-                    packetsReceived += 1
-                    dispatchGroup.leave()
-                } else {
-                    print("Socket error")
-                    dispatchGroup.leave()
-                }
-            }, withQueue: DispatchQueue.main)
-        } catch {
-            print("Error setting receive filter: \(error.localizedDescription)")
-        }
+        udpSocket?.setDelegate(self)
+        udpSocket?.setDelegateQueue(DispatchQueue.main)
 
-        // Begin receiving
         do {
-            while packetsReceived < numPackets {
-                dispatchGroup.enter()
-                try udpSocket?.beginReceiving()
-            }
+            try udpSocket?.beginReceiving()
         } catch {
             print("Error starting reception: \(error.localizedDescription)")
+            completionHandler(nil)
         }
 
-        dispatchGroup.wait(timeout: .now() + 5.0) // Wait for all packets to be received within 5 seconds
+        objc_sync_enter(self)
+        self.receivePackets(numPackets: numPackets, onData: { receivedData in
+            data = receivedData
+            objc_sync_exit(self)
+            completionHandler(data)
+        })
+    }
 
-        if packetsReceived == numPackets {
-            return data
-        } else {
-            print("Error: Only received \(packetsReceived) packets out of \(numPackets)")
-            return nil
+    func receivePackets(numPackets: Int, onData: @escaping (Data) -> Void) {
+        var packetsReceived = 0
+        var data = Data()
+
+        let receiveHandler: (Data?, Data?, Error?, UnsafeMutablePointer<ObjCBool>?) -> Void = { (newData, _, _, shouldContinueReceiving) in
+            if let newData = newData {
+                data.append(newData[1...]) // Remove first byte
+                packetsReceived += 1
+            } else {
+                print("Socket error")
+            }
+
+            shouldContinueReceiving?.pointee = packetsReceived < numPackets ? ObjCBool(true) : ObjCBool(false)
+
+            if packetsReceived == numPackets {
+                onData(data)
+            }
+        }
+
+        do {
+            try self.udpSocket?.setReceiveFilter(receiveHandler, withQueue: DispatchQueue.main)
+        } catch {
+            print("Error setting receive filter: \(error.localizedDescription)")
         }
     }
     
@@ -341,11 +341,6 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
         if let data = string.data(using: .utf8) {
             sendData(data)
         }
-    }
-    
-    func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
-        let receivedString = String(data: data, encoding: .utf8)
-        print("Received data: \(receivedString ?? "nil")")
     }
 }
 
