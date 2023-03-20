@@ -284,19 +284,15 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     // Get Binary Frame data
-    /* @objc func getFrame() -> Data? {
+    @objc func getFrame() -> Data? {
         print("Receiving THERMAL IMAGE")
-
         // Prepare data buffer and packet information
         var data = Data()
         let numPackets = 21
         var packetsReceived = 0
-
         // Send "N" command to request next frame (21 packets)
         sendString("N")
-
         let dispatchGroup = DispatchGroup()
-
         while packetsReceived < numPackets {
             dispatchGroup.enter()
             udpSocket?.receiveOnce { (newData: Data?, address: Data?, error: Error?) in
@@ -310,7 +306,6 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
                 }
             }
         }
-
         dispatchGroup.wait(timeout: .now() + 5.0) // Wait for all packets to be received within 5 seconds
         if packetsReceived == numPackets {
             return data
@@ -318,7 +313,7 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
             print("Error: Only received \(packetsReceived) packets out of \(numPackets)")
             return nil
         }
-    } */
+    }
     
     // SOCKET FUNCTIONS
     private func sendData(_ data: Data) {
