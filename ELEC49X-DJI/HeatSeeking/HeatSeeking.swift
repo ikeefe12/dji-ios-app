@@ -69,7 +69,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         while !Thread.current.isCancelled {
             autoreleasepool {
                 // get processed data (120x84 array of ints)
-                let hexData = thermalData.dataHex
+                let hexData = udpSocketManager.getFrame()
                 // TODO: Set default value since binData is optional
                 let frame = formatData(hexStr: hexData)
                 // Save data to shared variable latesFrame so it can be used in displayThread
@@ -78,13 +78,6 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                 }
                 // Pass data through tracking algorithm (findTrackingCommands is a function TO BE added to this class,
                 // which takes a 120x84 array of Ints and returns a tuple (Float, Float) representing the tracking roll and pitch)
-                let command = findTrackingCommands(frame)
-                let newRoll = Float(command.x)
-                let newPitch = Float(command.y)
-                // Save result in shared variables roll and pitch
-                sharedVars.setRollPitch(newRoll, newPitch)
-                // set newCommands flag to true, indicating to the sendCommand thread to break the loop and update local command variables
-                sharedVars.setNewCommands(true)
             }
         }
     }
@@ -253,8 +246,13 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     private let IP_ADDRESS = "192.168.0.120"
     private let PORT: UInt16 = 30444
     var udpSocket: GCDAsyncUdpSocket?
+    private var packetsRecieved = -1
+    private var frame: [String]
 
     override init() {
+        let initialHexString = String(repeating: "00", count: 480)
+        frame = Array(repeating: initialHexString, count: 21)
+        
         super.init()
         
         // Initialize UDP socket
@@ -263,73 +261,41 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
             udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.global(qos: .background))
             try udpSocket?.bind(toPort: PORT)
             try udpSocket?.connect(toHost: IP_ADDRESS, onPort: PORT)
+            try udpSocket?.beginReceiving()
             // Send "Bind HTPA series device" command
             print("send data: BIND")
             sendString("Bind HTPA series device")
 
-            // Receive data
-            try udpSocket?.receiveOnce()
-
             // Send "K" command
             print("send data: TRIGGER")
             sendString("K")
+            
+            while (packetsRecieved == -1) {
+            }
+            udpSocket?.pauseReceiving()
         } catch {
             print("Error initializing UDP socket: \(error)")
         }
     }
     
-    @objc func getFrame(completionHandler: @escaping (Data?) -> Void) {
-        print("Receiving THERMAL IMAGE")
-        // Prepare data buffer and packet information
-        let numPackets = 21
-        var packetsReceived = 0
-        var data = Data()
-
-        // Send "N" command to request next frame (21 packets)
+    @objc func getFrame() -> String {
         sendString("N")
-
-        udpSocket?.setDelegate(self)
-        udpSocket?.setDelegateQueue(DispatchQueue.main)
-
-        do {
+        
+        do{
             try udpSocket?.beginReceiving()
         } catch {
-            print("Error starting reception: \(error.localizedDescription)")
-            completionHandler(nil)
+            print("Error recieving frame: \(error)")
         }
-
-        objc_sync_enter(self)
-        self.receivePackets(numPackets: numPackets, onData: { receivedData in
-            data = receivedData
-            objc_sync_exit(self)
-            completionHandler(data)
-        })
-    }
-
-    func receivePackets(numPackets: Int, onData: @escaping (Data) -> Void) {
-        var packetsReceived = 0
-        var data = Data()
-
-        let receiveHandler: (Data?, Data?, Error?, UnsafeMutablePointer<ObjCBool>?) -> Void = { (newData, _, _, shouldContinueReceiving) in
-            if let newData = newData {
-                data.append(newData[1...]) // Remove first byte
-                packetsReceived += 1
-            } else {
-                print("Socket error")
-            }
-
-            shouldContinueReceiving?.pointee = packetsReceived < numPackets ? ObjCBool(true) : ObjCBool(false)
-
-            if packetsReceived == numPackets {
-                onData(data)
-            }
+        
+        while (packetsRecieved < 21) {
+            print("Receiving")
         }
-
-        do {
-            try self.udpSocket?.setReceiveFilter(receiveHandler, withQueue: DispatchQueue.main)
-        } catch {
-            print("Error setting receive filter: \(error.localizedDescription)")
-        }
+        
+        udpSocket?.pauseReceiving()
+        
+        packetsRecieved = 0
+        
+        return self.frame.joined()
     }
     
     // SOCKET FUNCTIONS
@@ -340,6 +306,20 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     private func sendString(_ string: String) {
         if let data = string.data(using: .utf8) {
             sendData(data)
+        }
+    }
+    
+    func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
+        packetsRecieved = packetsRecieved + 1
+        if (packetsRecieved == 0) {
+            print("Initialization Complete")
+        } else {
+            let hexData = data.hexString
+            let packetNumber = UInt8(hexData.prefix(2), radix: 16)! - 1
+            let startIndex = hexData.index(hexData.startIndex, offsetBy: 2)
+            print(packetNumber)
+            frame[Int(packetNumber)] = String(hexData[startIndex...])
+            print("Recieved data packet: \(packetNumber)")
         }
     }
 }
@@ -395,6 +375,12 @@ extension CGContext {
                 data?.storeBytes(of: value, toByteOffset: byteOffset, as: UInt16.self)
             }
         }
+    }
+}
+
+extension Data {
+    var hexString: String {
+        return self.map {String(format: "%02x", $0)}.joined()
     }
 }
 
