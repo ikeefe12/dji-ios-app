@@ -258,6 +258,7 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     private var packetsReceived = -1
     private var frame: [String]
     private let dispatchQueue = DispatchQueue(label: "udpSocketQueue")
+    private let semaphore = DispatchSemaphore(value: 0)
 
     override init() {
         let initialHexString = String(repeating: "00", count: 480)
@@ -289,37 +290,33 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
         sendString("N")
 
         do {
-            try udpSocket?.beginReceiving()
+            try self.udpSocket?.beginReceiving()
         } catch {
             print("Error receiving frame: \(error)")
         }
-
-        let semaphore = DispatchSemaphore(value: 0)
-
-        dispatchQueue.async { [weak self] in
-            while self?.packetsReceived ?? 0 < 21 {
-                // Wait for packets to be received
-                semaphore.wait(timeout: .now() + 0.1)
-            }
-
-            self?.udpSocket?.pauseReceiving()
-            let frameString = self?.frame.joined() ?? ""
-            completion(frameString)
+        
+        while packetsReceived < 21 {
+            // Wait for packets to be received
+            semaphore.wait(timeout: .now() + 0.1)
         }
 
-        func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
-            packetsReceived = packetsReceived + 1
-            if packetsReceived == 0 {
-                print("Initialization Complete")
-            } else if packetsReceived > 0 {
-                let hexData = data.hexString
-                let packetNumber = UInt8(hexData.prefix(2), radix: 16)! - 1
-                let startIndex = hexData.index(hexData.startIndex, offsetBy: 2)
-                print(packetNumber)
-                frame[Int(packetNumber)] = String(hexData[startIndex...])
-                print("Received data packet: \(packetNumber)")
-                semaphore.signal()
-            }
+        udpSocket?.pauseReceiving()
+        let frameString = frame.joined() ?? ""
+        completion(frameString)
+    }
+    
+    func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
+        packetsReceived = packetsReceived + 1
+        if packetsReceived == 0 {
+            print("Initialization Complete")
+        } else if packetsReceived > 0 {
+            let hexData = data.hexString
+            let packetNumber = UInt8(hexData.prefix(2), radix: 16)! - 1
+            let startIndex = hexData.index(hexData.startIndex, offsetBy: 2)
+            print(packetNumber)
+            frame[Int(packetNumber)] = String(hexData[startIndex...])
+            print("Received data packet: \(packetNumber)")
+            semaphore.signal()
         }
     }
     
