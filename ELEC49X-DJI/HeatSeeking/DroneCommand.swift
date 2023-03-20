@@ -44,6 +44,37 @@ class DroneCommand {
                 print("Emergency landing procedure started successfully.")
             }
         })
+        
+        
+        self.flightController?.startLanding(completion: nil) // pass nil for default landing
+
+        // Wait for the drone to descend and hover above the landing spot
+        //
+        /*
+        let targetAltitude: Float = 0.5
+        var isDescending = true
+        while isDescending {
+            if let state = self.flightController.getState {
+            let altitude = state.altitude
+            let verticalSpeed = state.velocityZ
+            if altitude <= targetAltitude && verticalSpeed <= 0.2 {
+            isDescending = false // Drone has reached the desired hover altitude
+            }
+        }
+         */
+        // Add a short delay to avoid overloading the CPU
+        Thread.sleep(forTimeInterval: 10.05)
+        
+        // Confirm the landing action
+        self.flightController?.confirmLanding(completion: { (error) in
+        if let error = error {
+            // Handle error
+            print("Failed to land the drone: \(error)")
+        } else {
+            // Drone has landed
+            print("The drone has landed.")
+        }
+        })
     }
     
     // User clicks the enter virtual sticks button
