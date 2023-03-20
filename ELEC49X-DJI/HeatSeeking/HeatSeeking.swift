@@ -283,8 +283,7 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
         case connectError
     }
     
-    // Get Binary Frame data
-    @objc func getFrame() -> Data? {
+     @objc func getFrame() -> Data? {
         print("Receiving THERMAL IMAGE")
         // Prepare data buffer and packet information
         var data = Data()
@@ -293,20 +292,36 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
         // Send "N" command to request next frame (21 packets)
         sendString("N")
         let dispatchGroup = DispatchGroup()
-        while packetsReceived < numPackets {
-            dispatchGroup.enter()
-            udpSocket?.receiveOnce { (newData: Data?, address: Data?, error: Error?) in
+
+        // Set the receive filter
+        do {
+            try udpSocket?.setReceiveFilter({ (newData: Data?, address: Data?, queue: DispatchQueue?) -> Bool in
                 if let newData = newData {
                     data.append(newData[1...]) // Remove first byte
                     packetsReceived += 1
                     dispatchGroup.leave()
                 } else {
-                    print("Socket error: \(error?.localizedDescription ?? "Unknown error")")
+                    print("Socket error: \(String(describing: error?.localizedDescription))")
                     dispatchGroup.leave()
                 }
-            }
+                return packetsReceived < numPackets
+            }, withQueue: DispatchQueue.main)
+        } catch {
+            print("Error setting receive filter: \(error.localizedDescription)")
         }
+
+        // Begin receiving
+        do {
+            while packetsReceived < numPackets {
+                dispatchGroup.enter()
+                try udpSocket?.beginReceiving()
+            }
+        } catch {
+            print("Error starting reception: \(error.localizedDescription)")
+        }
+
         dispatchGroup.wait(timeout: .now() + 5.0) // Wait for all packets to be received within 5 seconds
+
         if packetsReceived == numPackets {
             return data
         } else {
