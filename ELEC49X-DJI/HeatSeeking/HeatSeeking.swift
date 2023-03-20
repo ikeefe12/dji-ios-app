@@ -307,38 +307,38 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     // Get Binary Frame data
     @objc func getFrame() -> Data? {
         print("Receiving THERMAL IMAGE")
-    
+
         // Prepare data buffer and packet information
         var data = Data()
         let numPackets = 21
-        // var packetsReceived = 0
+        var packetsReceived = 0
 
         // Send "N" command to request next frame (21 packets)
         sendString("N")
-        /* while packetsReceived < numPackets {// Set up semaphore for waiting for data
-            let semaphore = DispatchSemaphore(value: 0)
-            var receivedData: Data?
-            var receivedAddress: Data?
 
-            udpSocket?.receiveOnce { (newData: Data?, address: Data?, _: Error?, _: Bool) in
-                receivedData = newData
-                receivedAddress = address
-                semaphore.signal()
-            }
+        let dispatchGroup = DispatchGroup()
 
-            // Wait for data (timeout after 0.5 second)
-            let result = semaphore.wait(timeout: .now() + 0.5)
-
-            if result == .success, let newData = receivedData {
-                data.append(newData[1...])
-                packetsReceived += 1
-            } else {
-                print("Socket timed out waiting for thermal image")
-                return nil
+        while packetsReceived < numPackets {
+            dispatchGroup.enter()
+            udpSocket?.receiveOnce { (newData: Data?, address: Data?, error: Error?) in
+                if let newData = newData {
+                    data.append(newData[1...]) // Remove first byte
+                    packetsReceived += 1
+                    dispatchGroup.leave()
+                } else {
+                    print("Socket error: \(error?.localizedDescription ?? "Unknown error")")
+                    dispatchGroup.leave()
+                }
             }
         }
-        return data */
-        return data
+
+        dispatchGroup.wait(timeout: .now() + 5.0) // Wait for all packets to be received within 5 seconds
+        if packetsReceived == numPackets {
+            return data
+        } else {
+            print("Error: Only received \(packetsReceived) packets out of \(numPackets)")
+            return nil
+        }
     }
     
     // SOCKET FUNCTIONS
