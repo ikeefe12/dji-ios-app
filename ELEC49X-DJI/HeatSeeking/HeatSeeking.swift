@@ -15,6 +15,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     // Wifi socket from which data is read
     private var udpSocketManager: UDPSocketManager
     private var imageView: UIImageView?
+    private let getFrameSemaphore = DispatchSemaphore(value: 0)
     // THREADS
     private var dataThread: Thread?
     private var commandThread: Thread?
@@ -70,13 +71,19 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
             autoreleasepool {
                 // get processed data (120x84 array of ints)
                 udpSocketManager.getFrame { (frameString: String) in
-                     // TODO: Set default value since binData is optional
-                    let frame = formatData(hexStr: frameString)
-                    // Save data to shared variable latesFrame so it can be used in displayThread
+                    // Process Data
+                    let frame = self.formatData(hexStr: frameString)
+                    // Display Data
                     DispatchQueue.main.async {
                         self.dispData(frame: frame)
                     }
+                    
+                    self.getFrameSemaphore.signal()
                 }
+                
+                self.getFrameSemaphore.wait()
+                
+                print("Done")
                
                 // Pass data through tracking algorithm (findTrackingCommands is a function TO BE added to this class,
                 // which takes a 120x84 array of Ints and returns a tuple (Float, Float) representing the tracking roll and pitch)
@@ -278,8 +285,8 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     @objc func getFrame(completion: @escaping (String) -> Void) {
+        print("Getting Frame Now")
         packetsReceived = 0
-        sendString("N")
         
         do {
             try udpSocket?.beginReceiving()
@@ -287,8 +294,10 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
             print("Error receiving frame: \(error)")
         }
         
+        sendString("N")
+        
         dispatchQueue.async { [weak self] in
-            while self?.packetsReceived ?? 0 < 21 {
+            while self?.packetsReceived < 21 {
                 // Wait for packets to be received
             }
             
@@ -311,15 +320,16 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
         packetsReceived = packetsReceived + 1
-        if packetsReceived == 1 {
+        if packetsReceived == 0 {
             print("Initialization Complete")
-        } else if packetsReceived > 1 {
+            udpSocket?.pauseReceiving()
+        } else if packetsReceived > 0 {
+            print("Received data packet: \(packetsReceived)")
             let hexData = data.hexString
             let packetNumber = UInt8(hexData.prefix(2), radix: 16)! - 1
             let startIndex = hexData.index(hexData.startIndex, offsetBy: 2)
             print(packetNumber)
             frame[Int(packetNumber)] = String(hexData[startIndex...])
-            print("Received data packet: \(packetNumber)")
         }
     }
 }
