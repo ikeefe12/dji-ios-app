@@ -177,31 +177,18 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     // Takes a hex string of bytes representing 1 thermal image and returns the 120x84 array of grey16 data
     // TESTED
     func formatData(hexStr: String) -> [[Int]] {
-        let numRows = UDPSocketManager.frameHeight
         let numCols = UDPSocketManager.frameWidth
-        var reformattedArray: [[Int]] = Array(repeating: Array(repeating: 0, count: numCols), count: numRows)
 
-        var currentRow = 0
-        var currentCol = 0
-
-        for i in stride(from: 0, to: hexStr.count, by: 4) {
+        let hexPairs = stride(from: 0, to: hexStr.count, by: 4).compactMap { i -> Int? in
             let start = hexStr.index(hexStr.startIndex, offsetBy: i)
             let end = min(hexStr.index(start, offsetBy: 4), hexStr.endIndex)
             let substring = String(hexStr[start..<end])
+            return Int(substring, radix: 16)
+        }
 
-            if let intValue = Int(substring, radix: 16) {
-                reformattedArray[currentRow][currentCol] = intValue
-                currentCol += 1
-
-                if currentCol == numCols {
-                    currentCol = 0
-                    currentRow += 1
-                }
-
-                if currentRow == numRows {
-                    break
-                }
-            }
+        let reformattedArray = stride(from: 0, to: hexPairs.count, by: numCols).map { rowStart -> [Int] in
+            let rowEnd = min(rowStart + numCols, hexPairs.count)
+            return Array(hexPairs[rowStart..<rowEnd])
         }
 
         return reformattedArray
