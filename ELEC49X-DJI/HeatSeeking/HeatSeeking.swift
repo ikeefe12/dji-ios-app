@@ -69,13 +69,15 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         while !Thread.current.isCancelled {
             autoreleasepool {
                 // get processed data (120x84 array of ints)
-                let hexData = udpSocketManager.getFrame()
-                // TODO: Set default value since binData is optional
-                let frame = formatData(hexStr: hexData)
-                // Save data to shared variable latesFrame so it can be used in displayThread
-                DispatchQueue.main.async {
-                    self.dispData(frame: frame)
+                udpSocketManager.getFrame { (frameString: String) in
+                     // TODO: Set default value since binData is optional
+                    let frame = formatData(hexStr: frameString)
+                    // Save data to shared variable latesFrame so it can be used in displayThread
+                    DispatchQueue.main.async {
+                        self.dispData(frame: frame)
+                    }
                 }
+               
                 // Pass data through tracking algorithm (findTrackingCommands is a function TO BE added to this class,
                 // which takes a 120x84 array of Ints and returns a tuple (Float, Float) representing the tracking roll and pitch)
             }
@@ -246,8 +248,9 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     private let IP_ADDRESS = "192.168.0.120"
     private let PORT: UInt16 = 30444
     var udpSocket: GCDAsyncUdpSocket?
-    private var packetsRecieved = -1
+    private var packetsReceived = -1
     private var frame: [String]
+    private let dispatchQueue = DispatchQueue(label: "udpSocketQueue")
 
     override init() {
         let initialHexString = String(repeating: "00", count: 480)
@@ -257,11 +260,11 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
         
         // Initialize UDP socket
         do {
-            // Initialize UDP socket
-            udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: DispatchQueue.global(qos: .background))
+            udpSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: dispatchQueue)
             try udpSocket?.bind(toPort: PORT)
             try udpSocket?.connect(toHost: IP_ADDRESS, onPort: PORT)
             try udpSocket?.beginReceiving()
+
             // Send "Bind HTPA series device" command
             print("send data: BIND")
             sendString("Bind HTPA series device")
@@ -269,33 +272,30 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
             // Send "K" command
             print("send data: TRIGGER")
             sendString("K")
-            
-            while (packetsRecieved == -1) {
-            }
-            udpSocket?.pauseReceiving()
         } catch {
             print("Error initializing UDP socket: \(error)")
         }
     }
     
-    @objc func getFrame() -> String {
+    @objc func getFrame(completion: @escaping (String) -> Void) {
+        packetsReceived = 0
         sendString("N")
         
-        do{
+        do {
             try udpSocket?.beginReceiving()
         } catch {
-            print("Error recieving frame: \(error)")
+            print("Error receiving frame: \(error)")
         }
         
-        while (packetsRecieved < 21) {
-            print("Receiving")
+        dispatchQueue.async { [weak self] in
+            while self?.packetsReceived ?? 0 < 21 {
+                // Wait for packets to be received
+            }
+            
+            self?.udpSocket?.pauseReceiving()
+            let frameString = self?.frame.joined() ?? ""
+            completion(frameString)
         }
-        
-        udpSocket?.pauseReceiving()
-        
-        packetsRecieved = 0
-        
-        return self.frame.joined()
     }
     
     // SOCKET FUNCTIONS
@@ -310,16 +310,16 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
-        packetsRecieved = packetsRecieved + 1
-        if (packetsRecieved == 0) {
+        packetsReceived = packetsReceived + 1
+        if packetsReceived == 1 {
             print("Initialization Complete")
-        } else {
+        } else if packetsReceived > 1 {
             let hexData = data.hexString
             let packetNumber = UInt8(hexData.prefix(2), radix: 16)! - 1
             let startIndex = hexData.index(hexData.startIndex, offsetBy: 2)
             print(packetNumber)
             frame[Int(packetNumber)] = String(hexData[startIndex...])
-            print("Recieved data packet: \(packetNumber)")
+            print("Received data packet: \(packetNumber)")
         }
     }
 }
