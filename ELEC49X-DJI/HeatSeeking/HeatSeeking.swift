@@ -14,6 +14,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     private var droneCommand: DroneCommand
     // Wifi socket from which data is read
     private var udpSocketManager: UDPSocketManager
+    private var imageView: UIImageView?
     // THREADS
     private var dataThread: Thread?
     private var commandThread: Thread?
@@ -33,7 +34,12 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     
     // This will start streaming data as well as displaying data
     @objc func enableThermalDataAndDisplay(view: UIView) {
-        dataThread = Thread(target: self, selector: #selector(getData(view:)), object: nil)
+        // Create a UIImageView
+        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight))
+        imageView?.contentMode = .scaleAspectFit
+        view.addSubview(imageView!)
+        
+        dataThread = Thread(target: self, selector: #selector(getData), object: nil)
         dataThread?.start()
     }
     
@@ -59,17 +65,16 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         commandThread = nil
     }
     
-    @objc private func getData(view: UIView) {
+    @objc private func getData() {
         while !Thread.current.isCancelled {
             autoreleasepool {
-                print("Data Thread")
                 // get processed data (120x84 array of ints)
                 let hexData = thermalData.dataHex
                 // TODO: Set default value since binData is optional
                 let frame = formatData(hexStr: hexData)
                 // Save data to shared variable latesFrame so it can be used in displayThread
                 DispatchQueue.main.async {
-                    self.dispData(view: view, frame: frame)
+                    self.dispData(frame: frame)
                 }
                 // Pass data through tracking algorithm (findTrackingCommands is a function TO BE added to this class,
                 // which takes a 120x84 array of Ints and returns a tuple (Float, Float) representing the tracking roll and pitch)
@@ -85,15 +90,13 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     // displayThread base function
-    @objc func dispData(view: UIView, frame: [[Int]]) {
-
-        // Create a UIImageView
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight))
-        imageView.contentMode = .scaleAspectFit
-        view.addSubview(imageView)
+    @objc func dispData(frame: [[Int]]) {
+        guard let imageView = self.imageView else {
+            return
+        }
         
         print("Display New Frame")
-        let gray16Image = thermalData.grey16Image
+        let gray16Image = frame //thermalData.grey16Image
             
         //  release the memory used by the images at the end of each iteration of the loop
         autoreleasepool {
