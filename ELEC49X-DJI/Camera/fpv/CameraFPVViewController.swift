@@ -19,12 +19,15 @@ class CameraFPVViewController: UIViewController {
     
     var adapter: VideoPreviewerAdapter?
     var needToSetMode = false
+    var heatSeek: HeatSeeking?
         
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.resetUI()
+        
+        heatSeek = HeatSeeking()
         
         let camera = fetchCamera()
         camera?.delegate = self
@@ -86,20 +89,23 @@ class CameraFPVViewController: UIViewController {
         if sender.isOn {
             self.irStatus.text = "IR Enabled"
             self.trackingToggle.isEnabled = true
-            let test = HeatSeeking()
-            test.dispData(view: self.view)
+            heatSeek?.enableThermalDataAndDisplay(view: self.view)
         } else {
             self.irStatus.text = "IR Disabled"
             self.trackingToggle.setOn(false, animated: true)
             self.trackingToggle.isEnabled = false
+            heatSeek?.stopTracking()
+            heatSeek?.disableThermalDataAndDisplay()
         }
     }
     
     @objc func trackingStateChanged(_ sender: UISwitch) {
         if sender.isOn {
             self.trackingStatus.text = "Tracking Enabled"
+            heatSeek?.startTracking()
         } else {
             self.trackingStatus.text = "Tracking Disabled"
+            heatSeek?.stopTracking()
         }
     }
     

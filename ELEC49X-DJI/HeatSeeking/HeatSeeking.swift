@@ -68,10 +68,11 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     @objc private func getData() {
         while !Thread.current.isCancelled {
             autoreleasepool {
+                print("Data Thread")
                 // get processed data (120x84 array of ints)
-                let binData = self.udpSocketManager.getFrame()
+                let hexData = thermalData.dataHex
                 // TODO: Set default value since binData is optional
-                let frame = formatData(hexStr: String())
+                let frame = formatData(hexStr: hexData)
                 // Save data to shared variable latesFrame so it can be used in displayThread
                 sharedVars.setLatestFrame(frame)
                 sharedVars.setNewFrame(true)
@@ -96,8 +97,10 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         
-        // while !Thread.current.isCancelled {
+        while !Thread.current.isCancelled {
+            print("Display Thread")
             if sharedVars.getNewFrame() {
+                print("Display New Frame")
                 let gray16Image = sharedVars.getLatestFrame()
                 sharedVars.setNewFrame(false)
                 
@@ -123,7 +126,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                     imageView.image = image
                 }
             }
-        // }
+        }
     }
     
     // commandThread base function
@@ -131,11 +134,15 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         var commandRoll : Float = 0.0
         var commandPitch : Float = 0.0
         while !Thread.current.isCancelled {
+            print("Command Thread")
             if sharedVars.getNewCommands() {
-               // SHARED VARIABLES
+                print("New Commands:")
+                // SHARED VARIABLES
                (commandRoll, commandPitch) = sharedVars.getRollPitch()
                // set newCommands flag to false, allowing the following loop to loop until the other thread sets it back to true
                sharedVars.setNewCommands(false)
+                print(commandRoll)
+                print(commandPitch)
             }
             sendDroneControlData(commandRoll: commandRoll, commandPitch: commandPitch)
         }
@@ -150,9 +157,29 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     @objc private func findTrackingCommands(_ frame: [[Int]]) -> CGPoint {
         // Implement the tracking algorithm here
         // NORMALIZE DATA (normalizeTemperatures)
+        let normData = normalizeTemperatures(thermalImage: frame)
         // FIND COORDINATES (findCenterOfHeat)
+        var (x, y) = findCenterOfHeat(thermalImage: normData)
         // DECIDE ON COMMANDS
-        return CGPoint(x: 0.0, y: 0.0) // Replace with real values calculated from the tracking algorithm
+        let xNorm = Double(x) / 119.0 - 0.5
+        let yNorm = Double(y) / 83.0 - 0.5
+        
+        var roll = 0.0
+        var pitch = 0.0
+        
+        if xNorm > 0.1 {
+            pitch = 1.0
+        } else if xNorm < -0.1 {
+            pitch = -1.0
+        }
+        
+        if yNorm > 0.1 {
+            roll = 1.0
+        } else if yNorm < -0.1 {
+            roll = -1.0
+        }
+        
+        return CGPoint(x: roll, y: pitch) // Replace with real values calculated from the tracking algorithm
     }
     
     // Takes a hex string of bytes representing 1 thermal image and returns the 120x84 array of grey16 data
@@ -335,7 +362,7 @@ class SharedVars {
     private let queue = DispatchQueue(label: "com.example.HeatSeeking.sharedVarQueue", attributes: .concurrent)
     private var _newCommands: Bool = false
     private var _newFrame: Bool = true
-    private var _latestFrame: [[Int]] = thermalData.grey16Image
+    private var _latestFrame: [[Int]]
     private var _roll: Float = 0
     private var _pitch: Float = 0
 
