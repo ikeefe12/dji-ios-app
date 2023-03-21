@@ -61,7 +61,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         let commandRoll : Float = 0.0
         let commandPitch : Float = 0.5
         print("Starting Test")
-        for _ in 0..<20 {
+        for _ in 0..<40 {
             sendDroneControlData(commandRoll: commandRoll, commandPitch: commandPitch)
         }
         droneCommand.disableVirtualSticks()
@@ -109,14 +109,14 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                     // Process Data
                     let intFrame = self.formatData(hexStr: frameString)
                     print("Frame Processed")
+                    // Get and save tracking commands
+                    let (x, y) = self.findTrackingCommands(intFrame)
+                    self.sharedVars.setLocation(x, y)
+                    self.sharedVars.setNewLocation(true)
                     // Display Data
                     DispatchQueue.main.async {
                         self.dispData(frame: intFrame)
                     }
-                    // Get and save tracking commands
-                    let trackingCommands = self.findTrackingCommands(intFrame)
-                    self.sharedVars.setRollPitch(Float(trackingCommands.x), Float(trackingCommands.y))
-                    self.sharedVars.setNewCommands(true)
                     print("Tracking Commands Set")
                     self.getFrameSemaphore.signal()
                 }
@@ -131,6 +131,8 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         guard let imageView = self.imageView else {
             return
         }
+        
+        let (x, y) = sharedVars.getLocation()
         
         print("Display New Frame")
         let gray16Image = frame //thermalData.grey16Image
@@ -163,14 +165,12 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         var commandRoll : Float = 0.0
         var commandPitch : Float = 0.0
         while !Thread.current.isCancelled {
-            if sharedVars.getNewCommands() {
-                print("New Commands:")
+            if sharedVars.getNewLocation() {
+                print("New Location:")
                 // SHARED VARIABLES
-               (commandRoll, commandPitch) = sharedVars.getRollPitch()
+                let (x,y) = sharedVars.getLocation()
                // set newCommands flag to false, allowing the following loop to loop until the other thread sets it back to true
-               sharedVars.setNewCommands(false)
-                print(commandRoll)
-                print(commandPitch)
+               sharedVars.setNewLocation(false)
             }
             sendDroneControlData(commandRoll: commandRoll, commandPitch: commandPitch)
         }
@@ -185,32 +185,14 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     
-    @objc private func findTrackingCommands(_ frame: [[Int]]) -> CGPoint {
+    private func findTrackingCommands(_ frame: [[Int]]) -> (Int, Int) {
         // Implement the tracking algorithm here
         // NORMALIZE DATA (normalizeTemperatures)
         let normData = normalizeTemperatures(thermalImage: frame)
         // FIND COORDINATES (findCenterOfHeat)
         let (x, y) = findCenterOfHeat(thermalImage: normData)
-        // DECIDE ON COMMANDS
-        let xNorm = Double(x) / 119.0 - 0.5
-        let yNorm = Double(y) / 83.0 - 0.5
         
-        var roll = 0.0
-        var pitch = 0.0
-        
-        if xNorm > 0.1 {
-            pitch = 1.0
-        } else if xNorm < -0.1 {
-            pitch = -1.0
-        }
-        
-        if yNorm > 0.1 {
-            roll = 1.0
-        } else if yNorm < -0.1 {
-            roll = -1.0
-        }
-        
-        return CGPoint(x: roll, y: pitch)
+        return (x, y)
     }
     
     // Takes a hex string of bytes representing 1 thermal image and returns the 120x84 array of grey16 data
@@ -246,7 +228,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
 
         let reformattedArray = stride(from: 0, to: hexPairs.count, by: numCols).map { rowStart -> [Int] in
             let rowEnd = min(rowStart + numCols, hexPairs.count)
-            return Array(hexPairs[rowStart..<rowEnd])
+            return Array(hexPairs[rowStart..<rowEnd]).reversed()
         }
 
         return reformattedArray
@@ -396,37 +378,37 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
 
 class SharedVars {
     private let queue = DispatchQueue(label: "com.example.HeatSeeking.sharedVarQueue", attributes: .concurrent)
-    private var _newCommands: Bool = false
-    private var _roll: Float = 0
-    private var _pitch: Float = 0
+    private var _newLocation: Bool = false
+    private var _x: Int = 0
+    private var _y: Int = 0
 
     // Initialize the shared variables
     init() {
     }
 
     // SHARED VARIABLE ACCESS FUNCTIONS
-    func setNewCommands(_ value: Bool) {
+    func setNewLocation(_ value: Bool) {
         queue.async(flags: .barrier) {
-            self._newCommands = value
+            self._newLocation = value
         }
     }
     
-    func setRollPitch(_ roll: Float, _ pitch: Float) {
+    func setLocation(_ x: Int, _ y: Int) {
         queue.async(flags: .barrier) {
-            self._roll = roll
-            self._pitch = pitch
+            self._x = x
+            self._y = y
         }
     }
     
-    func getNewCommands() -> Bool {
+    func getNewLocation() -> Bool {
         return queue.sync {
-            return _newCommands
+            return _newLocation
         }
     }
     
-    func getRollPitch() -> (Float, Float) {
+    func getLocation() -> (Int, Int) {
         return queue.sync {
-            return (_roll, _pitch)
+            return (_x, _y)
         }
     }
 }
