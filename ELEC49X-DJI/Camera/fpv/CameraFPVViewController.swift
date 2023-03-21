@@ -68,6 +68,9 @@ class CameraFPVViewController: UIViewController {
         self.emergencyLand.setTitle("Emergency Land", for: .normal)
         // self.emergencyLand.tintColor = UIColor.red
         self.emergencyLand.addTarget(self, action: #selector(emergencyLandAction(_:)), for: .touchUpInside)
+        // TEST Button
+        self.test.setTitle("Move Right", for: .normal)
+        self.test.addTarget(self, action: #selector(testRight(_:)), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -134,10 +137,9 @@ class CameraFPVViewController: UIViewController {
     }
     
     @objc func testRight(_ sender: UIButton) {
-        // test right
-        // set pitch = 0.5, roll = 0 (or somethign)
-        // sleep 5 seconds
-        // semd it baclk
+        // This is a function that will test go right
+        // Sending go right command 20 times (over 1s)
+        sender.isEnabled = false
         print("Test Right")
         heatSeek?.testRight()
     }

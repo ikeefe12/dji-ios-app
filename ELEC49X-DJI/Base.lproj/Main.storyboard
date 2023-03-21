@@ -255,9 +255,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nK8-pe-UBX">
+                                <rect key="frame" x="740" y="250" width="130" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="WEz-hN-Bee"/>
+                                    <constraint firstAttribute="height" constant="61" id="nu7-RA-n0m"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioi-mw-lJb">
-                                <rect key="frame" x="712" y="184" width="187" height="58"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <rect key="frame" x="712" y="184" width="186" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="15" maxX="10" maxY="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
@@ -265,24 +274,22 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nK8-pe-UBX">
-                                <rect key="frame" x="712" y="250" width="130" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="HGe-bd-Hhb" firstAttribute="top" secondItem="UbC-aS-itK" secondAttribute="bottom" constant="83" id="1KL-uJ-7Tr"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="nK8-pe-UBX" secondAttribute="bottom" constant="-18" id="3qg-gN-VS7"/>
                             <constraint firstItem="UbC-aS-itK" firstAttribute="top" secondItem="dLf-fo-NEI" secondAttribute="bottom" constant="50" id="7Df-80-HQw"/>
                             <constraint firstAttribute="trailing" secondItem="Mkf-gh-LWK" secondAttribute="trailing" constant="134" id="9vC-A6-oD6"/>
                             <constraint firstItem="cSc-dy-wM7" firstAttribute="centerY" secondItem="sDU-Qx-t7r" secondAttribute="centerY" id="CpS-xO-afG"/>
                             <constraint firstItem="ioi-mw-lJb" firstAttribute="leading" secondItem="sDU-Qx-t7r" secondAttribute="leading" id="MQN-Tc-BJN"/>
                             <constraint firstItem="Mkf-gh-LWK" firstAttribute="top" secondItem="dLf-fo-NEI" secondAttribute="bottom" constant="25" id="Opa-On-2py"/>
+                            <constraint firstItem="nK8-pe-UBX" firstAttribute="top" secondItem="ioi-mw-lJb" secondAttribute="bottom" constant="21" id="UcF-se-ztM"/>
                             <constraint firstItem="cSc-dy-wM7" firstAttribute="leading" secondItem="axJ-bp-qkO" secondAttribute="leading" id="Zwh-PU-LrR"/>
+                            <constraint firstItem="nK8-pe-UBX" firstAttribute="centerX" secondItem="ioi-mw-lJb" secondAttribute="centerX" id="c6H-WO-cvE"/>
                             <constraint firstItem="UbC-aS-itK" firstAttribute="leading" secondItem="Tgx-5W-OhD" secondAttribute="leadingMargin" constant="24" id="d0a-Ld-0oM"/>
                             <constraint firstItem="Mkf-gh-LWK" firstAttribute="leading" secondItem="UbC-aS-itK" secondAttribute="trailing" constant="22" id="dTs-2s-H4Y"/>
+                            <constraint firstItem="nK8-pe-UBX" firstAttribute="leading" secondItem="UbC-aS-itK" secondAttribute="trailing" constant="50" id="f8I-cC-X6X"/>
                             <constraint firstItem="ioi-mw-lJb" firstAttribute="top" secondItem="cSc-dy-wM7" secondAttribute="bottom" constant="50" id="gEt-8Y-7SC"/>
                             <constraint firstItem="axJ-bp-qkO" firstAttribute="leading" secondItem="Mkf-gh-LWK" secondAttribute="trailing" constant="54" id="gkL-SN-7sa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sDU-Qx-t7r" secondAttribute="trailing" constant="54" id="oss-zt-KNg"/>
@@ -297,7 +304,7 @@
                         <outlet property="fpvView" destination="UbC-aS-itK" id="z7o-1p-F8N"/>
                         <outlet property="irStatus" destination="Mkf-gh-LWK" id="1T5-lQ-Uej"/>
                         <outlet property="irToggle" destination="axJ-bp-qkO" id="e6A-aj-uXH"/>
-                        <outlet property="test" destination="nK8-pe-UBX" id="Cmx-Vy-cNy"/>
+                        <outlet property="test" destination="nK8-pe-UBX" id="leF-fG-GjH"/>
                         <outlet property="trackingStatus" destination="sDU-Qx-t7r" id="pHE-mj-ysM"/>
                         <outlet property="trackingToggle" destination="cSc-dy-wM7" id="vKZ-co-Yzf"/>
                     </connections>

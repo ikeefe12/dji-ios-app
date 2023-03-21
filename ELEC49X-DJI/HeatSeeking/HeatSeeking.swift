@@ -25,7 +25,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     
     override init() {
         // SHARED VARIABLEs Initialized
-        sharedVars = SharedVars(frameWidth: UDPSocketManager.frameWidth, frameHeight: UDPSocketManager.frameHeight)
+        sharedVars = SharedVars()
         // Drone Command Object
         droneCommand = DroneCommand()
         // Initialize UDP port
@@ -52,25 +52,26 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     
     @objc func emergencyLanding(){
         print("LANDING REQUEST")
+        droneCommand.enableVirtualSticks()
         droneCommand.emergencyLand()
     }
     
     @objc func testRight(){
-        var commandRoll : Float = 0.0
-        var commandPitch : Float = 0.0
-        commandPitch = 1.0
-        sendDroneControlData(commandRoll: commandRoll, commandPitch: commandPitch)
-        Thread.sleep(forTimeInterval: 1) // Sleep for 500 milliseconds to achieve 20Hz frequency
-        commandPitch = 0.0
-        print("Sending Test")
-        sendDroneControlData(commandRoll: commandRoll, commandPitch: commandPitch)
-        
+        droneCommand.enableVirtualSticks()
+        let commandRoll : Float = 0.0
+        let commandPitch : Float = 0.5
+        print("Starting Test")
+        for _ in 0..<20 {
+            sendDroneControlData(commandRoll: commandRoll, commandPitch: commandPitch)
+        }
+        droneCommand.disableVirtualSticks()
+        print("End Test")
     }
     
     // start sending commands to the drone, this should only run if the dataThread is running
     @objc func startTracking() {
         // enable virtual sticks on the drone
-        droneCommand.toggleVirtualSticks(enabled: true)
+        droneCommand.enableVirtualSticks()
         commandThread = Thread(target: self, selector: #selector(sendCommand), object: nil)
         commandThread?.start()
     }
@@ -79,33 +80,48 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     @objc func stopTracking() {
         commandThread?.cancel()
         // disable virtual stick commmand of the drone
-        droneCommand.toggleVirtualSticks(enabled: false)
+        droneCommand.disableVirtualSticks()
         commandThread = nil
     }
     
     @objc private func getData() {
         while !Thread.current.isCancelled {
             autoreleasepool {
+                print("Getting Frame")
                 // get processed data (120x84 array of ints)
                 udpSocketManager.getFrame { (frameString: String) in
-                    // Process Data
-                    let frame = self.formatData(hexStr: frameString)
-                    // Display Data
-                    DispatchQueue.main.async {
-                        self.dispData(frame: frame)
+                    // Check correct amount of data recieved
+                    if let stringData = frameString.data(using: .utf8) {
+                        if stringData.count == 40320 {
+                            print("Frame Recieved")
+                        } else {
+                            print("Invalid Frame")
+                            print(stringData.count)
+                            self.getFrameSemaphore.signal()
+                            return
+                        }
+                    } else {
+                        print("Invalid Frame")
+                        self.getFrameSemaphore.signal()
+                        return
                     }
                     
+                    // Process Data
+                    let intFrame = self.formatData(hexStr: frameString)
+                    print("Frame Processed")
+                    // Display Data
+                    DispatchQueue.main.async {
+                        self.dispData(frame: intFrame)
+                    }
+                    // Get and save tracking commands
+                    let trackingCommands = self.findTrackingCommands(intFrame)
+                    self.sharedVars.setRollPitch(Float(trackingCommands.x), Float(trackingCommands.y))
+                    self.sharedVars.setNewCommands(true)
+                    print("Tracking Commands Set")
                     self.getFrameSemaphore.signal()
                 }
                 
                 self.getFrameSemaphore.wait()
-                
-                print("Done")
-               
-                // Pass data through tracking algorithm (findTrackingCommands is a function TO BE added to this class,
-                // which takes a 120x84 array of Ints and returns a tuple (Float, Float) representing the tracking roll and pitch)
-                
-                //sharedVars.setNewCommands(<#T##value: Bool##Bool#>)
             }
         }
     }
@@ -147,7 +163,6 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         var commandRoll : Float = 0.0
         var commandPitch : Float = 0.0
         while !Thread.current.isCancelled {
-            print("Command Thread")
             if sharedVars.getNewCommands() {
                 print("New Commands:")
                 // SHARED VARIABLES
@@ -162,6 +177,9 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     }
 
     @objc private func sendDroneControlData(commandRoll: Float, commandPitch: Float) {
+        print("Sending Commands:")
+        print(commandRoll)
+        print(commandPitch)
         droneCommand.sendControlData(throttle: 0.0, pitch: commandPitch, roll: commandRoll, yaw: 0.0)
         Thread.sleep(forTimeInterval: 0.05) // Sleep for 50 milliseconds to achieve 20Hz frequency
     }
@@ -192,19 +210,38 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
             roll = -1.0
         }
         
-        return CGPoint(x: roll, y: pitch) // Replace with real values calculated from the tracking algorithm
+        return CGPoint(x: roll, y: pitch)
     }
     
     // Takes a hex string of bytes representing 1 thermal image and returns the 120x84 array of grey16 data
     // TESTED
+    
     func formatData(hexStr: String) -> [[Int]] {
         let numCols = UDPSocketManager.frameWidth
 
-        let hexPairs = stride(from: 0, to: hexStr.count, by: 4).compactMap { i -> Int? in
-            let start = hexStr.index(hexStr.startIndex, offsetBy: i)
-            let end = min(hexStr.index(start, offsetBy: 4), hexStr.endIndex)
-            let substring = String(hexStr[start..<end])
-            return Int(substring, radix: 16)
+        func hexValue(_ char: Character) -> Int? {
+            switch char {
+            case "0"..."9": return Int(String(char))
+            case "a"..."f": return 10 + Int(char.asciiValue!) - Int(Character("a").asciiValue!)
+            case "A"..."F": return 10 + Int(char.asciiValue!) - Int(Character("A").asciiValue!)
+            default: return nil
+            }
+        }
+
+        func hexPairValue(_ chars: ArraySlice<Character>) -> Int? {
+            guard chars.count == 4,
+                  let first = hexValue(chars[chars.startIndex]),
+                  let second = hexValue(chars[chars.startIndex + 1]),
+                  let third = hexValue(chars[chars.startIndex + 2]),
+                  let fourth = hexValue(chars[chars.startIndex + 3]) else {
+                return nil
+            }
+            return (first << 12) | (second << 8) | (third << 4) | fourth
+        }
+
+        let hexChars = Array(hexStr)
+        let hexPairs = stride(from: 0, to: hexChars.count, by: 4).compactMap { i -> Int? in
+            hexPairValue(hexChars[i..<min(i + 4, hexChars.count)])
         }
 
         let reformattedArray = stride(from: 0, to: hexPairs.count, by: numCols).map { rowStart -> [Int] in
@@ -316,25 +353,31 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
         
         while packetsReceived < 21 {
             // Wait for packets to be received
-            semaphore.wait(timeout: .now() + 0.1)
+            let result = semaphore.wait(timeout: .now() + 0.5)
+            
+            if result == .timedOut {
+                completion(String())
+                return
+            }
         }
 
         udpSocket?.pauseReceiving()
-        let frameString = frame.joined() ?? ""
+        let frameString = frame.joined()
         completion(frameString)
     }
     
     func udpSocket(_ sock: GCDAsyncUdpSocket, didReceive data: Data, fromAddress address: Data, withFilterContext filterContext: Any?) {
-        packetsReceived = packetsReceived + 1
-        if packetsReceived == 0 {
+        if packetsReceived == -1 {
+            packetsReceived = packetsReceived + 1
             print("Initialization Complete")
-        } else if packetsReceived > 0 {
+        } else if packetsReceived >= 0 {
             let hexData = data.hexString
             let packetNumber = UInt8(hexData.prefix(2), radix: 16)! - 1
             let startIndex = hexData.index(hexData.startIndex, offsetBy: 2)
-            print(packetNumber)
             frame[Int(packetNumber)] = String(hexData[startIndex...])
+            print(packetsReceived)
             print("Received data packet: \(packetNumber)")
+            packetsReceived = packetsReceived + 1
             semaphore.signal()
         }
     }
@@ -354,14 +397,11 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
 class SharedVars {
     private let queue = DispatchQueue(label: "com.example.HeatSeeking.sharedVarQueue", attributes: .concurrent)
     private var _newCommands: Bool = false
-    private var _newFrame: Bool = true
-    private var _latestFrame: [[Int]]
     private var _roll: Float = 0
     private var _pitch: Float = 0
 
     // Initialize the shared variables
-    init(frameWidth: Int, frameHeight: Int) {
-        _latestFrame = [[Int]](repeating: [Int](repeating: 0, count: frameHeight), count: frameWidth)
+    init() {
     }
 
     // SHARED VARIABLE ACCESS FUNCTIONS
