@@ -145,6 +145,11 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
             let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
             let context = CGContext(data: nil, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight, bitsPerComponent: 16, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
             context.drawGray16Image(gray16Image)
+            
+            let markerSize: CGFloat = 6.0
+            let markerRect = CGRect(x: x - markerSize / 2, y: y - markerSize / 2, width: markerSize, height: markerSize)
+            context.setFillColor(UIColor.red.cgColor) // Set the marker color
+            context.fillEllipse(in: markerRect)
 
             // Create a CGImage from the CGContext
             guard let cgImage = context.makeImage() else {
