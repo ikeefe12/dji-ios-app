@@ -131,10 +131,10 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
             return
         }
         
-        // let (x, y) = sharedVars.getLocation()
+        let (x, y) = sharedVars.getLocation()
         
         print("Display New Frame")
-        let gray16Image = frame //thermalData.grey16Image
+        let gray16Image = frame 
             
         //  release the memory used by the images at the end of each iteration of the loop
         autoreleasepool {
