@@ -57,15 +57,14 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     @objc func testRight(){
-        droneCommand.enableVirtualSticks()
-        let commandRoll : Float = 0.0
-        let commandPitch : Float = 0.5
-        print("Starting Test")
-        for _ in 0..<40 {
-            sendDroneControlData(commandRoll: commandRoll, commandPitch: commandPitch)
-        }
-        droneCommand.disableVirtualSticks()
-        print("End Test")
+        sharedVars.setNewLocation(true)
+        sharedVars.setLocation(40, 36)
+    }
+    
+    @objc func testMiddle(){
+        sharedVars.setNewLocation(true)
+        // data within 10% - should set command back to 0
+        sharedVars.setLocation(49, 34)
     }
     
     // start sending commands to the drone, this should only run if the dataThread is running
@@ -132,7 +131,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
             return
         }
         
-        let (x, y) = sharedVars.getLocation()
+        // let (x, y) = sharedVars.getLocation()
         
         print("Display New Frame")
         let gray16Image = frame //thermalData.grey16Image
@@ -166,9 +165,12 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         var commandPitch : Float = 0.0
         while !Thread.current.isCancelled {
             if sharedVars.getNewLocation() {
-                print("New Location:")
+                print("New Location")
                 // SHARED VARIABLES
                 let (x,y) = sharedVars.getLocation()
+                print(x)
+                print(y)
+                (commandRoll, commandPitch) = getFlightCommand(x: x,y: y)
                // set newCommands flag to false, allowing the following loop to loop until the other thread sets it back to true
                sharedVars.setNewLocation(false)
             }
@@ -177,13 +179,9 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     }
 
     @objc private func sendDroneControlData(commandRoll: Float, commandPitch: Float) {
-        print("Sending Commands:")
-        print(commandRoll)
-        print(commandPitch)
         droneCommand.sendControlData(throttle: 0.0, pitch: commandPitch, roll: commandRoll, yaw: 0.0)
         Thread.sleep(forTimeInterval: 0.05) // Sleep for 50 milliseconds to achieve 20Hz frequency
     }
-    
     
     private func findTrackingCommands(_ frame: [[Int]]) -> (Int, Int) {
         // Implement the tracking algorithm here
@@ -193,6 +191,23 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         let (x, y) = findCenterOfHeat(thermalImage: normData)
         
         return (x, y)
+    }
+    
+    private func getFlightCommand(x: Int, y: Int) -> (Float, Float) {
+        var commandRoll = Float(0.0)
+        var commandPitch = Float(0.0)
+        let normalizedX = (Float(x)/119.0) - 0.5
+        let normalizedY = (Float(y)/83.0) - 0.5
+        
+        if (abs(normalizedX) > 0.1 && abs(normalizedX) < 0.5) {
+            commandPitch = normalizedX * 3.0
+        }
+        
+        if (abs(normalizedY) > 0.1 && abs(normalizedY) < 0.5) {
+            commandRoll = normalizedY * 3.0
+        }
+        
+        return (commandRoll, commandPitch)
     }
     
     // Takes a hex string of bytes representing 1 thermal image and returns the 120x84 array of grey16 data

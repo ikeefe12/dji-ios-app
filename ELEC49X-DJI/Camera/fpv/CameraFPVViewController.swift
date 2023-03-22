@@ -22,6 +22,7 @@ class CameraFPVViewController: UIViewController {
     var adapter: VideoPreviewerAdapter?
     var needToSetMode = false
     var heatSeek: HeatSeeking?
+    private var isTestRight = true
         
     
     
@@ -137,11 +138,12 @@ class CameraFPVViewController: UIViewController {
     }
     
     @objc func testRight(_ sender: UIButton) {
-        // This is a function that will test go right
-        // Sending go right command 20 times (over 1s)
-        sender.isEnabled = false
-        print("Test Right")
-        heatSeek?.testRight()
+        if isTestRight {
+            heatSeek?.testRight()
+        } else {
+            heatSeek?.testMiddle()
+        }
+        isTestRight.toggle()
     }
 }
 
