@@ -16,7 +16,6 @@ class CameraFPVViewController: UIViewController {
     @IBOutlet weak var trackingToggle: UISwitch!
     @IBOutlet weak var emergencyLand: UIButton!
     @IBOutlet weak var fpvView: UIView!
-    @IBOutlet weak var test: UIButton!
 
     
     var adapter: VideoPreviewerAdapter?
@@ -69,9 +68,6 @@ class CameraFPVViewController: UIViewController {
         self.emergencyLand.setTitle("Emergency Land", for: .normal)
         // self.emergencyLand.tintColor = UIColor.red
         self.emergencyLand.addTarget(self, action: #selector(emergencyLandAction(_:)), for: .touchUpInside)
-        // TEST Button
-        self.test.setTitle("Move Right", for: .normal)
-        self.test.addTarget(self, action: #selector(testRight(_:)), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,15 +131,6 @@ class CameraFPVViewController: UIViewController {
         heatSeek?.stopTracking()
         print("Emergency Land")
         heatSeek?.emergencyLanding()
-    }
-    
-    @objc func testRight(_ sender: UIButton) {
-        if isTestRight {
-            heatSeek?.testRight()
-        } else {
-            heatSeek?.testMiddle()
-        }
-        isTestRight.toggle()
     }
 }
 

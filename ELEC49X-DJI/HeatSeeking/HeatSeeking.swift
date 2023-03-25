@@ -40,8 +40,21 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         imageView?.contentMode = .scaleAspectFit
         view.addSubview(imageView!)
         
+        adjustImageView(view: view)
+        
         dataThread = Thread(target: self, selector: #selector(getData), object: nil)
         dataThread?.start()
+    }
+    
+    func adjustImageView(view: UIView) {
+        guard let imageView = self.imageView else {
+            return
+        }
+        let newOriginX = CGFloat(30)
+        let newWidth = imageView.frame.width * 3
+        let newHeight = imageView.frame.height * 3
+        let newOriginY = (view.frame.height - newHeight)/2
+        imageView.frame = CGRect(origin: CGPoint(x: newOriginX, y: newOriginY), size: CGSize(width: newWidth, height: newHeight))
     }
     
     // Stop streaming data
@@ -54,17 +67,6 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         print("LANDING REQUEST")
         droneCommand.enableVirtualSticks()
         droneCommand.emergencyLand()
-    }
-    
-    @objc func testRight(){
-        sharedVars.setNewLocation(true)
-        sharedVars.setLocation(40, 36)
-    }
-    
-    @objc func testMiddle(){
-        sharedVars.setNewLocation(true)
-        // data within 10% - should set command back to 0
-        sharedVars.setLocation(49, 34)
     }
     
     // start sending commands to the drone, this should only run if the dataThread is running
@@ -139,23 +141,18 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
 
         autoreleasepool {
             let colorSpace = CGColorSpaceCreateDeviceRGB()
-            let bytesPerPixel = MemoryLayout<UInt8>.stride * 3
+            let bytesPerPixel = 4
             let bytesPerRow = bytesPerPixel * UDPSocketManager.frameWidth
-            let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
-            let context = CGContext(data: nil, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
+            let bitmapInfo = CGBitmapInfo.byteOrder32Big.rawValue | CGImageAlphaInfo.premultipliedLast.rawValue
+            let context = CGContext(data: nil, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo)!
 
             for (i, row) in normalizedImage.enumerated() {
                 for (j, value) in row.enumerated() {
                     let (r, g, b) = jetColorMap(value)
                     context.setFillColor(CGColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: 1.0))
-                    context.fill(CGRect(x: j, y: i, width: 1, height: 1))
+                    context.fill(CGRect(x: j, y: UDPSocketManager.frameHeight-1-i, width: 1, height: 1))
                 }
             }
-
-            let markerSize: CGFloat = 6.0
-            let markerRect = CGRect(x: x - markerSize / 2, y: y - markerSize / 2, width: markerSize, height: markerSize)
-            context.setFillColor(UIColor.red.cgColor) // Set the marker color
-            context.fillEllipse(in: markerRect)
 
             guard let cgImage = context.makeImage() else {
                 fatalError("Failed to create CGImage.")
@@ -298,7 +295,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         return (centerX, centerY)
     }
     
-    func jetColorMap(_ value: CGFloat) -> (UInt8, UInt8, UInt8) {
+    func jetColorMap(_ value: Double) -> (UInt8, UInt8, UInt8) {
         let numberOfColors = 4
         let t = value * CGFloat(numberOfColors - 1)
 
