@@ -153,6 +153,12 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                     context.fill(CGRect(x: j, y: UDPSocketManager.frameHeight-1-i, width: 1, height: 1))
                 }
             }
+            
+            // draw black dot at (x,y)
+            let dotRadius: CGFloat = 2.0
+            let adjustedY = UDPSocketManager.frameHeight - 1 - y
+            context.setFillColor(UIColor.black.cgColor)
+            context.fillEllipse(in: CGRect(x: CGFloat(x)-dotRadius, y: CGFloat(adjustedY) - dotRadius, width: 2*dotRadius, height: 2*dotRadius))
 
             guard let cgImage = context.makeImage() else {
                 fatalError("Failed to create CGImage.")
@@ -289,8 +295,8 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         }
 
         // Calculate the center position
-        let centerX = Int(round(Double(coordinates.map { $0[0] }.reduce(0, +)) / Double(coordinates.count)))
-        let centerY = Int(round(Double(coordinates.map { $0[1] }.reduce(0, +)) / Double(coordinates.count)))
+        let centerY = Int(round(Double(coordinates.map { $0[0] }.reduce(0, +)) / Double(coordinates.count)))
+        let centerX = Int(round(Double(coordinates.map { $0[1] }.reduce(0, +)) / Double(coordinates.count)))
 
         return (centerX, centerY)
     }
