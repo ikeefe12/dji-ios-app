@@ -107,9 +107,10 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                     
                     // Process Data
                     let intFrame = self.formatData(hexStr: frameString)
+                    let normFrame = self.normalizeTemperatures(thermalImage: intFrame)
                     print("Frame Processed")
                     // Get and save tracking commands
-                    let (x, y) = self.findTrackingCommands(intFrame)
+                    let (x, y) = self.findCenterOfHeat(thermalImage: (normFrame))
                     self.sharedVars.setLocation(x, y)
                     self.sharedVars.setNewLocation(true)
                     // Display Data
@@ -131,8 +132,6 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
             return
         }
         
-        let (x, y) = sharedVars.getLocation()
-        
         print("Display New Frame")
         let gray16Image = frame 
             
@@ -145,11 +144,6 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
             let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
             let context = CGContext(data: nil, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight, bitsPerComponent: 16, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
             context.drawGray16Image(gray16Image)
-            
-            let markerSize: CGFloat = 6.0
-            let markerRect = CGRect(x: x - markerSize / 2, y: y - markerSize / 2, width: markerSize, height: markerSize)
-            context.setFillColor(UIColor.red.cgColor) // Set the marker color
-            context.fillEllipse(in: markerRect)
 
             // Create a CGImage from the CGContext
             guard let cgImage = context.makeImage() else {
@@ -186,16 +180,6 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     @objc private func sendDroneControlData(commandRoll: Float, commandPitch: Float) {
         droneCommand.sendControlData(throttle: 0.0, pitch: commandPitch, roll: commandRoll, yaw: 0.0)
         Thread.sleep(forTimeInterval: 0.05) // Sleep for 50 milliseconds to achieve 20Hz frequency
-    }
-    
-    private func findTrackingCommands(_ frame: [[Int]]) -> (Int, Int) {
-        // Implement the tracking algorithm here
-        // NORMALIZE DATA (normalizeTemperatures)
-        let normData = normalizeTemperatures(thermalImage: frame)
-        // FIND COORDINATES (findCenterOfHeat)
-        let (x, y) = findCenterOfHeat(thermalImage: normData)
-        
-        return (x, y)
     }
     
     private func getFlightCommand(x: Int, y: Int) -> (Float, Float) {
