@@ -65,7 +65,6 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     
     @objc func emergencyLanding(){
         print("LANDING REQUEST")
-        droneCommand.enableVirtualSticks()
         droneCommand.emergencyLand()
     }
     
@@ -189,7 +188,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     }
 
     @objc private func sendDroneControlData(commandRoll: Float, commandPitch: Float) {
-        droneCommand.sendControlData(throttle: 0.0, pitch: commandPitch, roll: commandRoll, yaw: 0.0)
+        droneCommand.sendControlData(throttle: 0.0, pitch: commandPitch, roll: 0.0, yaw: 0.0)
         Thread.sleep(forTimeInterval: 0.05) // Sleep for 50 milliseconds to achieve 20Hz frequency
     }
     
@@ -200,11 +199,11 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         let normalizedY = (Float(y)/83.0) - 0.5
         
         if (abs(normalizedX) > 0.1 && abs(normalizedX) < 0.5) {
-            commandPitch = normalizedX * 3.0
+            commandPitch = normalizedX * 2.0
         }
         
         if (abs(normalizedY) > 0.1 && abs(normalizedY) < 0.5) {
-            commandRoll = normalizedY * 3.0
+            commandRoll = normalizedY * 2.0
         }
         
         return (commandRoll, commandPitch)
