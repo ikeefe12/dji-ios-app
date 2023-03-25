@@ -115,7 +115,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                     self.sharedVars.setNewLocation(true)
                     // Display Data
                     DispatchQueue.main.async {
-                        self.dispData(frame: intFrame)
+                        self.dispData(frame: normFrame)
                     }
                     print("Tracking Commands Set")
                     self.getFrameSemaphore.signal()
@@ -127,33 +127,41 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     }
     
     // displayThread base function
-    @objc func dispData(frame: [[Int]]) {
+    @objc func dispData(frame: [[Double]]) {
         guard let imageView = self.imageView else {
             return
         }
-        
+
+        let (x, y) = sharedVars.getLocation()
+
         print("Display New Frame")
-        let gray16Image = frame 
-            
-        //  release the memory used by the images at the end of each iteration of the loop
+        let normalizedImage = frame
+
         autoreleasepool {
-            // Create a CGContext and draw the pixel values to it
-            let colorSpace = CGColorSpaceCreateDeviceGray()
-            let bytesPerPixel = MemoryLayout<UInt16>.stride
+            let colorSpace = CGColorSpaceCreateDeviceRGB()
+            let bytesPerPixel = MemoryLayout<UInt8>.stride * 3
             let bytesPerRow = bytesPerPixel * UDPSocketManager.frameWidth
             let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
-            let context = CGContext(data: nil, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight, bitsPerComponent: 16, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
-            context.drawGray16Image(gray16Image)
+            let context = CGContext(data: nil, width: UDPSocketManager.frameWidth, height: UDPSocketManager.frameHeight, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)!
 
-            // Create a CGImage from the CGContext
+            for (i, row) in normalizedImage.enumerated() {
+                for (j, value) in row.enumerated() {
+                    let (r, g, b) = jetColorMap(value)
+                    context.setFillColor(CGColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: 1.0))
+                    context.fill(CGRect(x: j, y: i, width: 1, height: 1))
+                }
+            }
+
+            let markerSize: CGFloat = 6.0
+            let markerRect = CGRect(x: x - markerSize / 2, y: y - markerSize / 2, width: markerSize, height: markerSize)
+            context.setFillColor(UIColor.red.cgColor) // Set the marker color
+            context.fillEllipse(in: markerRect)
+
             guard let cgImage = context.makeImage() else {
                 fatalError("Failed to create CGImage.")
             }
 
-            // Create a UIImage from the CGImage
             let image = UIImage(cgImage: cgImage)
-
-            // Update the UIImageView with the new image
             imageView.image = image
         }
     }
@@ -289,6 +297,17 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
 
         return (centerX, centerY)
     }
+    
+    func jetColorMap(_ value: CGFloat) -> (UInt8, UInt8, UInt8) {
+        let numberOfColors = 4
+        let t = value * CGFloat(numberOfColors - 1)
+
+        let r = UInt8(min(max(1.5 - abs(t - 1), 0), 1) * 255)
+        let g = UInt8(min(max(1.5 - abs(t - 2), 0), 1) * 255)
+        let b = UInt8(min(max(1.5 - abs(t - 3), 0), 1) * 255)
+
+        return (r, g, b)
+    }
 }
 
 class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
@@ -413,20 +432,6 @@ class SharedVars {
     func getLocation() -> (Int, Int) {
         return queue.sync {
             return (_x, _y)
-        }
-    }
-}
-
-extension CGContext {
-    func drawGray16Image(_ gray16Image: [[Int]]) {
-        let width = gray16Image.count
-        let height = gray16Image[0].count
-        for x in 0..<width {
-            for y in 0..<height {
-                let value = UInt16(gray16Image[x][y])
-                let byteOffset = x * height * 2 + y * 2
-                data?.storeBytes(of: value, toByteOffset: byteOffset, as: UInt16.self)
-            }
         }
     }
 }
