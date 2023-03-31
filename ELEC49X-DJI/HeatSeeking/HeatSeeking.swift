@@ -114,11 +114,11 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                     let (x, y) = self.findCenterOfHeat(thermalImage: (normFrame))
                     self.sharedVars.setLocation(x, y)
                     self.sharedVars.setNewLocation(true)
+                    print("Tracking Commands Set")
                     // Display Data
                     DispatchQueue.main.async {
                         self.dispData(frame: normFrame)
                     }
-                    print("Tracking Commands Set")
                     self.getFrameSemaphore.signal()
                 }
                 
@@ -195,6 +195,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         var normalizedX = (Float(x)/119.0) - 0.5
         var normalizedY = (Float(y)/83.0) - 0.5
         
+        // convert normalized coordinate to +/-(1.0,2.0,3.0,4.0) and multiply by 0.5 to get speed
         if (abs(normalizedX) > 0.1 && abs(normalizedX) < 0.5) {
             normalizedX = Float(Int(normalizedX * 10))
             commandPitch = normalizedX * 0.5

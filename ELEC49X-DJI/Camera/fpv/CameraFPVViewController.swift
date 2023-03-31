@@ -127,6 +127,7 @@ class CameraFPVViewController: UIViewController {
         heatSeek?.disableThermalDataAndDisplay()
         self.trackingToggle.setOn(false, animated: true)
         self.trackingToggle.isEnabled = false
+        // stop sending commands and disable virtual sticks
         heatSeek?.stopTracking()
         print("Emergency Land")
         heatSeek?.emergencyLanding()
