@@ -112,9 +112,13 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                     print("Frame Processed")
                     // Get and save tracking commands
                     let (x, y) = self.findCenterOfHeat(thermalImage: (normFrame))
-                    self.sharedVars.setLocation(x, y)
-                    self.sharedVars.setNewLocation(true)
+                    let (commandPitch, commandRoll) = self.getFlightCommand(x: x,y: y)
+                    
+                    self.sharedVars.setCommand(commandPitch, commandRoll)
+                    self.sharedVars.setNewCommand(true)
+                    
                     print("Tracking Commands Set")
+                    
                     // Display Data
                     DispatchQueue.main.async {
                         self.dispData(frame: normFrame)
@@ -133,7 +137,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
             return
         }
 
-        let (x, y) = sharedVars.getLocation()
+        let (xSpeed, ySpeed) = sharedVars.getCommand()
 
         print("Display New Frame")
         let normalizedImage = frame
@@ -153,11 +157,17 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                 }
             }
             
-            // draw black dot at (x,y)
-            let dotRadius: CGFloat = 1.0
-            let adjustedY = UDPSocketManager.frameHeight - 1 - y
-            context.setFillColor(UIColor.black.cgColor)
-            context.fillEllipse(in: CGRect(x: CGFloat(x)-dotRadius, y: CGFloat(adjustedY) - dotRadius, width: 2*dotRadius, height: 2*dotRadius))
+            // Draw the vector
+            let centerX = CGFloat(UDPSocketManager.frameWidth / 2)
+            let centerY = CGFloat(UDPSocketManager.frameHeight / 2)
+            let vectorEndX = centerX + (CGFloat(xSpeed) * centerX / 2.0)
+            let vectorEndY = centerY - (CGFloat(ySpeed) * centerY / 2.0) // Subtract ySpeed to account for the inverted y-axis
+
+            context.setLineWidth(1=a    w2
+            context.setStrokeColor(UIColor.black.cgColor)
+            context.move(to: CGPoint(x: centerX, y: centerY))
+            context.addLine(to: CGPoint(x: vectorEndX, y: vectorEndY))
+            context.strokePath()
 
             guard let cgImage = context.makeImage() else {
                 fatalError("Failed to create CGImage.")
@@ -173,12 +183,11 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         var commandRoll : Float = 0.0
         var commandPitch : Float = 0.0
         while !Thread.current.isCancelled {
-            if sharedVars.getNewLocation() {
+            if sharedVars.getNewCommand() {
                 // SHARED VARIABLES
-                let (x,y) = sharedVars.getLocation()
-                (commandRoll, commandPitch) = getFlightCommand(x: x,y: y)
+                (commandPitch, commandRoll) = sharedVars.getCommand()
                // set newCommands flag to false, allowing the following loop to loop until the other thread sets it back to true
-               sharedVars.setNewLocation(false)
+               sharedVars.setNewCommand(false)
             }
             sendDroneControlData(commandRoll: commandRoll, commandPitch: commandPitch)
         }
@@ -206,7 +215,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
             commandRoll = normalizedY * 0.5
         }
         
-        return (commandRoll, commandPitch)
+        return (commandPitch, commandRoll)
     }
     
     // Takes a hex string of bytes representing 1 thermal image and returns the 120x84 array of grey16 data
@@ -404,34 +413,34 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
 class SharedVars {
     private let queue = DispatchQueue(label: "com.example.HeatSeeking.sharedVarQueue", attributes: .concurrent)
     private var _newLocation: Bool = false
-    private var _x: Int = 0
-    private var _y: Int = 0
+    private var _x: Float = 0
+    private var _y: Float = 0
 
     // Initialize the shared variables
     init() {
     }
 
     // SHARED VARIABLE ACCESS FUNCTIONS
-    func setNewLocation(_ value: Bool) {
+    func setNewCommand(_ value: Bool) {
         queue.async(flags: .barrier) {
             self._newLocation = value
         }
     }
     
-    func setLocation(_ x: Int, _ y: Int) {
+    func setCommand(_ x: Float, _ y: Float) {
         queue.async(flags: .barrier) {
             self._x = x
             self._y = y
         }
     }
     
-    func getNewLocation() -> Bool {
+    func getNewCommand() -> Bool {
         return queue.sync {
             return _newLocation
         }
     }
     
-    func getLocation() -> (Int, Int) {
+    func getCommand() -> (Float, Float) {
         return queue.sync {
             return (_x, _y)
         }
