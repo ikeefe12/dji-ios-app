@@ -154,7 +154,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
             }
             
             // draw black dot at (x,y)
-            let dotRadius: CGFloat = 2.0
+            let dotRadius: CGFloat = 1.0
             let adjustedY = UDPSocketManager.frameHeight - 1 - y
             context.setFillColor(UIColor.black.cgColor)
             context.fillEllipse(in: CGRect(x: CGFloat(x)-dotRadius, y: CGFloat(adjustedY) - dotRadius, width: 2*dotRadius, height: 2*dotRadius))
@@ -174,11 +174,8 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         var commandPitch : Float = 0.0
         while !Thread.current.isCancelled {
             if sharedVars.getNewLocation() {
-                print("New Location")
                 // SHARED VARIABLES
                 let (x,y) = sharedVars.getLocation()
-                print(x)
-                print(y)
                 (commandRoll, commandPitch) = getFlightCommand(x: x,y: y)
                // set newCommands flag to false, allowing the following loop to loop until the other thread sets it back to true
                sharedVars.setNewLocation(false)
@@ -188,22 +185,24 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
     }
 
     @objc private func sendDroneControlData(commandRoll: Float, commandPitch: Float) {
-        droneCommand.sendControlData(throttle: 0.0, pitch: commandPitch, roll: 0.0, yaw: 0.0)
+        droneCommand.sendControlData(throttle: 0.0, pitch: commandPitch, roll: commandRoll, yaw: 0.0)
         Thread.sleep(forTimeInterval: 0.05) // Sleep for 50 milliseconds to achieve 20Hz frequency
     }
     
     private func getFlightCommand(x: Int, y: Int) -> (Float, Float) {
         var commandRoll = Float(0.0)
         var commandPitch = Float(0.0)
-        let normalizedX = (Float(x)/119.0) - 0.5
-        let normalizedY = (Float(y)/83.0) - 0.5
+        var normalizedX = (Float(x)/119.0) - 0.5
+        var normalizedY = (Float(y)/83.0) - 0.5
         
         if (abs(normalizedX) > 0.1 && abs(normalizedX) < 0.5) {
-            commandPitch = normalizedX * 2.0
+            normalizedX = Float(Int(normalizedX * 10))
+            commandPitch = normalizedX * 0.5
         }
         
         if (abs(normalizedY) > 0.1 && abs(normalizedY) < 0.5) {
-            commandRoll = normalizedY * 2.0
+            normalizedY = Float(Int(normalizedY * 10))
+            commandRoll = normalizedY * 0.5
         }
         
         return (commandRoll, commandPitch)
