@@ -23,3 +23,17 @@ All testing below completed successfully for Horizontal movement
 NEXT Steps:
 - Test Forward/Backward Commands
 - Test combination of movements
+
+SPECS:
+- Thermal Camera Streams at max 9fps and min 5fps (losing frames due to UDP connection can hurt rate)
+- Processing in synch with frame rate, the drone gets a new command 5-9 times per second
+- Tapping on thermal image will toggle a line that represents the velocity of the drone command that has been calculated to track the heated subject
+
+
+UI Without Tracking Line
+![UI without showing](https://user-images.githubusercontent.com/83965677/229313138-d7b60eb8-ce94-412f-8eed-307ca77d4c84.png)
+
+UI With Tracking Line
+![UI with Line](https://user-images.githubusercontent.com/83965677/229313215-a7c4dd4c-66d9-4190-a2ed-261a87f2f7de.png)
+
+
