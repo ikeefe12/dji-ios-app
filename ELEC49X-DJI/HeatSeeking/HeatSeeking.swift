@@ -40,10 +40,26 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         imageView?.contentMode = .scaleAspectFit
         view.addSubview(imageView!)
         
+        // Enable user interaction on the imageView
+        imageView?.isUserInteractionEnabled = true
+
+        // Create a UITapGestureRecognizer and add it to the imageView
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleShowDirection))
+        imageView?.addGestureRecognizer(tapGestureRecognizer)
+        
         adjustImageView(view: view)
         
         dataThread = Thread(target: self, selector: #selector(getData), object: nil)
         dataThread?.start()
+    }
+    
+    // Action to be executed when imageView is tapped
+    @objc func toggleShowDirection() {
+        if (sharedVars.getShowDirection()) {
+            sharedVars.setShowDirection(false)
+        } else {
+            sharedVars.setShowDirection(true)
+        }
     }
     
     func adjustImageView(view: UIView) {
@@ -157,18 +173,25 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                 }
             }
             
-            // Draw the vector
-            let centerX = CGFloat(UDPSocketManager.frameWidth / 2)
-            let centerY = CGFloat(UDPSocketManager.frameHeight / 2)
-            let vectorEndX = centerX + (CGFloat(xSpeed) * centerX / 2.0)
-            let vectorEndY = centerY - (CGFloat(ySpeed) * centerY / 2.0) // Subtract ySpeed to account for the inverted y-axis
-
-            context.setLineWidth(1=a    w2
-            context.setStrokeColor(UIColor.black.cgColor)
-            context.move(to: CGPoint(x: centerX, y: centerY))
-            context.addLine(to: CGPoint(x: vectorEndX, y: vectorEndY))
-            context.strokePath()
-
+            // Visualize drone commands in thermal image
+            if (self.sharedVars.getShowDirection()) {
+                // Draw the vector
+                let centerX = CGFloat(UDPSocketManager.frameWidth / 2)
+                let centerY = CGFloat(UDPSocketManager.frameHeight / 2)
+                var vectorEndX = centerX + (CGFloat(xSpeed) * centerX / 2.0)
+                var vectorEndY = centerY - (CGFloat(ySpeed) * centerY / 2.0) // Subtract ySpeed to account for the inverted y-axis
+                if (vectorEndY > 83) {vectorEndY = 83}
+                if (vectorEndY < 0) {vectorEndY = 0}
+                if (vectorEndX > 119) {vectorEndX = 119}
+                if (vectorEndX < 0) {vectorEndX = 0}
+                
+                context.setLineWidth(1)
+                context.setStrokeColor(UIColor.black.cgColor)
+                context.move(to: CGPoint(x: centerX, y: centerY))
+                context.addLine(to: CGPoint(x: vectorEndX, y: vectorEndY))
+                context.strokePath()
+            }
+            
             guard let cgImage = context.makeImage() else {
                 fatalError("Failed to create CGImage.")
             }
@@ -189,7 +212,7 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
                // set newCommands flag to false, allowing the following loop to loop until the other thread sets it back to true
                sharedVars.setNewCommand(false)
             }
-            sendDroneControlData(commandRoll: commandRoll, commandPitch: commandPitch)
+            sendDroneControlData(commandRoll: -commandRoll, commandPitch: commandPitch)
         }
     }
 
@@ -204,15 +227,21 @@ class HeatSeeking: NSObject, GCDAsyncUdpSocketDelegate {
         var normalizedX = (Float(x)/119.0) - 0.5
         var normalizedY = (Float(y)/83.0) - 0.5
         
-        // convert normalized coordinate to +/-(1.0,2.0,3.0,4.0) and multiply by 0.5 to get speed
+        // convert normalized coordinate to +/-(1.0,2.0,3.0,4.0) and multiply by 0.25 to get speed
         if (abs(normalizedX) > 0.1 && abs(normalizedX) < 0.5) {
             normalizedX = Float(Int(normalizedX * 10))
             commandPitch = normalizedX * 0.5
         }
         
-        if (abs(normalizedY) > 0.1 && abs(normalizedY) < 0.5) {
+        // Make Commands more sensitive to forward direction - only need to be 5% from center
+        // Add 1 to truncated value to increase all commands by 0.25m/s
+        // Commands in backwards direction are the same as commands in horizontal direactions
+        if (normalizedY > 0.05 && normalizedY < 0.5) {
+            normalizedY = Float(Int(normalizedY * 10)+1)
+            commandRoll = normalizedY * 0.25
+        } else if (normalizedY < -0.1 && normalizedY > -0.5) {
             normalizedY = Float(Int(normalizedY * 10))
-            commandRoll = normalizedY * 0.5
+            commandRoll = normalizedY * 0.25
         }
         
         return (commandPitch, commandRoll)
@@ -331,6 +360,7 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     private var frame: [String]
     private let dispatchQueue = DispatchQueue(label: "udpSocketQueue")
     private let semaphore = DispatchSemaphore(value: 0)
+    private var firstFrame = true
 
     override init() {
         let initialHexString = String(repeating: "00", count: 480)
@@ -359,7 +389,10 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
     
     @objc func getFrame(completion: @escaping (String) -> Void) {
         packetsReceived = 0
-        sendString("N")
+        if (firstFrame) {
+            sendString("N")
+            firstFrame = false
+        }
 
         do {
             try self.udpSocket?.beginReceiving()
@@ -369,16 +402,17 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
         
         while packetsReceived < 21 {
             // Wait for packets to be received
-            let result = semaphore.wait(timeout: .now() + 0.5)
+            let result = semaphore.wait(timeout: .now() + 0.2)
             
             if result == .timedOut {
+                sendString("N")
                 completion(String())
                 return
             }
         }
-
-        udpSocket?.pauseReceiving()
+        
         let frameString = frame.joined()
+        sendString("N")
         completion(frameString)
     }
     
@@ -389,6 +423,10 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
         } else if packetsReceived >= 0 {
             let hexData = data.hexString
             let packetNumber = UInt8(hexData.prefix(2), radix: 16)! - 1
+            if ((packetNumber > UInt8(20)) || (packetNumber < UInt8(0))) {
+                semaphore.signal()
+                return
+            }
             let startIndex = hexData.index(hexData.startIndex, offsetBy: 2)
             frame[Int(packetNumber)] = String(hexData[startIndex...])
             print(packetsReceived)
@@ -412,6 +450,7 @@ class UDPSocketManager: NSObject, GCDAsyncUdpSocketDelegate {
 
 class SharedVars {
     private let queue = DispatchQueue(label: "com.example.HeatSeeking.sharedVarQueue", attributes: .concurrent)
+    private var _showDirection: Bool = false
     private var _newLocation: Bool = false
     private var _x: Float = 0
     private var _y: Float = 0
@@ -427,6 +466,12 @@ class SharedVars {
         }
     }
     
+    func setShowDirection(_ value: Bool) {
+        queue.async(flags: .barrier) {
+            self._showDirection = value
+        }
+    }
+    
     func setCommand(_ x: Float, _ y: Float) {
         queue.async(flags: .barrier) {
             self._x = x
@@ -437,6 +482,12 @@ class SharedVars {
     func getNewCommand() -> Bool {
         return queue.sync {
             return _newLocation
+        }
+    }
+    
+    func getShowDirection() -> Bool {
+        return queue.sync {
+            return _showDirection
         }
     }
     
