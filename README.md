@@ -14,15 +14,12 @@ CURRENT PROGRESS:
 - The data can be successfully streamed at a rate of 1fps (Hoping this will increase outside of debug mode)
 - UI is in place and button handlers are hooked up properly
 - Threads can run in parallel and shared data safely
-
-NEXT Steps:
+All testing below completed successfully for Horizontal movement
 - Test control of drone using the app (Emergency land functionality)
 - Test functionality of tracking commands (ie display calculated commands but don't send them)
 - Test sending tracking commands (ie test set of tracking commands individually)
 - Test the entire flow (take drone off, enable IR, start tracking, stop tracking, land)
-- Unit test all logic, including data parsing, tracking algorithm, threading?
 
-https://github.com/eblainey/thermalthings
-
-Documentation for the UDP connection: https://github.com/robbiehanson/CocoaAsyncSocket/blob/master/Source/GCD/GCDAsyncUdpSocket.h
-
+NEXT Steps:
+- Test Forward/Backward Commands
+- Test combination of movements
